@@ -1,0 +1,23 @@
+{
+  "name": "graph-sensys",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init:sass": "node-sass sass/main.scss sass/style_sass.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lucamps/graph-sensys.git"
+  },
+  "author": "Lucas Santos Campos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucamps/graph-sensys/issues"
+  },
+  "homepage": "https://github.com/lucamps/graph-sensys#readme",
+  "dependencies": {
+    "node-sass": "^8.0.0"
+  }
+}
