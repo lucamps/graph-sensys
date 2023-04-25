@@ -13,5 +13,6 @@ app.use('/',router);
 
 app.use(express.static(__dirname + '/scss'));
 app.use(express.static(__dirname + '/node_modules'));
+app.use(express.static(__dirname + '/scripts'));
 
 app.listen(process.env.port || 3000);

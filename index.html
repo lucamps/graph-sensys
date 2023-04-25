@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css"> <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="comp/main.css"> <!-- Bootstrap -->
-
+    <link rel="stylesheet" type="text/css" href="comp/main.css">
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-md">
+    <nav class="navbar navbar-dark bg-dark clearfix">
+        <div class="container-fluid">
             <a class="navbar-brand" href="/">Home</a>
         </div>
     </nav>
-    <!-- Script do Bootstrap -->
+
+    <div id="graph" class="container-fluid"></div>
+
+    
     <script src="bootstrap/dist/js/bootstrap.bundle.js" ></script>
+    <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <script src="graph.js"></script>
 </body>
 </html>
