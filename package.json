@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "init:sass": "node-sass sass/main.scss sass/style_sass.css -w"
+    "init:sass": "sass --watch scss/main.scss:scss/comp/main.css"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/lucamps/graph-sensys#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "express": "^4.18.2",
+    "jquery": "^3.6.4",
     "node-sass": "^8.0.0"
   }
 }
