@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "init:sass": "sass --watch scss/main.scss:scss/comp/main.css",
+    "sass": "sass --watch scss/main.scss:scss/comp/main.css",
     "dev": "nodemon index.js",
     "antlr": "antlr4 -Dlanguage=JavaScript scripts/parser/grammar/LinearProg.g4 -o scripts/parser/antlr_files"
   },
