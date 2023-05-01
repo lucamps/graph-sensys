@@ -1,5 +1,5 @@
 # antlr
-antlr/.antlr
+scripts/parser/grammar/.antlr
 
 # .gitignore from https://github.com/github/gitignore/blob/main/Node.gitignore
 
