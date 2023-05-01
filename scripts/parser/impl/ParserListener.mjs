@@ -3,7 +3,7 @@ import LinearExpression from "../../LinearExpression.mjs";
 import LinearProgParser from "../antlr_files/LinearProgParser.js";
 
 export default class ParserListener extends LinearProgListener {
-	constructor() {
+	constructor(debug = false) {
 		super();
 		this.entrouRes = false;
 		this.naEquacao = false;
@@ -12,6 +12,7 @@ export default class ParserListener extends LinearProgListener {
 		this.stIndex = 0;
 		this.variaveis = new Set();
 		this.stList = new Array();
+		this.debug = debug;
 
 		this.funcObj = new LinearExpression({});
 	}
@@ -45,7 +46,7 @@ export default class ParserListener extends LinearProgListener {
 			// msg = "Inicializador inválido! Tente iniciar com 'MAX' ou 'MIN'.";
 			// throw ParserExeption(msg: msg, type: ErrorType.semantic);
 		}
-		console.log(msg);
+		if (this.debug === true) console.log(msg);
 	}
 
 
@@ -58,7 +59,7 @@ export default class ParserListener extends LinearProgListener {
 		const [first, second] = this.variaveis;
 		this.funcObj.nameVarA = first;
 		this.funcObj.nameVarB = second;
-		console.log(this.funcObj);
+		if (this.debug === true) console.log(this.funcObj);
 	}
 
 
@@ -71,7 +72,7 @@ export default class ParserListener extends LinearProgListener {
 	// Exit a parse tree produced by linear_progParser#res.
 	exitRes(ctx) {
 		if (this.variaveis.size != 2) {
-			console.log("ERRO: quantidade de variaveis inválida, tratar erros depois");
+			if (this.debug === true) console.log("ERRO: quantidade de variaveis inválida, tratar erros depois");
 		}
 		const [first, second] = this.variaveis;
 		this.stList[this.stIndex].nameVarA = first;
@@ -117,7 +118,7 @@ export default class ParserListener extends LinearProgListener {
 
 	// Exit a parse tree produced by linear_progParser#sep.
 	exitSep(ctx) {
-		console.log("\nSEPARADOR\n");
+		if (this.debug === true) console.log("\nSEPARADOR\n");
 	}
 
 
@@ -164,8 +165,8 @@ export default class ParserListener extends LinearProgListener {
 			if (!this.leftSide) {
 				this.subSign = !this.subSign;
 			}
-			console.log(atom);
-			console.log(`Variavel:  ${varName} \t Valor: ${valDouble} \t Negativo: ${this.subSign}`);
+			if (this.debug === true) console.log(atom);
+			if (this.debug === true) console.log(`Variavel:  ${varName} \t Valor: ${valDouble} \t Negativo: ${this.subSign}`);
 		}
 		// Se nao tem nome e' uma constante
 		else {
@@ -174,8 +175,8 @@ export default class ParserListener extends LinearProgListener {
 			if (this.leftSide) {
 				this.subSign = !this.subSign;
 			}
-			console.log(atom);
-			console.log(`Constante de valor: ${valDouble} \t Negativo: ${this.subSign}`);
+			if (this.debug === true) console.log(atom);
+			if (this.debug === true) console.log(`Constante de valor: ${valDouble} \t Negativo: ${this.subSign}`);
 		}
 
 		if (this.subSign) {
@@ -259,7 +260,7 @@ export default class ParserListener extends LinearProgListener {
 	// Enter a parse tree produced by linear_progParser#relop.
 	enterRelop(ctx) {
 		this.stList[this.stIndex].rel = ctx.getText();
-		console.log(`Relacionamento: ${this.stList[this.stIndex].rel}`);
+		if (this.debug === true) console.log(`Relacionamento: ${this.stList[this.stIndex].rel}`);
 	}
 
 	// Exit a parse tree produced by linear_progParser#relop.

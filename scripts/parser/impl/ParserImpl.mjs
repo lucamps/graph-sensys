@@ -4,9 +4,9 @@ import LinearProgParser from './../antlr_files/LinearProgParser.js';
 import ParserListener from './ParserListener.mjs';
 
 export default class ParserImpl {
-    constructor(input) {
+    constructor(input, debug = false) {
         this.#buildTree(input);
-        this.listener = new ParserListener();
+        this.listener = new ParserListener(debug);
 
         antlr4.tree.ParseTreeWalker.DEFAULT.walk(this.listener, this.tree);
     }
