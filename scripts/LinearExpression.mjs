@@ -19,6 +19,7 @@ export default class LinearExpression {
     }
 
     toString() {
-        return `${this.a}${this.nameVarA}${this.b}${this.nameVarB}=${this.value}`;
+        let sinal = this.b > 0 ? '+' : '';
+        return `${this.a}${this.nameVarA}${sinal}${this.b}${this.nameVarB}=${this.value}`;
     }
 }

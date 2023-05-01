@@ -24,7 +24,15 @@ app.post("/", (req, res) => {
         console.log(ps.listener.funcObj.toString());
         console.log(ps.listener.stList);
 
-        res.status(200).send('Ok');
+        let expressionList = ps.listener.stList;
+        expressionList.unshift(ps.listener.funcObj);
+
+        let stringList = [];
+        for (let i in expressionList) {
+            stringList.push(expressionList[i].toString());
+        }
+
+        res.status(200).send(stringList);
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal server error');
