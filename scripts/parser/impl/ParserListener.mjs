@@ -9,11 +9,11 @@ export default class ParserListener extends LinearProgListener {
 		this.naEquacao = false;
 		this.leftSide = true;
 		this.subSign = false;
-		this.variaveis = [];
 		this.stIndex = 0;
+		this.variaveis = new Set();
 		this.stList = new Array();
 
-		this.funcObj = new LinearExpression({ isObjectiveFuncion: true });
+		this.funcObj = new LinearExpression({});
 	}
 	// Enter a parse tree produced by linear_progParser#file_.
 	enterFile_(ctx) {
@@ -55,9 +55,9 @@ export default class ParserListener extends LinearProgListener {
 
 	// Exit a parse tree produced by linear_progParser#funcObj.
 	exitFuncObj(ctx) {
-		this.variaveis.sort()
-		this.funcObj.nameVarA = this.variaveis[0];
-		this.funcObj.nameVarB = this.variaveis[1];
+		const [first, second] = this.variaveis;
+		this.funcObj.nameVarA = first;
+		this.funcObj.nameVarB = second;
 		console.log(this.funcObj);
 	}
 
@@ -70,12 +70,12 @@ export default class ParserListener extends LinearProgListener {
 
 	// Exit a parse tree produced by linear_progParser#res.
 	exitRes(ctx) {
-		this.variaveis.sort();
-		if (this.variaveis.length != 2) {
+		if (this.variaveis.size != 2) {
 			console.log("ERRO: quantidade de variaveis inválida, tratar erros depois");
 		}
-		this.stList[this.stIndex].nameVarA = this.variaveis[0];
-		this.stList[this.stIndex].nameVarB = this.variaveis[1];
+		const [first, second] = this.variaveis;
+		this.stList[this.stIndex].nameVarA = first;
+		this.stList[this.stIndex].nameVarB = second;
 		this.stIndex++;
 	}
 
@@ -182,12 +182,14 @@ export default class ParserListener extends LinearProgListener {
 			valDouble *= -1;
 		}
 
+		const [first] = this.variaveis;
+
 		if (this.entrouRes) {
 			// se e' restricao, atualiza os dados de stList em stIndex
 			if (constante) {
 				this.stList[this.stIndex].value += valDouble;
 			} else {
-				if (varName == this.variaveis.first) {
+				if (varName === first) {
 					this.stList[this.stIndex].a += valDouble;
 				} else {
 					this.stList[this.stIndex].b += valDouble;
@@ -199,7 +201,7 @@ export default class ParserListener extends LinearProgListener {
 			if (constante) {
 				this.funcObj.value += valDouble;
 			} else {
-				if (varName == this.variaveis.first) {
+				if (varName === first) {
 					this.funcObj.a += valDouble;
 				} else {
 					this.funcObj.b += valDouble;
@@ -239,9 +241,9 @@ export default class ParserListener extends LinearProgListener {
 		// let msg =
 		// 	`Variável \'${ctx.getText()}\' não pode ser utilizada. Podemos ter no máximo 2 variáveis.`;
 
-		if (!this.variaveis.includes(ctx.getText())) {
-			if (this.variaveis.length < 2) {
-				this.variaveis.push(ctx.getText());
+		if (!this.variaveis.has(ctx.getText())) {
+			if (this.variaveis.size < 2) {
+				this.variaveis.add(ctx.getText());
 			}
 			// else {
 			// 	throw ParserExeption(msg: msg, type: ErrorType.semantic);
@@ -257,6 +259,7 @@ export default class ParserListener extends LinearProgListener {
 	// Enter a parse tree produced by linear_progParser#relop.
 	enterRelop(ctx) {
 		this.stList[this.stIndex].rel = ctx.getText();
+		console.log(`Relacionamento: ${this.stList[this.stIndex].rel}`);
 	}
 
 	// Exit a parse tree produced by linear_progParser#relop.

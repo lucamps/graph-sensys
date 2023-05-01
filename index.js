@@ -26,8 +26,9 @@ app.listen(process.env.port || 3000);
 
 let input = `max 3u + 2z
 sa
-5u + z < 2`;
+insumo) 5u + z < 2`;
 // eslint-disable-next-line no-unused-vars
 let ps = new ParserImpl(input);
 
-//console.log(ps.listener.stList);
+console.log(ps.listener.funcObj);
+console.log(ps.listener.stList);

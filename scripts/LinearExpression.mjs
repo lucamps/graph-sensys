@@ -1,6 +1,3 @@
-
-
-
 export default class LinearExpression {
     static Relationship = {
         greater: ">",
@@ -11,14 +8,13 @@ export default class LinearExpression {
         notEqual: "!=",
         none: ""
     }
-    constructor({ a = 0, b = 0, rel = LinearExpression.Relationship.none, value = 0, id = "", nameA = "x", nameB = "y", isObjectiveFuncion = false }) {
+    constructor({ a = 0, b = 0, rel = LinearExpression.Relationship.none, value = 0, id = "", nameA = "x", nameB = "y" }) {
         this.a = a;
         this.b = b;
         this.rel = rel;
         this.value = value;
         this.id = id;
-        this.nameA = nameA;
-        this.nameB = nameB;
-        this.isObjectiveFuncion = isObjectiveFuncion;
+        this.nameVarA = nameA;
+        this.nameVarB = nameB;
     }
 }
