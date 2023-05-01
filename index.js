@@ -21,7 +21,7 @@ app.post("/", (req, res) => {
         const inputText = req.body.text;
         let ps = new ParserImpl(inputText);
         console.log("PARSER DATA:");
-        console.log(ps.listener.funcObj);
+        console.log(ps.listener.funcObj.toString());
         console.log(ps.listener.stList);
 
         res.status(200).send('Ok');

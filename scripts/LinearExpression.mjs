@@ -17,4 +17,8 @@ export default class LinearExpression {
         this.nameVarA = nameA;
         this.nameVarB = nameB;
     }
+
+    toString() {
+        return `${this.a}${this.nameVarA}${this.b}${this.nameVarB}=${this.value}`;
+    }
 }
