@@ -21,11 +21,13 @@ app.use(express.static(__dirname + '/scss'));
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/scripts'));
 
+// eslint-disable-next-line no-undef
 app.listen(process.env.port || 3000);
 
 let input = `max 3u + 2z
 sa
 5u + z < 2`;
+// eslint-disable-next-line no-unused-vars
 let ps = new ParserImpl(input);
 
 //console.log(ps.listener.stList);

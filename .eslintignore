@@ -1,0 +1,5 @@
+# auto generated files from ANTLR4
+scripts/parser/antlr_files
+
+# eslint configuration file
+.eslintrc.js
