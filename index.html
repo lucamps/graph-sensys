@@ -37,9 +37,10 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                     </ul>
-                    <form class="d-flex mt-3" role="search" action="/" method="post">
+                    <form class="d-flex mt-3" role="search" id="form-input">
                         <div class="input-group">
-                            <textarea class="form-control" aria-label="Input area" name="input_label"></textarea>
+                            <textarea class="form-control" aria-label="Input area" id="input_label"
+                                name="input_label"></textarea>
                         </div>
                         <button class="btn btn-success" type="submit">Go</button>
                     </form>
@@ -56,6 +57,7 @@
     <script src="bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <script src="graph.js"></script>
+    <script src="form_handler.js"></script>
 </body>
 
 </html>

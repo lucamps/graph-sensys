@@ -1,6 +1,7 @@
 import ParserImpl from "./scripts/parser/impl/ParserImpl.mjs";
 
 import express from 'express';
+import bodyParser from "body-parser";
 import path from 'path';
 import * as url from 'url';
 
@@ -8,19 +9,26 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.post("/", (req, res) => {
-    const inputText = req.body.input_label;
-    let ps = new ParserImpl(inputText);
-    console.log("INPUT DATA:");
-    console.log(ps.listener.funcObj);
-    console.log(ps.listener.stList);
-    return;
+    try {
+        const inputText = req.body.text;
+        let ps = new ParserImpl(inputText);
+        console.log("PARSER DATA:");
+        console.log(ps.listener.funcObj);
+        console.log(ps.listener.stList);
+
+        res.status(200).send('Ok');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal server error');
+    }
 });
 
 
