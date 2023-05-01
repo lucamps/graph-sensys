@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "init:sass": "sass --watch scss/main.scss:scss/comp/main.css"
+    "init:sass": "sass --watch scss/main.scss:scss/comp/main.css",
+    "dev": "nodemon index.js",
+    "antlr": "antlr4 -Dlanguage=JavaScript scripts/parser/grammar/LinearProg.g4 -o scripts/parser/antlr_files"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,10 @@
     "bootstrap": "^5.2.3",
     "express": "^4.18.2",
     "jquery": "^3.6.4",
-    "node-sass": "^8.0.0"
+    "node-sass": "^8.0.0",
+    "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "eslint": "^8.39.0"
   }
 }

@@ -1,4 +1,4 @@
-// Generated from linear_prog.g4 by ANTLR 4.12.0
+// Generated from scripts/parser/grammar/LinearProg.g4 by ANTLR 4.12.0
 // jshint ignore: start
 import antlr4 from 'antlr4';
 
@@ -64,9 +64,9 @@ const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
 
 const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DFA(ds, index) );
 
-export default class linear_progLexer extends antlr4.Lexer {
+export default class LinearProgLexer extends antlr4.Lexer {
 
-    static grammarFileName = "linear_prog.g4";
+    static grammarFileName = "LinearProg.g4";
     static channelNames = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
 	static modeNames = [ "DEFAULT_MODE" ];
 	static literalNames = [ null, null, null, null, null, null, "'('", "')'", 
@@ -88,29 +88,29 @@ export default class linear_progLexer extends antlr4.Lexer {
     }
 }
 
-linear_progLexer.EOF = antlr4.Token.EOF;
-linear_progLexer.INIT = 1;
-linear_progLexer.ST = 2;
-linear_progLexer.END = 3;
-linear_progLexer.VARIABLE = 4;
-linear_progLexer.SCIENTIFIC_NUMBER = 5;
-linear_progLexer.LPAREN = 6;
-linear_progLexer.RPAREN = 7;
-linear_progLexer.PLUS = 8;
-linear_progLexer.MINUS = 9;
-linear_progLexer.TIMES = 10;
-linear_progLexer.DIV = 11;
-linear_progLexer.GTEQ = 12;
-linear_progLexer.LTEQ = 13;
-linear_progLexer.GT = 14;
-linear_progLexer.LT = 15;
-linear_progLexer.EQ = 16;
-linear_progLexer.POINT = 17;
-linear_progLexer.POW = 18;
-linear_progLexer.SMCOL = 19;
-linear_progLexer.ID = 20;
-linear_progLexer.ENDL = 21;
-linear_progLexer.WS = 22;
+LinearProgLexer.EOF = antlr4.Token.EOF;
+LinearProgLexer.INIT = 1;
+LinearProgLexer.ST = 2;
+LinearProgLexer.END = 3;
+LinearProgLexer.VARIABLE = 4;
+LinearProgLexer.SCIENTIFIC_NUMBER = 5;
+LinearProgLexer.LPAREN = 6;
+LinearProgLexer.RPAREN = 7;
+LinearProgLexer.PLUS = 8;
+LinearProgLexer.MINUS = 9;
+LinearProgLexer.TIMES = 10;
+LinearProgLexer.DIV = 11;
+LinearProgLexer.GTEQ = 12;
+LinearProgLexer.LTEQ = 13;
+LinearProgLexer.GT = 14;
+LinearProgLexer.LT = 15;
+LinearProgLexer.EQ = 16;
+LinearProgLexer.POINT = 17;
+LinearProgLexer.POW = 18;
+LinearProgLexer.SMCOL = 19;
+LinearProgLexer.ID = 20;
+LinearProgLexer.ENDL = 21;
+LinearProgLexer.WS = 22;
 
 
 

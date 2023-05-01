@@ -1,7 +1,7 @@
-// Generated from linear_prog.g4 by ANTLR 4.12.0
+// Generated from scripts/parser/grammar/LinearProg.g4 by ANTLR 4.12.0
 // jshint ignore: start
 import antlr4 from 'antlr4';
-import linear_progListener from './linear_progListener.js';
+import LinearProgListener from './LinearProgListener.js';
 const serializedATN = [4,1,22,125,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,
 2,13,7,13,1,0,1,0,4,0,31,8,0,11,0,12,0,32,1,0,1,0,4,0,37,8,0,11,0,12,0,38,
@@ -46,9 +46,9 @@ const decisionsToDFA = atn.decisionToState.map( (ds, index) => new antlr4.dfa.DF
 
 const sharedContextCache = new antlr4.atn.PredictionContextCache();
 
-export default class linear_progParser extends antlr4.Parser {
+export default class LinearProgParser extends antlr4.Parser {
 
-    static grammarFileName = "linear_prog.g4";
+    static grammarFileName = "LinearProg.g4";
     static literalNames = [ null, null, null, null, null, null, "'('", "')'", 
                             "'+'", "'-'", "'*'", "'/'", null, null, "'>'", 
                             "'<'", "'='", "'.'", "'^'", "';'", null, "'\\n'" ];
@@ -63,9 +63,9 @@ export default class linear_progParser extends antlr4.Parser {
     constructor(input) {
         super(input);
         this._interp = new antlr4.atn.ParserATNSimulator(this, atn, decisionsToDFA, sharedContextCache);
-        this.ruleNames = linear_progParser.ruleNames;
-        this.literalNames = linear_progParser.literalNames;
-        this.symbolicNames = linear_progParser.symbolicNames;
+        this.ruleNames = LinearProgParser.ruleNames;
+        this.literalNames = LinearProgParser.literalNames;
+        this.symbolicNames = LinearProgParser.symbolicNames;
     }
 
     sempred(localctx, ruleIndex, predIndex) {
@@ -95,7 +95,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	file_() {
 	    let localctx = new File_Context(this, this._ctx, this.state);
-	    this.enterRule(localctx, 0, linear_progParser.RULE_file_);
+	    this.enterRule(localctx, 0, LinearProgParser.RULE_file_);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -154,11 +154,11 @@ export default class linear_progParser extends antlr4.Parser {
 	        _la = this._input.LA(1);
 	        if(_la===3) {
 	            this.state = 52;
-	            this.match(linear_progParser.END);
+	            this.match(LinearProgParser.END);
 	        }
 
 	        this.state = 55;
-	        this.match(linear_progParser.EOF);
+	        this.match(LinearProgParser.EOF);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -177,11 +177,11 @@ export default class linear_progParser extends antlr4.Parser {
 
 	init() {
 	    let localctx = new InitContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 2, linear_progParser.RULE_init);
+	    this.enterRule(localctx, 2, LinearProgParser.RULE_init);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 57;
-	        this.match(linear_progParser.INIT);
+	        this.match(LinearProgParser.INIT);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -200,7 +200,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	funcObj() {
 	    let localctx = new FuncObjContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 4, linear_progParser.RULE_funcObj);
+	    this.enterRule(localctx, 4, LinearProgParser.RULE_funcObj);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -236,7 +236,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	res() {
 	    let localctx = new ResContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 6, linear_progParser.RULE_res);
+	    this.enterRule(localctx, 6, LinearProgParser.RULE_res);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -268,11 +268,11 @@ export default class linear_progParser extends antlr4.Parser {
 
 	id() {
 	    let localctx = new IdContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 8, linear_progParser.RULE_id);
+	    this.enterRule(localctx, 8, LinearProgParser.RULE_id);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 73;
-	        this.match(linear_progParser.ID);
+	        this.match(LinearProgParser.ID);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -291,7 +291,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	equation() {
 	    let localctx = new EquationContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 10, linear_progParser.RULE_equation);
+	    this.enterRule(localctx, 10, LinearProgParser.RULE_equation);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 75;
@@ -318,11 +318,11 @@ export default class linear_progParser extends antlr4.Parser {
 
 	st() {
 	    let localctx = new StContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 12, linear_progParser.RULE_st);
+	    this.enterRule(localctx, 12, LinearProgParser.RULE_st);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 79;
-	        this.match(linear_progParser.ST);
+	        this.match(LinearProgParser.ST);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -341,7 +341,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	sep() {
 	    let localctx = new SepContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 14, linear_progParser.RULE_sep);
+	    this.enterRule(localctx, 14, LinearProgParser.RULE_sep);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -378,7 +378,7 @@ export default class linear_progParser extends antlr4.Parser {
 	    let localctx = new ExpressionContext(this, this._ctx, _parentState);
 	    let _prevctx = localctx;
 	    const _startState = 16;
-	    this.enterRecursionRule(localctx, 16, linear_progParser.RULE_expression, _p);
+	    this.enterRecursionRule(localctx, 16, LinearProgParser.RULE_expression, _p);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -387,11 +387,11 @@ export default class linear_progParser extends antlr4.Parser {
 	        switch(this._input.LA(1)) {
 	        case 6:
 	            this.state = 84;
-	            this.match(linear_progParser.LPAREN);
+	            this.match(LinearProgParser.LPAREN);
 	            this.state = 85;
 	            this.expression(0);
 	            this.state = 86;
-	            this.match(linear_progParser.RPAREN);
+	            this.match(LinearProgParser.RPAREN);
 	            break;
 	        case 4:
 	        case 5:
@@ -419,20 +419,20 @@ export default class linear_progParser extends antlr4.Parser {
 	                switch(la_) {
 	                case 1:
 	                    localctx = new ExpressionContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, linear_progParser.RULE_expression);
+	                    this.pushNewRecursionContext(localctx, _startState, LinearProgParser.RULE_expression);
 	                    this.state = 91;
 	                    if (!( this.precpred(this._ctx, 5))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 5)");
 	                    }
 	                    this.state = 92;
-	                    this.match(linear_progParser.POW);
+	                    this.match(LinearProgParser.POW);
 	                    this.state = 93;
 	                    this.expression(6);
 	                    break;
 
 	                case 2:
 	                    localctx = new ExpressionContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, linear_progParser.RULE_expression);
+	                    this.pushNewRecursionContext(localctx, _startState, LinearProgParser.RULE_expression);
 	                    this.state = 94;
 	                    if (!( this.precpred(this._ctx, 4))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 4)");
@@ -452,7 +452,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	                case 3:
 	                    localctx = new ExpressionContext(this, _parentctx, _parentState);
-	                    this.pushNewRecursionContext(localctx, _startState, linear_progParser.RULE_expression);
+	                    this.pushNewRecursionContext(localctx, _startState, LinearProgParser.RULE_expression);
 	                    this.state = 97;
 	                    if (!( this.precpred(this._ctx, 3))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 3)");
@@ -488,7 +488,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	atom() {
 	    let localctx = new AtomContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 18, linear_progParser.RULE_atom);
+	    this.enterRule(localctx, 18, LinearProgParser.RULE_atom);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -541,7 +541,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	addOrSub() {
 	    let localctx = new AddOrSubContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 20, linear_progParser.RULE_addOrSub);
+	    this.enterRule(localctx, 20, LinearProgParser.RULE_addOrSub);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -572,11 +572,11 @@ export default class linear_progParser extends antlr4.Parser {
 
 	scientific() {
 	    let localctx = new ScientificContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 22, linear_progParser.RULE_scientific);
+	    this.enterRule(localctx, 22, LinearProgParser.RULE_scientific);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 118;
-	        this.match(linear_progParser.SCIENTIFIC_NUMBER);
+	        this.match(LinearProgParser.SCIENTIFIC_NUMBER);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -595,11 +595,11 @@ export default class linear_progParser extends antlr4.Parser {
 
 	variable() {
 	    let localctx = new VariableContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 24, linear_progParser.RULE_variable);
+	    this.enterRule(localctx, 24, LinearProgParser.RULE_variable);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 120;
-	        this.match(linear_progParser.VARIABLE);
+	        this.match(LinearProgParser.VARIABLE);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -618,7 +618,7 @@ export default class linear_progParser extends antlr4.Parser {
 
 	relop() {
 	    let localctx = new RelopContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 26, linear_progParser.RULE_relop);
+	    this.enterRule(localctx, 26, LinearProgParser.RULE_relop);
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
@@ -648,44 +648,44 @@ export default class linear_progParser extends antlr4.Parser {
 
 }
 
-linear_progParser.EOF = antlr4.Token.EOF;
-linear_progParser.INIT = 1;
-linear_progParser.ST = 2;
-linear_progParser.END = 3;
-linear_progParser.VARIABLE = 4;
-linear_progParser.SCIENTIFIC_NUMBER = 5;
-linear_progParser.LPAREN = 6;
-linear_progParser.RPAREN = 7;
-linear_progParser.PLUS = 8;
-linear_progParser.MINUS = 9;
-linear_progParser.TIMES = 10;
-linear_progParser.DIV = 11;
-linear_progParser.GTEQ = 12;
-linear_progParser.LTEQ = 13;
-linear_progParser.GT = 14;
-linear_progParser.LT = 15;
-linear_progParser.EQ = 16;
-linear_progParser.POINT = 17;
-linear_progParser.POW = 18;
-linear_progParser.SMCOL = 19;
-linear_progParser.ID = 20;
-linear_progParser.ENDL = 21;
-linear_progParser.WS = 22;
+LinearProgParser.EOF = antlr4.Token.EOF;
+LinearProgParser.INIT = 1;
+LinearProgParser.ST = 2;
+LinearProgParser.END = 3;
+LinearProgParser.VARIABLE = 4;
+LinearProgParser.SCIENTIFIC_NUMBER = 5;
+LinearProgParser.LPAREN = 6;
+LinearProgParser.RPAREN = 7;
+LinearProgParser.PLUS = 8;
+LinearProgParser.MINUS = 9;
+LinearProgParser.TIMES = 10;
+LinearProgParser.DIV = 11;
+LinearProgParser.GTEQ = 12;
+LinearProgParser.LTEQ = 13;
+LinearProgParser.GT = 14;
+LinearProgParser.LT = 15;
+LinearProgParser.EQ = 16;
+LinearProgParser.POINT = 17;
+LinearProgParser.POW = 18;
+LinearProgParser.SMCOL = 19;
+LinearProgParser.ID = 20;
+LinearProgParser.ENDL = 21;
+LinearProgParser.WS = 22;
 
-linear_progParser.RULE_file_ = 0;
-linear_progParser.RULE_init = 1;
-linear_progParser.RULE_funcObj = 2;
-linear_progParser.RULE_res = 3;
-linear_progParser.RULE_id = 4;
-linear_progParser.RULE_equation = 5;
-linear_progParser.RULE_st = 6;
-linear_progParser.RULE_sep = 7;
-linear_progParser.RULE_expression = 8;
-linear_progParser.RULE_atom = 9;
-linear_progParser.RULE_addOrSub = 10;
-linear_progParser.RULE_scientific = 11;
-linear_progParser.RULE_variable = 12;
-linear_progParser.RULE_relop = 13;
+LinearProgParser.RULE_file_ = 0;
+LinearProgParser.RULE_init = 1;
+LinearProgParser.RULE_funcObj = 2;
+LinearProgParser.RULE_res = 3;
+LinearProgParser.RULE_id = 4;
+LinearProgParser.RULE_equation = 5;
+LinearProgParser.RULE_st = 6;
+LinearProgParser.RULE_sep = 7;
+LinearProgParser.RULE_expression = 8;
+LinearProgParser.RULE_atom = 9;
+LinearProgParser.RULE_addOrSub = 10;
+LinearProgParser.RULE_scientific = 11;
+LinearProgParser.RULE_variable = 12;
+LinearProgParser.RULE_relop = 13;
 
 class File_Context extends antlr4.ParserRuleContext {
 
@@ -698,7 +698,7 @@ class File_Context extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_file_;
+        this.ruleIndex = LinearProgParser.RULE_file_;
     }
 
 	funcObj() {
@@ -710,7 +710,7 @@ class File_Context extends antlr4.ParserRuleContext {
 	};
 
 	EOF() {
-	    return this.getToken(linear_progParser.EOF, 0);
+	    return this.getToken(LinearProgParser.EOF, 0);
 	};
 
 	sep = function(i) {
@@ -736,17 +736,17 @@ class File_Context extends antlr4.ParserRuleContext {
 	};
 
 	END() {
-	    return this.getToken(linear_progParser.END, 0);
+	    return this.getToken(LinearProgParser.END, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterFile_(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitFile_(this);
 		}
 	}
@@ -767,21 +767,21 @@ class InitContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_init;
+        this.ruleIndex = LinearProgParser.RULE_init;
     }
 
 	INIT() {
-	    return this.getToken(linear_progParser.INIT, 0);
+	    return this.getToken(LinearProgParser.INIT, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterInit(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitInit(this);
 		}
 	}
@@ -802,7 +802,7 @@ class FuncObjContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_funcObj;
+        this.ruleIndex = LinearProgParser.RULE_funcObj;
     }
 
 	init() {
@@ -825,13 +825,13 @@ class FuncObjContext extends antlr4.ParserRuleContext {
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterFuncObj(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitFuncObj(this);
 		}
 	}
@@ -852,7 +852,7 @@ class ResContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_res;
+        this.ruleIndex = LinearProgParser.RULE_res;
     }
 
 	equation() {
@@ -864,13 +864,13 @@ class ResContext extends antlr4.ParserRuleContext {
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterRes(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitRes(this);
 		}
 	}
@@ -891,21 +891,21 @@ class IdContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_id;
+        this.ruleIndex = LinearProgParser.RULE_id;
     }
 
 	ID() {
-	    return this.getToken(linear_progParser.ID, 0);
+	    return this.getToken(LinearProgParser.ID, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterId(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitId(this);
 		}
 	}
@@ -926,7 +926,7 @@ class EquationContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_equation;
+        this.ruleIndex = LinearProgParser.RULE_equation;
     }
 
 	expression = function(i) {
@@ -945,13 +945,13 @@ class EquationContext extends antlr4.ParserRuleContext {
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterEquation(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitEquation(this);
 		}
 	}
@@ -972,21 +972,21 @@ class StContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_st;
+        this.ruleIndex = LinearProgParser.RULE_st;
     }
 
 	ST() {
-	    return this.getToken(linear_progParser.ST, 0);
+	    return this.getToken(LinearProgParser.ST, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterSt(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitSt(this);
 		}
 	}
@@ -1007,25 +1007,25 @@ class SepContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_sep;
+        this.ruleIndex = LinearProgParser.RULE_sep;
     }
 
 	SMCOL() {
-	    return this.getToken(linear_progParser.SMCOL, 0);
+	    return this.getToken(LinearProgParser.SMCOL, 0);
 	};
 
 	ENDL() {
-	    return this.getToken(linear_progParser.ENDL, 0);
+	    return this.getToken(LinearProgParser.ENDL, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterSep(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitSep(this);
 		}
 	}
@@ -1046,11 +1046,11 @@ class ExpressionContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_expression;
+        this.ruleIndex = LinearProgParser.RULE_expression;
     }
 
 	LPAREN() {
-	    return this.getToken(linear_progParser.LPAREN, 0);
+	    return this.getToken(LinearProgParser.LPAREN, 0);
 	};
 
 	expression = function(i) {
@@ -1065,7 +1065,7 @@ class ExpressionContext extends antlr4.ParserRuleContext {
 	};
 
 	RPAREN() {
-	    return this.getToken(linear_progParser.RPAREN, 0);
+	    return this.getToken(LinearProgParser.RPAREN, 0);
 	};
 
 	atom() {
@@ -1073,15 +1073,15 @@ class ExpressionContext extends antlr4.ParserRuleContext {
 	};
 
 	POW() {
-	    return this.getToken(linear_progParser.POW, 0);
+	    return this.getToken(LinearProgParser.POW, 0);
 	};
 
 	TIMES() {
-	    return this.getToken(linear_progParser.TIMES, 0);
+	    return this.getToken(LinearProgParser.TIMES, 0);
 	};
 
 	DIV() {
-	    return this.getToken(linear_progParser.DIV, 0);
+	    return this.getToken(LinearProgParser.DIV, 0);
 	};
 
 	addOrSub() {
@@ -1089,13 +1089,13 @@ class ExpressionContext extends antlr4.ParserRuleContext {
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterExpression(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitExpression(this);
 		}
 	}
@@ -1116,7 +1116,7 @@ class AtomContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_atom;
+        this.ruleIndex = LinearProgParser.RULE_atom;
     }
 
 	scientific() {
@@ -1132,13 +1132,13 @@ class AtomContext extends antlr4.ParserRuleContext {
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterAtom(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitAtom(this);
 		}
 	}
@@ -1159,25 +1159,25 @@ class AddOrSubContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_addOrSub;
+        this.ruleIndex = LinearProgParser.RULE_addOrSub;
     }
 
 	PLUS() {
-	    return this.getToken(linear_progParser.PLUS, 0);
+	    return this.getToken(LinearProgParser.PLUS, 0);
 	};
 
 	MINUS() {
-	    return this.getToken(linear_progParser.MINUS, 0);
+	    return this.getToken(LinearProgParser.MINUS, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterAddOrSub(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitAddOrSub(this);
 		}
 	}
@@ -1198,21 +1198,21 @@ class ScientificContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_scientific;
+        this.ruleIndex = LinearProgParser.RULE_scientific;
     }
 
 	SCIENTIFIC_NUMBER() {
-	    return this.getToken(linear_progParser.SCIENTIFIC_NUMBER, 0);
+	    return this.getToken(LinearProgParser.SCIENTIFIC_NUMBER, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterScientific(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitScientific(this);
 		}
 	}
@@ -1233,21 +1233,21 @@ class VariableContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_variable;
+        this.ruleIndex = LinearProgParser.RULE_variable;
     }
 
 	VARIABLE() {
-	    return this.getToken(linear_progParser.VARIABLE, 0);
+	    return this.getToken(LinearProgParser.VARIABLE, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterVariable(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitVariable(this);
 		}
 	}
@@ -1268,37 +1268,37 @@ class RelopContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = linear_progParser.RULE_relop;
+        this.ruleIndex = LinearProgParser.RULE_relop;
     }
 
 	EQ() {
-	    return this.getToken(linear_progParser.EQ, 0);
+	    return this.getToken(LinearProgParser.EQ, 0);
 	};
 
 	GT() {
-	    return this.getToken(linear_progParser.GT, 0);
+	    return this.getToken(LinearProgParser.GT, 0);
 	};
 
 	LT() {
-	    return this.getToken(linear_progParser.LT, 0);
+	    return this.getToken(LinearProgParser.LT, 0);
 	};
 
 	LTEQ() {
-	    return this.getToken(linear_progParser.LTEQ, 0);
+	    return this.getToken(LinearProgParser.LTEQ, 0);
 	};
 
 	GTEQ() {
-	    return this.getToken(linear_progParser.GTEQ, 0);
+	    return this.getToken(LinearProgParser.GTEQ, 0);
 	};
 
 	enterRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.enterRelop(this);
 		}
 	}
 
 	exitRule(listener) {
-	    if(listener instanceof linear_progListener ) {
+	    if(listener instanceof LinearProgListener ) {
 	        listener.exitRelop(this);
 		}
 	}
@@ -1309,17 +1309,17 @@ class RelopContext extends antlr4.ParserRuleContext {
 
 
 
-linear_progParser.File_Context = File_Context; 
-linear_progParser.InitContext = InitContext; 
-linear_progParser.FuncObjContext = FuncObjContext; 
-linear_progParser.ResContext = ResContext; 
-linear_progParser.IdContext = IdContext; 
-linear_progParser.EquationContext = EquationContext; 
-linear_progParser.StContext = StContext; 
-linear_progParser.SepContext = SepContext; 
-linear_progParser.ExpressionContext = ExpressionContext; 
-linear_progParser.AtomContext = AtomContext; 
-linear_progParser.AddOrSubContext = AddOrSubContext; 
-linear_progParser.ScientificContext = ScientificContext; 
-linear_progParser.VariableContext = VariableContext; 
-linear_progParser.RelopContext = RelopContext; 
+LinearProgParser.File_Context = File_Context; 
+LinearProgParser.InitContext = InitContext; 
+LinearProgParser.FuncObjContext = FuncObjContext; 
+LinearProgParser.ResContext = ResContext; 
+LinearProgParser.IdContext = IdContext; 
+LinearProgParser.EquationContext = EquationContext; 
+LinearProgParser.StContext = StContext; 
+LinearProgParser.SepContext = SepContext; 
+LinearProgParser.ExpressionContext = ExpressionContext; 
+LinearProgParser.AtomContext = AtomContext; 
+LinearProgParser.AddOrSubContext = AddOrSubContext; 
+LinearProgParser.ScientificContext = ScientificContext; 
+LinearProgParser.VariableContext = VariableContext; 
+LinearProgParser.RelopContext = RelopContext; 

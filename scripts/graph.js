@@ -14,6 +14,7 @@ function pointsToString(points){
 // Obtendo grafico
 let elt = document.getElementById('graph');
 let options = {zoomButtons:false,expressions:true};
+// eslint-disable-next-line no-undef
 let calculator = Desmos.GraphingCalculator(elt,options);
 
 // Desenhando retas

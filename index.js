@@ -1,18 +1,31 @@
-const express = require('express');
+import ParserImpl from "./scripts/parser/impl/ParserImpl.mjs";
+
+import express from 'express';
+import path from 'path';
+import * as url from 'url';
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
 const app = express();
-const path = require('path');
 const router = express.Router();
 
 
-router.get('/',(req,res) => {
-    res.sendFile( path.join( __dirname + '/index.html' ) );
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 
-app.use('/',router);
+app.use('/', router);
 
 app.use(express.static(__dirname + '/scss'));
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/scripts'));
 
 app.listen(process.env.port || 3000);
+
+let input = `max 3u + 2z
+sa
+5u + z < 2`;
+let ps = new ParserImpl(input);
+
+//console.log(ps.listener.stList);

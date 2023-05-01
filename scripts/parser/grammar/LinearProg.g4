@@ -32,7 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // Comando para compilar: antlr4 -Dlanguage=JavaScript linear_prog.g4
 
-grammar linear_prog;
+grammar LinearProg;
 
 file_ : funcObj sep+ st (sep+ res)+ sep* END? EOF;
 
