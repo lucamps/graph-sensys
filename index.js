@@ -1,4 +1,4 @@
-import ParserImpl from "./scripts/parser/impl/ParserImpl.mjs";
+import ParserImpl from "./scripts/parser/impl/parserImp.mjs";
 
 import express from 'express';
 import bodyParser from "body-parser";

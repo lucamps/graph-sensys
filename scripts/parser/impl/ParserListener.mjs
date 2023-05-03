@@ -1,5 +1,5 @@
 import LinearProgListener from "../antlr_files/LinearProgListener.js";
-import LinearExpression from "../../LinearExpression.mjs";
+import LinearExpression from "../../linearExpression.mjs";
 import LinearProgParser from "../antlr_files/LinearProgParser.js";
 
 export default class ParserListener extends LinearProgListener {
@@ -59,6 +59,7 @@ export default class ParserListener extends LinearProgListener {
 		const [first, second] = this.variaveis;
 		this.funcObj.nameVarA = first;
 		this.funcObj.nameVarB = second;
+		this.funcObj.isFO = true;
 		if (this.debug === true) console.log(this.funcObj);
 	}
 

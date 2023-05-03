@@ -1,7 +1,7 @@
 import antlr4 from 'antlr4';
-import LinearProgLexer from './../antlr_files/LinearProgLexer.js';
-import LinearProgParser from './../antlr_files/LinearProgParser.js';
-import ParserListener from './ParserListener.mjs';
+import LinearProgLexer from '../antlr_files/LinearProgLexer.js';
+import LinearProgParser from '../antlr_files/LinearProgParser.js';
+import ParserListener from './parserListener.mjs';
 
 export default class ParserImpl {
     constructor(input, debug = false) {
