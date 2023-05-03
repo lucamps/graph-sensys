@@ -10,7 +10,7 @@ export class Graph {
 
 
         if (id) {
-            this.graphElement = this.getGraphByElementId(id);
+            this.graphCalculator = this.getGraphCalculatorById(id);
         }
     }
 
@@ -28,7 +28,7 @@ export class Graph {
     }
 
 
-    getGraphByElementId(id) {
+    getGraphCalculatorById(id) {
         let elt = document.getElementById(id);
         return Desmos.GraphingCalculator(elt, this.options);
     }
@@ -39,20 +39,20 @@ export class Graph {
         }
         const pointsString = pointsToString(this.regiaoViavel);
         const poligStr = `\\polygon(${pointsString})`;
-        this.graphElement.setExpression({ id: 'regiaoViavel', latex: poligStr });
+        this.graphCalculator.setExpression({ id: 'regiaoViavel', latex: poligStr });
     }
 
     drawRestricoes() {
         for (let i = 0; i < this.restricoes.length; i++) {
             console.log(this.restricoes[i]);
-            this.graphElement.setExpression(this.restricoes[i]);
+            this.graphCalculator.setExpression(this.restricoes[i]);
         }
         //TODO: tratar identificadores iguais e ausencia de identificador
     }
 
     drawFuncaoObjetivo() {
         let sliderChar = 'F';
-        while (this.variaveis.includes(sliderChar)) {
+        while (this.variaveis.includes(sliderChar)) { //TODO: trazer info sobre variaveis usadas para ca
             sliderChar++;
         }
         let value = this.valorOtimo;
@@ -60,7 +60,11 @@ export class Graph {
             value = 10;
         }
 
-        this.graphElement.setExpression({ id: 'fo', latex: `${this.funcaoObjetivo} = ${sliderChar}` });
-        this.graphElement.setExpression({ id: 'fo-slider', latex: `${sliderChar}=${value}`, sliderBounds: { min: 0, max: value + 50 } });
+        this.graphCalculator.setExpression({ id: 'fo', latex: `${this.funcaoObjetivo} = ${sliderChar}` });
+        this.graphCalculator.setExpression({ id: 'fo-slider', latex: `${sliderChar}=${value}`, sliderBounds: { min: 0, max: value + 50 } });
+    }
+
+    clearData() {
+        this.graphCalculator.setBlank();
     }
 }
