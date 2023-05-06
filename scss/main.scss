@@ -1,12 +1,22 @@
-html,body{
+html,
+body {
     height: 100%;
 }
 
-#graph{
+#graph {
     margin: 0 auto;
     height: 100%;
 
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+#input_label {
+    height: 8.2em;
+}
+
+#btn-submit {
+    background-color: darkblue;
+    margin-left: 5px;
 }
