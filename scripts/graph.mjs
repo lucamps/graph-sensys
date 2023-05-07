@@ -60,7 +60,13 @@ export class Graph {
             value = 10;
         }
 
-        this.graphCalculator.setExpression({ id: 'fo', latex: `${this.funcaoObjetivo} = ${sliderChar}` });
+        this.graphCalculator.setExpression({
+            id: 'fo',
+            latex: `${this.funcaoObjetivo} = ${sliderChar}`,
+            lineStyle: Desmos.Styles.DASHED,
+            color: Desmos.Colors.BLACK
+        });
+
         this.graphCalculator.setExpression({ id: 'fo-slider', latex: `${sliderChar}=${value}`, sliderBounds: { min: 0, max: value + 50 } });
     }
 
