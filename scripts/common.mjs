@@ -1,5 +1,19 @@
-
 export default class Common {
+    /**
+     * @param {Number} n 
+     * @param {Number} m 
+     * @param {Number} valor igual a zero por default
+     * @returns {Array<Array<Number>>} matriz `n` x `m` preenchida com o `valor` fornecido
+     */
+    static getMatriz(n, m, valor = 0) {
+        let resp = Array(n).fill(0);
+        for (let i = 0; i < n; i++) {
+            resp[i] = Array(m).fill(valor);
+        }
+
+        return resp;
+    }
+
     /**
      * Retorna a transposta da matriz recebida como parametro.
      * @param {Array<Array<Number>>} matriz 
@@ -10,10 +24,7 @@ export default class Common {
         let colunas = matriz[0].length;
 
         // Iniciando matriz do resultado
-        let resp = Array(colunas).fill(0);
-        for (let i in resp) {
-            resp[i] = Array(linhas).fill(0);
-        }
+        let resp = Common.getMatriz(colunas, linhas, 0);
 
         // Transpondo
         for (let i = 0; i < linhas; i++) {
