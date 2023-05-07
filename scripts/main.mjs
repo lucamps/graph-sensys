@@ -23,7 +23,6 @@ function submitForm(e) {
     xhr.onload = function () {
         response = xhr.response;
 
-        // Desenhando retas
         let lista = JSON.parse(response);
 
         let [fo, ...restricoes] = lista;

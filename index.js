@@ -1,4 +1,5 @@
 import ParserImpl from "./scripts/parser/impl/parserImp.mjs";
+import Solver from "./scripts/solver.mjs";
 
 import express from 'express';
 import bodyParser from "body-parser";
@@ -20,6 +21,8 @@ app.post("/", (req, res) => {
     try {
         const inputText = req.body.text;
         let ps = new ParserImpl(inputText);
+        let solver = new Solver(ps.listener);
+
         console.log("PARSER DATA:");
         console.log(ps.listener.funcObj.toString());
         console.log(ps.listener.stList);
