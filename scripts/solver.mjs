@@ -41,10 +41,15 @@ export default class Solver {
 
     }
 
+
+    /**
+     * Preenche o array de pontos `this.#regiaoViavel`.
+     */
     #calculateRegiaoViavel() {
-        let linhas = this.#matrizT.length;
-        let colunas = this.#matrizT[0].length;
-        let comb = Common.getComb(linhas, colunas);
+        const linhas = this.#matrizT.length;
+        const colunas = this.#matrizT[0].length;
+        const comb = Common.getComb(linhas, colunas);
+        const mLen = this.stList.length + 2;
 
         if (this.debug) {
             console.log("---------");
@@ -52,47 +57,40 @@ export default class Solver {
             console.log(comb);
         }
 
-        const mLen = this.stList.length + 2;
-
-        // percorrendo linhas da matrix de combinacoes
+        // percorrendo linhas da matriz de combinacoes
         for (let linComb = 0; linComb < comb.length; linComb++) {
             let matrixTemp = Common.getMatriz(mLen, mLen, 0);
             let linha = 0;
             let temX = false;
             let temY = false;
 
+            // percorrendo colunas da matriz de combinacoes
             for (let colComb = 0; colComb < comb[0].length; colComb++) {
                 let elem = comb[linComb][colComb];
-
                 if (elem == 0) {
                     temX = true;
                 }
                 else if (elem == 1) {
                     temY = true;
                 }
-
-                for (let i = 0; i < mLen; i++) {
-                    matrixTemp[linha][i] = this.#matrizT[elem][i];
-                }
-
+                matrixTemp[linha] = this.#matrizT[elem];
                 linha++;
             }
 
+            // passando a transposta da matriz para um objeto da classe Matrix (mathjs)
             matrixTemp = Common.getMatrizTransposta(matrixTemp);
-
             let mathJsMatrix = matrix(matrixTemp);
 
+            // invertendo e multiplicando a matriz com o array de valores
             if (det(mathJsMatrix) == 0) {
                 continue;
             }
-
             mathJsMatrix = inv(mathJsMatrix);
             mathJsMatrix = multiply(mathJsMatrix, matrix(this.#values));
-
-            let valido = true;
-
             matrixTemp = mathJsMatrix.valueOf();
 
+            // verificando validade do resultado
+            let valido = true;
             for (let i = 0; i < matrixTemp.length; i++) {
                 let value = matrixTemp[i][0];
                 if (value < 0) {
@@ -100,12 +98,11 @@ export default class Solver {
                     break;
                 }
             }
-
             if (!valido) {
                 continue;
             }
 
-
+            // adicionando pontos no array da regiao viavel
             if (temX) {
                 if (temY) {
                     // pos 0 e 1 da resp serao utilizadas com os valores de x e y no ponto
@@ -123,8 +120,10 @@ export default class Solver {
             else {
                 this.#regiaoViavel.push([0, 0]);
             }
-        }
-    }
+
+        } // fim do for
+
+    } // fim do metodo #calculateRegiaoViavel
 
 
     /**
