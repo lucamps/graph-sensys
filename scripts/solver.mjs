@@ -34,11 +34,12 @@ export default class Solver {
 
         this.#calculateRegiaoViavel();
 
+        Common.sortByAngle(this.#regiaoViavel);
+
         if (debug) {
             console.log("---------");
             console.log(this.#regiaoViavel);
         }
-
     }
 
 

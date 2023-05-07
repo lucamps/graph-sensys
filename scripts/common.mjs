@@ -1,4 +1,29 @@
+import { atan2, pi } from "mathjs";
+
 export default class Common {
+    /**
+     * Ordena o array de pontos com base no angulo com o ponto centroide.
+     * @param {number[][]} points 
+     */
+    static sortByAngle(points) {
+        let center = this.findCentroid(points);
+        points.sort((a, b) => {
+            let a1 = (this.degrees(atan2(a[0] - center[0], a[1] - center[1])) + 360) % 360;
+            let a2 = (this.degrees(atan2(b[0] - center[0], b[1] - center[1])) + 360) % 360;
+            console.log(a2);
+            return parseInt(a1 - a2);
+        });
+    }
+
+    /**
+     * Converte o valor de radianos para graus
+     * @param {number} rad 
+     * @returns 
+     */
+    static degrees(rad) {
+        return rad * (180 / pi);
+    }
+
     /**
      * @param {Number[][]} points 
      * @returns o ponto centroide do array de pontos
@@ -14,6 +39,7 @@ export default class Common {
         y /= points.length;
 
         let center = [x, y];
+        console.log(`Center: ${center}`);
         return center;
     }
 
