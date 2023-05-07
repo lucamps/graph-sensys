@@ -11,47 +11,34 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark clearfix">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Home</a>
-        </div>
-    </nav>
-
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">Home</a>
-            <div class="offcanvas offcanvas-start text-bg-dark show" data-bs-backdrop="false" tabindex="-1"
-                id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3" role="search" id="form-input">
-                        <div class="input-group">
-                            <textarea class="form-control" aria-label="Input area" id="input_label"
-                                name="input_label"></textarea>
-                        </div>
-                        <button class="btn btn-primary" type="submit" id="btn-submit">Go</button>
-                    </form>
-                </div>
+    <header>
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                    aria-controls="sidebar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">Home</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid" id="my-content">
+        <div class="offcanvas offcanvas-start text-bg-dark show" data-bs-backdrop="false" tabindex="-1" id="sidebar"
+            aria-labelledby="my-content">
+            <div class="offcanvas-body">
+                <form class="d-flex mt-3" role="search" id="form-input">
+                    <div class="input-group">
+                        <textarea class="form-control" aria-label="Input area" id="input_label" name="input_label"
+                            placeholder="Input your data here..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="btn-submit">Go</button>
+                </form>
             </div>
         </div>
-    </nav>
+        <div id="graph" class="container-fluid"></div>
+    </div>
 
-    </nav>
 
-    <div id="graph" class="container-fluid"></div>
 
 
     <script src="bootstrap/dist/js/bootstrap.bundle.js"></script>

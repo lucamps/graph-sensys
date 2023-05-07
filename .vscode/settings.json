@@ -1,11 +1,9 @@
 {
     "antlr4.debug": {
-
         "visualParseTreeHorizontal": true,
         "visualParseTreeClustered": false
     },
     "antlr4.format": {
-
         "alignTrailingComments": false,
         "allowShortBlocksOnASingleLine": true,
         "breakBeforeBraces": false,
@@ -33,10 +31,10 @@
         "alignTrailers": false
     },
     "antlr4.generation": {
-
         "mode": "internal",
         "language": "JavaScript",
         "listeners": true,
         "visitors": false
-    }
+    },
+    "liveServer.settings.showOnStatusbar": true
 }

@@ -1,6 +1,9 @@
 # antlr
 scripts/parser/grammar/.antlr
 
+# testes
+/teste interface
+
 # .gitignore from https://github.com/github/gitignore/blob/main/Node.gitignore
 
 # Logs
