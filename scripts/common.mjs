@@ -1,23 +1,40 @@
 export default class Common {
     /**
+     * @param {Number[][]} points 
+     * @returns o ponto centroide do array de pontos
+     */
+    static findCentroid(points) {
+        let x = 0;
+        let y = 0;
+        for (let i in points) {
+            x += points[i][0];
+            y += points[i][1];
+        }
+        x /= points.length;
+        y /= points.length;
+
+        let center = [x, y];
+        return center;
+    }
+
+    /**
      * @param {Number} n 
      * @param {Number} m 
      * @param {Number} valor igual a zero por default
-     * @returns {Array<Array<Number>>} matriz `n` x `m` preenchida com o `valor` fornecido
+     * @returns {Number[][]} matriz `n` x `m` preenchida com o `valor` fornecido
      */
     static getMatriz(n, m, valor = 0) {
         let resp = Array(n).fill(0);
         for (let i = 0; i < n; i++) {
             resp[i] = Array(m).fill(valor);
         }
-
         return resp;
     }
 
     /**
      * Retorna a transposta da matriz recebida como parametro.
-     * @param {Array<Array<Number>>} matriz 
-     * @returns {Array<Array<Number>>} matriz transposta
+     * @param {Number[][]} matriz 
+     * @returns {Number[][]} matriz transposta
      */
     static getMatrizTransposta(matriz) {
         let linhas = matriz.length;
@@ -38,7 +55,7 @@ export default class Common {
 
     /**
      *  Gera combinacoes de `n` elementos, agrupados `m` a `m`, em ordem lexicografica.
-     *  @returns {Array<Array<Number>>} matriz com as combinacoes possiveis
+     *  @returns {Number[][]} matriz com as combinacoes possiveis
      */
     static getComb(n, m) {
         let c = Array(n).fill(false);
