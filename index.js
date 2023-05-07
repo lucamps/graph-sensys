@@ -21,7 +21,7 @@ app.post("/", (req, res) => {
     try {
         const inputText = req.body.text;
         let ps = new ParserImpl(inputText);
-        let solver = new Solver(ps.listener);
+        let solver = new Solver(ps.listener, true);
 
         console.log("PARSER DATA:");
         console.log(ps.listener.funcObj.toString());

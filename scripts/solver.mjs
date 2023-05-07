@@ -5,6 +5,7 @@ import LinearExpression from "./linearExpression.mjs";
 export default class Solver {
     #matriz = [];
     #values = [];
+    #matrizT = [];
 
     /**
      * @param {ParserListener} parserListener 
@@ -17,11 +18,16 @@ export default class Solver {
 
         this.#getInitialData();
 
+        this.#matrizT = Common.getMatrizTransposta(this.#matriz);
+
         if (debug) {
             console.log(this.#matriz);
             console.log("---------");
             console.log(this.#values);
+            console.log("---------");
+            console.log(this.#matrizT);
         }
+
     }
 
 

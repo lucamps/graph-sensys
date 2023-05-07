@@ -1,9 +1,33 @@
 
 export default class Common {
     /**
+     * Retorna a transposta da matriz recebida como parametro.
+     * @param {Array<Array<Number>>} matriz 
+     * @returns {Array<Array<Number>>} matriz transposta
+     */
+    static getMatrizTransposta(matriz) {
+        let linhas = matriz.length;
+        let colunas = matriz[0].length;
+
+        // Iniciando matriz do resultado
+        let resp = Array(colunas).fill(0);
+        for (let i in resp) {
+            resp[i] = Array(linhas).fill(0);
+        }
+
+        // Transpondo
+        for (let i = 0; i < linhas; i++) {
+            for (let j = 0; j < colunas; j++) {
+                resp[j][i] = matriz[i][j];
+            }
+        }
+
+        return resp;
+    }
+
+    /**
      *  Gera combinacoes de `n` elementos, agrupados `m` a `m`, em ordem lexicografica.
-     * 
-     *  São geradas a partir de um array com `n` elementos: `(0, ..., n-1)`.
+     *  @returns {Array<Array<Number>>} matriz com as combinacoes possiveis
      */
     static getComb(n, m) {
         let c = Array(n).fill(false);
