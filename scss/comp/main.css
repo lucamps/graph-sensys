@@ -15,6 +15,8 @@ header {
 
 #sidebar {
   margin-top: 3.5em;
+  width: 25%;
+  min-width: 18em;
 }
 
 #sidebar > .offcanvas-body {
@@ -24,9 +26,6 @@ header {
 #graph {
   margin: 0 auto;
   height: 100%;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 #input_label {
