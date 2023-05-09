@@ -1,4 +1,5 @@
 import { Graph } from "./graph.mjs";
+import { ResponseHandler } from "./responseHandler.mjs";
 
 let response = "";
 let form = document.getElementById('form-input');
@@ -22,21 +23,25 @@ function submitForm(e) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         response = xhr.response;
+        console.log("Response recebida:");
+        let respJson = JSON.parse(response);
+        //console.log(respJson);
 
-        let lista = JSON.parse(response);
+        let respH = new ResponseHandler(respJson);
+        // let lista = JSON.parse(response);
 
-        let [fo, ...restricoes] = lista;
+        // let [fo, ...restricoes] = lista;
 
-        graph.funcaoObjetivo = fo;
+        // graph.funcaoObjetivo = fo;
 
-        let restrObjs = [];
-        for (let i = 0; i < restricoes.length; i++) {
-            restrObjs.push({ id: `reta${i}`, latex: restricoes[i] });
-        }
-        graph.restricoes = restrObjs;
+        // let restrObjs = [];
+        // for (let i = 0; i < restricoes.length; i++) {
+        //     restrObjs.push({ id: `reta${i}`, latex: restricoes[i] });
+        // }
+        // graph.restricoes = restrObjs;
 
-        graph.drawFuncaoObjetivo();
-        graph.drawRestricoes();
+        // graph.drawFuncaoObjetivo();
+        // graph.drawRestricoes();
 
         //TODO: try catch verificando se os dados existem ao mandar desenhar
         //TODO: funcao unica para desenhar tudo

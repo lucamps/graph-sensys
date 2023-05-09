@@ -19,13 +19,17 @@ app.get('/', (req, res) => {
 
 app.post("/", (req, res) => {
     try {
-        const inputText = req.body.text;
-        let ps = new ParserImpl(inputText);
-        let solver = new Solver(ps.listener, true);
+        const debug = false;
 
-        console.log("PARSER DATA:");
-        console.log(ps.listener.funcObj.toString());
-        console.log(ps.listener.stList);
+        const inputText = req.body.text;
+        let ps = new ParserImpl(inputText, debug);
+        let solver = new Solver(ps.listener, debug);
+
+        if (debug) {
+            console.log("PARSER DATA:");
+            console.log(ps.listener.funcObj.toString());
+            console.log(ps.listener.stList);
+        }
 
         let expressionList = ps.listener.stList;
         expressionList.unshift(ps.listener.funcObj);
@@ -34,8 +38,19 @@ app.post("/", (req, res) => {
         for (let i in expressionList) {
             stringList.push(expressionList[i].toString());
         }
+        // console.log("String enviada:");
+        // console.log(stringList);
 
-        res.status(200).send(stringList);
+
+        let responseData = {
+            funcObj: ps.listener.funcObj,
+            stList: ps.listener.stList,
+            regViavel: solver.regiaoViavel
+        }
+        // console.log("Nova resposta");
+        // console.log(responseData);
+
+        res.status(200).send(responseData);
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal server error');
