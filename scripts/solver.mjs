@@ -7,7 +7,7 @@ export default class Solver {
     #matriz = [];
     #values = [];
     #matrizT = [];
-    #regiaoViavel = [];
+    regiaoViavel = [];
 
     /**
      * @param {ParserListener} parserListener 
@@ -34,11 +34,11 @@ export default class Solver {
 
         this.#calculateRegiaoViavel();
 
-        Common.sortByAngle(this.#regiaoViavel);
+        Common.sortByAngle(this.regiaoViavel);
 
         if (debug) {
             console.log("---------");
-            console.log(this.#regiaoViavel);
+            console.log(this.regiaoViavel);
         }
     }
 
@@ -107,19 +107,19 @@ export default class Solver {
             if (temX) {
                 if (temY) {
                     // pos 0 e 1 da resp serao utilizadas com os valores de x e y no ponto
-                    this.#regiaoViavel.push([matrixTemp[0][0], matrixTemp[1][0]]);
+                    this.regiaoViavel.push([matrixTemp[0][0], matrixTemp[1][0]]);
                 }
                 else {
                     // pos 0 da resp sera utilizada com o valor x no ponto
-                    this.#regiaoViavel.push([matrixTemp[0][0], 0]);
+                    this.regiaoViavel.push([matrixTemp[0][0], 0]);
                 }
             }
             else if (temY) {
                 // pos 0 da resp sera utilizada com o valor y no ponto
-                this.#regiaoViavel.push([0, matrixTemp[0][0]]);
+                this.regiaoViavel.push([0, matrixTemp[0][0]]);
             }
             else {
-                this.#regiaoViavel.push([0, 0]);
+                this.regiaoViavel.push([0, 0]);
             }
 
         } // fim do for
