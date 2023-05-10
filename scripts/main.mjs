@@ -28,20 +28,24 @@ function submitForm(e) {
         //console.log(respJson);
 
         let respH = new ResponseHandler(respJson);
-        // let lista = JSON.parse(response);
 
-        // let [fo, ...restricoes] = lista;
+        let fo = respH.funcObj.toString();;
 
-        // graph.funcaoObjetivo = fo;
+        graph.funcaoObjetivo = fo;
 
-        // let restrObjs = [];
-        // for (let i = 0; i < restricoes.length; i++) {
-        //     restrObjs.push({ id: `reta${i}`, latex: restricoes[i] });
-        // }
-        // graph.restricoes = restrObjs;
+        let restricoes = respH.stList;
+        let restrObjs = [];
+        for (let i = 0; i < restricoes.length; i++) {
+            restrObjs.push({ id: `reta${i}`, latex: restricoes[i].toString() });
+            // TODO: pegar id do parser e, se nao tiver, criar um padrao sem repetir
+        }
+        graph.restricoes = restrObjs;
 
-        // graph.drawFuncaoObjetivo();
-        // graph.drawRestricoes();
+        graph.regiaoViavel = respH.regViavel;
+
+        graph.drawFuncaoObjetivo();
+        graph.drawRestricoes();
+        graph.drawRegiaoViavel();
 
         //TODO: try catch verificando se os dados existem ao mandar desenhar
         //TODO: funcao unica para desenhar tudo
