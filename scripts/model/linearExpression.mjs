@@ -10,7 +10,7 @@ export default class LinearExpression {
     }
 
     toString() {
-        let sinal = this.b > 0 ? '+' : '';
+        let sinal = this.b >= 0 ? '+' : '';
         let rightSide = this instanceof ObjectiveFunction ? "" : `=${this.value}`;
         return `${this.a}${this.nameVarA}${sinal}${this.b}${this.nameVarB}${rightSide}`;
     }
