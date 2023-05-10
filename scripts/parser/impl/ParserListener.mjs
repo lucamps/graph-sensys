@@ -3,6 +3,7 @@ import LinearExpression from "../../linearExpression.mjs";
 import LinearProgParser from "../antlr_files/LinearProgParser.js";
 
 export default class ParserListener extends LinearProgListener {
+	funcObjType = null;
 	constructor(debug = false) {
 		super();
 		this.entrouRes = false;
@@ -36,10 +37,10 @@ export default class ParserListener extends LinearProgListener {
 		let tipo = ctx.getText().toLowerCase();
 		switch (tipo) {
 			case "max":
-				msg = "max";
+				this.funcObjType = "max";
 				break;
 			case "min":
-				msg = "min";
+				this.funcObjType = "min";
 				break;
 			default:
 			// nao esta sendo usado
