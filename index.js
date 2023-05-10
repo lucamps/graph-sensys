@@ -31,24 +31,11 @@ app.post("/", (req, res) => {
             console.log(ps.listener.stList);
         }
 
-        let expressionList = ps.listener.stList;
-        expressionList.unshift(ps.listener.funcObj);
-
-        let stringList = [];
-        for (let i in expressionList) {
-            stringList.push(expressionList[i].toString());
-        }
-        // console.log("String enviada:");
-        // console.log(stringList);
-
-
         let responseData = {
-            funcObj: ps.listener.funcObj,
-            stList: ps.listener.stList,
+            funcObj: solver.funcObj,
+            stList: solver.stList,
             regViavel: solver.regiaoViavel
         }
-        // console.log("Nova resposta");
-        // console.log(responseData);
 
         res.status(200).send(responseData);
     } catch (err) {
