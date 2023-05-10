@@ -8,7 +8,6 @@ export class Graph {
         this.regiaoViavel = {};
         this.variaveis = [];
 
-
         if (id) {
             this.graphCalculator = this.getGraphCalculatorById(id);
         }

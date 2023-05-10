@@ -25,7 +25,6 @@ function submitForm(e) {
         response = xhr.response;
         console.log("Response recebida:");
         let respJson = JSON.parse(response);
-        //console.log(respJson);
 
         let respH = new ResponseHandler(respJson);
 

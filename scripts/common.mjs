@@ -10,7 +10,6 @@ export default class Common {
         points.sort((a, b) => {
             let a1 = (this.degrees(atan2(a[0] - center[0], a[1] - center[1])) + 360) % 360;
             let a2 = (this.degrees(atan2(b[0] - center[0], b[1] - center[1])) + 360) % 360;
-            console.log(a2);
             return parseInt(a1 - a2);
         });
     }
@@ -39,7 +38,6 @@ export default class Common {
         y /= points.length;
 
         let center = [x, y];
-        console.log(`Center: ${center}`);
         return center;
     }
 
