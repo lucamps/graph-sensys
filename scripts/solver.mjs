@@ -1,6 +1,5 @@
 import Common from "./common.mjs";
 import ParserListener from "./parser/impl/parserListener.mjs";
-import LinearExpression from "./linearExpression.mjs";
 import { matrix, det, inv, multiply } from "mathjs";
 
 export default class Solver {

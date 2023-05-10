@@ -1,5 +1,6 @@
 import LinearProgListener from "../antlr_files/LinearProgListener.js";
-import LinearExpression from "../../linearExpression.mjs";
+import ObjectiveFunction from "../../model/objectiveFunction.mjs";
+import Constraint from "../../model/constraints.mjs";
 import LinearProgParser from "../antlr_files/LinearProgParser.js";
 
 export default class ParserListener extends LinearProgListener {
@@ -15,7 +16,7 @@ export default class ParserListener extends LinearProgListener {
 		this.stList = new Array();
 		this.debug = debug;
 
-		this.funcObj = new LinearExpression({});
+		this.funcObj = new ObjectiveFunction({});
 	}
 	// Enter a parse tree produced by linear_progParser#file_.
 	enterFile_(ctx) {
@@ -37,10 +38,10 @@ export default class ParserListener extends LinearProgListener {
 		let tipo = ctx.getText().toLowerCase();
 		switch (tipo) {
 			case "max":
-				this.funcObjType = "max";
+				this.funcObj.type = ObjectiveFunction.Type.max;
 				break;
 			case "min":
-				this.funcObjType = "min";
+				this.funcObj.type = ObjectiveFunction.Type.min;
 				break;
 			default:
 			// nao esta sendo usado
@@ -60,14 +61,13 @@ export default class ParserListener extends LinearProgListener {
 		const [first, second] = this.variaveis;
 		this.funcObj.nameVarA = first;
 		this.funcObj.nameVarB = second;
-		this.funcObj.isFO = true;
 		if (this.debug === true) console.log(this.funcObj);
 	}
 
 
 	// Enter a parse tree produced by linear_progParser#res.
 	enterRes(ctx) {
-		this.stList.push(new LinearExpression({}));
+		this.stList.push(new Constraint({}));
 		this.entrouRes = true;
 	}
 
