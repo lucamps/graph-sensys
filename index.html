@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="comp/main.css">
     <title>Document</title>
 </head>
@@ -33,6 +34,10 @@
                     </div>
                     <button class="btn btn-primary" type="submit" id="btn-submit">Go</button>
                 </form>
+                <div class="alert alert-warning d-flex align-items-center" id="alertDiv" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill" id="warningIcon"></i>
+                    <div id="warningText">Erro encontrado: Lorem Ipsum blablabla...</div>
+                </div>
             </div>
         </div>
         <div id="graph" class="container-fluid"></div>

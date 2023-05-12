@@ -37,4 +37,14 @@ header {
   margin-left: 5px;
 }
 
+#alertDiv {
+  margin-top: 0.5em;
+  z-index: -1;
+}
+
+#warningText {
+  padding-left: 0.5em;
+  word-break: break-word;
+}
+
 /*# sourceMappingURL=main.css.map */
