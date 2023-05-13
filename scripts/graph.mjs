@@ -83,4 +83,14 @@ export class Graph {
     clearData() {
         this.graphCalculator.setBlank();
     }
+
+    // GS-8
+    updateBounds(minX = -10, minY = -10, maxX = 100, maxY = 100) {
+        this.graphCalculator.setMathBounds({
+            left: minX,
+            right: maxX,
+            bottom: minY,
+            top: maxY
+        });
+    }
 }
