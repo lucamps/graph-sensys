@@ -1,5 +1,7 @@
 
 export class Graph {
+    static get PRECISION() { return 10; };
+
     constructor(id = 'graph') {
         this.options = { zoomButtons: false, expressions: true };
         this.restricoes = []; //formato: { id: "identificador", latex: "ax + y = b"}
@@ -18,10 +20,19 @@ export class Graph {
     pointsToString(points) {
         let pointsString = "";
         let size = points.length;
-        for (let i = 0; i < size - 1; i++) {
-            pointsString += '(' + points[i][0] + ',' + points[i][1] + '),';
+
+        let i = 0;
+        let x = 0;
+        let y = 0;
+        while (i < size - 1) {
+            x = Number(points[i][0]).toFixed(Graph.PRECISION);
+            y = Number(points[i][1]).toFixed(Graph.PRECISION);
+            pointsString += `(${x}, ${y}),`;
+            i++;
         }
-        pointsString += '(' + points[size - 1][0] + ',' + points[size - 1][1] + ')';
+        x = Number(points[i][0]).toFixed(Graph.PRECISION);
+        y = Number(points[i][1]).toFixed(Graph.PRECISION);
+        pointsString += `(${x}, ${y})`;
 
         return pointsString;
     }
