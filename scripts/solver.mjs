@@ -1,8 +1,11 @@
 import Common from "./common.mjs";
 import ParserListener from "./parser/impl/parserListener.mjs";
-import { matrix, det, inv, multiply } from "mathjs";
+import { matrix, det, inv, multiply, max } from "mathjs";
 
 export default class Solver {
+    static MAX_X = 1000;
+    static MAX_Y = 1000;
+
     #matriz = [];
     #values = [];
     #matrizT = [];
@@ -130,9 +133,9 @@ export default class Solver {
      * Obtem os valores iniciais da matriz e do vetor que representam as restricoes.
      */
     #getInitialData() {
-        const mLen = this.stList.length + 2; // +2 por causa das restricoes de nao negatividade
+        const mLen = this.stList.length + 4; // +4 por causa das 2 restricoes de nao negatividade e 2 restricoes fakes de 'nao infinitude'
 
-        // Criando matriz quadrada
+        // Criando matriz
         this.#matriz = Common.getMatriz(mLen, mLen + 2, 0);
 
         // Vetor representando o lado direito das restricoes
@@ -147,10 +150,13 @@ export default class Solver {
 
             this.#values[i][0] = this.stList[i].value;
             folgaCol++;
+
+            Solver.MAX_X = max(Solver.MAX_X, this.stList[i].a + 500);
+            Solver.MAX_Y = max(Solver.MAX_Y, this.stList[i].b + 500);
         }
 
         // primeira linha ainda nao preenchida da matriz
-        let linha = mLen - 2;
+        let linha = mLen - 4;
 
         // restricao x > 0
         this.#matriz[linha][0] = 1;
@@ -166,5 +172,24 @@ export default class Solver {
         this.#matriz[linha][1] = 1;
         this.#values[linha][0] = 0;
         this.#matriz[linha][folgaCol] = -1;
+
+        linha++;
+        folgaCol++;
+
+        // restricao x < +inf
+        this.#matriz[linha][0] = 1;
+        this.#matriz[linha][1] = 0;
+        this.#values[linha][0] = Solver.MAX_X;
+        this.#matriz[linha][folgaCol] = 1;
+
+        linha++;
+        folgaCol++;
+
+        // restrição y < +inf
+        this.#matriz[linha][0] = 0;
+        this.#matriz[linha][1] = 1;
+        this.#values[linha][0] = Solver.MAX_Y;
+        this.#matriz[linha][folgaCol] = 1;
+
     }
 }
