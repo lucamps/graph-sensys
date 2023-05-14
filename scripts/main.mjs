@@ -1,4 +1,5 @@
 import { Graph } from "./graph.mjs";
+import ObjectiveFunction from "./model/objectiveFunction.mjs";
 import { ResponseHandler } from "./responseHandler.mjs";
 
 let response = "";
@@ -6,6 +7,17 @@ let form = document.getElementById('form-input');
 form.addEventListener('submit', submitForm);
 
 const graph = new Graph('graph');
+
+/**
+ * @param {ObjectiveFunction.Type.max|ObjectiveFunction.Type.min} foType 
+ */
+const changeObjectiveFunctionSelectedType = (foType) => {
+    if (foType == ObjectiveFunction.Type.max || foType == ObjectiveFunction.Type.min) {
+        const $select = document.querySelector('#fo-type-select');
+        $select.value = foType;
+    }
+    // TODO: else com excecao
+};
 
 function submitForm(e) {
     e.preventDefault(); // Prevent the page from reloading
@@ -28,9 +40,12 @@ function submitForm(e) {
 
         let respH = new ResponseHandler(respJson);
 
-        let fo = respH.funcObj.toString();;
+        let fo = respH.funcObj;
+        changeObjectiveFunctionSelectedType(fo.type);
 
-        graph.funcaoObjetivo = fo;
+        let foString = respH.funcObj.toString();;
+
+        graph.funcaoObjetivo = foString;
 
         let restricoes = respH.stList;
         let restrObjs = [];
