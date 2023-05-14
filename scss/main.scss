@@ -18,7 +18,7 @@ header {
 #sidebar {
     margin-top: $header-height;
     width: 25%;
-    min-width: 23em;
+    min-width: 25em;
 }
 
 #sidebar>.offcanvas-body {
@@ -58,4 +58,30 @@ header {
     --bs-alert-color: #ffffff;
     --bs-alert-bg: #838383;
     --bs-alert-border-color: #686868;
+}
+
+#form-fo {
+    display: flex;
+    align-items: baseline;
+}
+
+.form-expression {
+
+    input,
+    label,
+    .between-buttons {
+        margin-right: 0.18em;
+        margin-left: 0.18em;
+    }
+
+}
+
+.between-buttons,
+.identificador {
+    font-weight: bold;
+}
+
+.identificador {
+    font-size: 1.2em;
+    margin-left: 0.18em;
 }
