@@ -13,11 +13,16 @@ const graph = new Graph('graph');
  */
 const changeObjectiveFunctionSelectedType = (foType) => {
     if (foType == ObjectiveFunction.Type.max || foType == ObjectiveFunction.Type.min) {
-        const $select = document.querySelector('#fo-type-select');
-        $select.value = foType;
+        const select = document.getElementById('fo-type-select');
+        select.value = foType;
     }
     // TODO: else com excecao
 };
+
+const setButtonLabel = (id, valor) => {
+    const btn = document.getElementById(id).firstChild;
+    btn.data = valor;
+}
 
 function submitForm(e) {
     e.preventDefault(); // Prevent the page from reloading
@@ -42,8 +47,12 @@ function submitForm(e) {
 
         let fo = respH.funcObj;
         changeObjectiveFunctionSelectedType(fo.type);
+        setButtonLabel('fo-x-value', fo.a);
+        setButtonLabel('fo-y-value', fo.b);
+        setButtonLabel('fo-value', fo.value);
 
-        let foString = respH.funcObj.toString();;
+
+        let foString = respH.funcObj.toString();
 
         graph.funcaoObjetivo = foString;
 
