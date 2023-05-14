@@ -16,7 +16,7 @@ header {
 #sidebar {
   margin-top: 3.5em;
   width: 25%;
-  min-width: 18em;
+  min-width: 23em;
 }
 
 #sidebar > .offcanvas-body {
@@ -39,12 +39,21 @@ header {
 
 #alertDiv {
   margin-top: 0.5em;
-  z-index: -1;
 }
 
 #warningText {
   padding-left: 0.5em;
   word-break: break-word;
+}
+
+.between-button {
+  display: inline;
+}
+
+.alert-custom {
+  --bs-alert-color: #ffffff;
+  --bs-alert-bg: #838383;
+  --bs-alert-border-color: #686868;
 }
 
 /*# sourceMappingURL=main.css.map */

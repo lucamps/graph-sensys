@@ -38,6 +38,30 @@
                     <i class="bi bi-exclamation-triangle-fill" id="warningIcon"></i>
                     <div id="warningText">Erro encontrado: Lorem Ipsum blablabla...</div>
                 </div>
+                <div class="alert alert-custom alert-dismissible custom-box fade show" id="fo-div" role="alert">
+                    <p class="identificador">Função Objetivo</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        id="close-fo"></button>
+                    <form action="">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                <select class="form-select" aria-label="Objective Function Type">
+                                    <option value="max" selected>Max</option>
+                                    <option value="min">Min</option>
+                                </select>
+                            </label>
+                            <button type="button" class="btn btn-light" id="x-value" data-bs-toggle="button"
+                                aria-pressed="true">3</button>
+                            <p class="between-button" id="x-text">X + </p><button type="button" class="btn btn-light"
+                                id="y-value" data-bs-toggle="button">4</button>
+                            <p class="between-button" id="y-text">Y = </p><button type="button" class="btn btn-light"
+                                id="value" data-bs-toggle="button">10</button>
+                        </div>
+                        <label for="customRange" class="form-label"></label>
+                        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange">
+                    </form>
+                </div>
             </div>
         </div>
         <div id="graph" class="container-fluid"></div>
