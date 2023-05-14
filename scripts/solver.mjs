@@ -3,8 +3,10 @@ import ParserListener from "./parser/impl/parserListener.mjs";
 import { matrix, det, inv, multiply, max } from "mathjs";
 
 export default class Solver {
-    static MAX_X = 1000;
-    static MAX_Y = 1000;
+    static MAX_X = 0;
+    static MAX_Y = 0;
+    static MAX_H = 1000;
+    static MAX_W = 1000;
 
     #matriz = [];
     #values = [];
@@ -151,9 +153,11 @@ export default class Solver {
             this.#values[i][0] = this.stList[i].value;
             folgaCol++;
 
-            Solver.MAX_X = max(Solver.MAX_X, this.stList[i].a + 500);
-            Solver.MAX_Y = max(Solver.MAX_Y, this.stList[i].b + 500);
+            Solver.MAX_X = max(Solver.MAX_X, this.stList[i].a);
+            Solver.MAX_Y = max(Solver.MAX_Y, this.stList[i].b);
         }
+        Solver.MAX_W = max(Solver.MAX_W, Solver.MAX_X + 1000);
+        Solver.MAX_H = max(Solver.MAX_H, Solver.MAX_Y + 1000);
 
         // primeira linha ainda nao preenchida da matriz
         let linha = mLen - 4;
@@ -179,7 +183,7 @@ export default class Solver {
         // restricao x < +inf
         this.#matriz[linha][0] = 1;
         this.#matriz[linha][1] = 0;
-        this.#values[linha][0] = Solver.MAX_X;
+        this.#values[linha][0] = Solver.MAX_W;
         this.#matriz[linha][folgaCol] = 1;
 
         linha++;
@@ -188,7 +192,7 @@ export default class Solver {
         // restrição y < +inf
         this.#matriz[linha][0] = 0;
         this.#matriz[linha][1] = 1;
-        this.#values[linha][0] = Solver.MAX_Y;
+        this.#values[linha][0] = Solver.MAX_H;
         this.#matriz[linha][folgaCol] = 1;
 
     }
