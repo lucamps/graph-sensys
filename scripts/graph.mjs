@@ -1,6 +1,7 @@
 
 export class Graph {
     static get PRECISION() { return 10; };
+    slider_fo_value_char = 'V';
 
     constructor(id = 'graph') {
         this.options = { zoomButtons: false, expressions: true };
@@ -61,9 +62,8 @@ export class Graph {
     }
 
     drawFuncaoObjetivo() {
-        let sliderChar = 'F';
-        while (this.variaveis.includes(sliderChar)) { //TODO: trazer info sobre variaveis usadas para ca
-            sliderChar++;
+        while (this.variaveis.includes(this.slider_fo_value_char)) { //TODO: trazer info sobre variaveis usadas para ca
+            this.slider_fo_value_char++;
         }
         let value = Number(this.valorOtimo).toFixed(Graph.PRECISION);
         if (!value) {
@@ -72,12 +72,12 @@ export class Graph {
 
         this.graphCalculator.setExpression({
             id: 'fo',
-            latex: `${this.funcaoObjetivo} = ${sliderChar}`,
+            latex: `${this.funcaoObjetivo} = ${this.slider_fo_value_char}`,
             lineStyle: Desmos.Styles.DASHED,
             color: Desmos.Colors.BLACK
         });
 
-        this.graphCalculator.setExpression({ id: 'fo-slider', latex: `${sliderChar}=${value}`, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 } });
+        this.graphCalculator.setExpression({ id: 'fo-slider', latex: `${this.slider_fo_value_char}=${value}`/*, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 }*/ });
     }
 
     clearData() {

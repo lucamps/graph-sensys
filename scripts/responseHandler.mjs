@@ -3,8 +3,13 @@ import Constraint from "./model/constraints.mjs";
 
 // Talvez essa classe seja desnecessaria no momento mas acredito que seja util mais para frente
 export class ResponseHandler {
+    /**
+     * @param {ObjectiveFunction} respJson 
+     */
     constructor(respJson) {
-        this.funcObj = new ObjectiveFunction(respJson.funcObj);
+        this.funcObj = new ObjectiveFunction({});
+        this.funcObj.copy(respJson.funcObj);
+        console.log(this.funcObj);
 
         this.stList = [];
         for (let i = 0; i < respJson.stList.length; i++) {

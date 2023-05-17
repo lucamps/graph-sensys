@@ -17,10 +17,23 @@ export default class ObjectiveFunction extends LinearExpression {
 
     }
 
+    copy(other) {
+        this.a = other.a;
+        this.b = other.b;
+        this.value = other.value;
+        this.nameVarA = other.nameVarA;
+        this.nameVarB = other.nameVarB;
+        this.type = other.type;
+        this.solutionMap = other.solutionMap;
+        this.maxValue = other.maxValue;
+        this.minValue = other.minValue;
+    }
+
     /**
      * @param {Number[][]} points 
      */
     calculateSolutions(points) {
+        this.solutionMap = {};
         let temp = 0;
         for (let i = 0; i < points.length; i++) {
             temp = (this.a * points[i][0]) + (this.b * points[i][1]);

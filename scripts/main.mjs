@@ -10,13 +10,31 @@ const graph = new Graph('graph');
 
 /**
  * @param {ObjectiveFunction.Type.max|ObjectiveFunction.Type.min} foType 
- */
-const changeObjectiveFunctionSelectedType = (foType) => {
+*/
+const changeObjectiveFunctionSelectedType = (selectMaxMin, foType) => {
     if (foType == ObjectiveFunction.Type.max || foType == ObjectiveFunction.Type.min) {
-        const select = document.getElementById('fo-type-select');
-        select.value = foType;
+        selectMaxMin.value = foType;
     }
     // TODO: else com excecao
+};
+
+/**
+ * 
+ * @param {Text} selectMaxMin 
+ * @param {ObjectiveFunction} fo 
+ */
+const bindObjectiveFunctionButtons = (selectMaxMin, fo) => {
+    selectMaxMin.addEventListener('change', () => {
+        fo.type = selectMaxMin.value;
+        fo.updateValue();
+        graph.valorOtimo = Number(fo.value).toFixed(Graph.PRECISION);
+
+        console.log(graph.valorOtimo);
+
+        graph.graphCalculator.setExpression({ id: 'fo-slider', latex: `${graph.slider_fo_value_char}=${graph.valorOtimo}`/*, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 }*/ });
+
+        // Obs: graph.clearData() tambem nao funcionou 
+    });
 };
 
 const setButtonLabel = (id, valor) => {
@@ -46,7 +64,8 @@ function submitForm(e) {
         let respH = new ResponseHandler(respJson);
 
         let fo = respH.funcObj;
-        changeObjectiveFunctionSelectedType(fo.type);
+
+        const selectMaxMin = document.getElementById('fo-type-select');
         setButtonLabel('fo-x-value', fo.a);
         setButtonLabel('fo-y-value', fo.b);
         setButtonLabel('fo-value', fo.value);
@@ -69,6 +88,8 @@ function submitForm(e) {
         graph.drawFuncaoObjetivo();
         graph.drawRestricoes();
         graph.drawRegiaoViavel();
+        bindObjectiveFunctionButtons(selectMaxMin, fo);
+        changeObjectiveFunctionSelectedType(selectMaxMin, fo.type);
 
         //TODO: try catch verificando se os dados existem ao mandar desenhar
         //TODO: funcao unica para desenhar tudo
