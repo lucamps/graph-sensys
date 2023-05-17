@@ -56,6 +56,7 @@ function submitForm(e) {
     xhr.open('POST', '/');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
+        graph.clearData();
         response = xhr.response;
         console.log("Response recebida:");
         let respJson = JSON.parse(response);
