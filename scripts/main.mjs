@@ -21,7 +21,7 @@ const changeObjectiveFunctionSelectedType = (foType) => {
 
 const setButtonLabel = (id, valor) => {
     const btn = document.getElementById(id).firstChild;
-    btn.data = valor;
+    btn.data = Number(valor).toFixed(3);
 }
 
 function submitForm(e) {
