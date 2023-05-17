@@ -65,7 +65,7 @@ export class Graph {
         while (this.variaveis.includes(sliderChar)) { //TODO: trazer info sobre variaveis usadas para ca
             sliderChar++;
         }
-        let value = this.valorOtimo;
+        let value = Number(this.valorOtimo).toFixed(Graph.PRECISION);
         if (!value) {
             value = 10;
         }
@@ -77,7 +77,7 @@ export class Graph {
             color: Desmos.Colors.BLACK
         });
 
-        this.graphCalculator.setExpression({ id: 'fo-slider', latex: `${sliderChar}=${value}`, sliderBounds: { min: 0, max: value + 50 } });
+        this.graphCalculator.setExpression({ id: 'fo-slider', latex: `${sliderChar}=${value}`, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 } });
     }
 
     clearData() {

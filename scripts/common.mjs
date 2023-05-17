@@ -1,6 +1,13 @@
 import { atan2, pi } from "mathjs";
 
 export default class Common {
+    static get PRECISION() { return 10; };
+
+    static toFixedPrecision(n) {
+        return Number(n).toFixed(Common.PRECISION);
+    }
+
+
     /**
      * Ordena o array de pontos com base no angulo com o ponto centroide.
      * @param {number[][]} points 

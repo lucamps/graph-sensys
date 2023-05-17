@@ -40,6 +40,8 @@ export default class Solver {
 
         Common.sortByAngle(this.regiaoViavel);
 
+        this.funcObj.calculateSolutions(this.regiaoViavel);
+
         if (debug) {
             console.log("---------");
             console.log(this.regiaoViavel);

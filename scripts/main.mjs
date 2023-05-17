@@ -51,7 +51,6 @@ function submitForm(e) {
         setButtonLabel('fo-y-value', fo.b);
         setButtonLabel('fo-value', fo.value);
 
-
         let foString = respH.funcObj.toString();
 
         graph.funcaoObjetivo = foString;
@@ -65,6 +64,7 @@ function submitForm(e) {
         graph.restricoes = restrObjs;
 
         graph.regiaoViavel = respH.regViavel;
+        graph.valorOtimo = Number(fo.value).toFixed(Graph.PRECISION);
 
         graph.drawFuncaoObjetivo();
         graph.drawRestricoes();
