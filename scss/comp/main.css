@@ -78,4 +78,9 @@ header {
   margin-left: 0.18em;
 }
 
+.btn.btn-light.active {
+  border: 1px solid black;
+  background-color: #8ce2ff;
+}
+
 /*# sourceMappingURL=main.css.map */
