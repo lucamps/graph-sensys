@@ -31,9 +31,7 @@ const bindObjectiveFunctionButtons = (selectMaxMin, fo) => {
 
         console.log(graph.valorOtimo);
 
-        graph.graphCalculator.setExpression({ id: 'fo-slider', latex: `${graph.slider_fo_value_char}=${graph.valorOtimo}`/*, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 }*/ });
-
-        // Obs: graph.clearData() tambem nao funcionou 
+        graph.graphCalculator.setExpression({ id: 'fo-slider', latex: `${graph.slider_fo_value_char}=${graph.valorOtimo}` });
     });
 };
 
