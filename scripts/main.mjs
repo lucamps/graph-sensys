@@ -89,10 +89,15 @@ function submitForm(e) {
         graph.drawRestricoes();
         graph.drawRegiaoViavel();
 
+
+
         const selectMaxMin = document.getElementById('fo-type-select');
 
         bindObjectiveFunctionButtons(selectMaxMin, fo);
         changeObjectiveFunctionSelectedType(selectMaxMin, fo.type);
+
+        const foDiv = document.getElementById('fo-div');
+        foDiv.style.display = 'block';
 
         //TODO: try catch verificando se os dados existem ao mandar desenhar
         //TODO: funcao unica para desenhar tudo
