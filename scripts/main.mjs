@@ -46,7 +46,7 @@ const changeVariablesInInterface = (fo) => {
     xDivFo.innerHTML = `${fo.nameVarA} + `;
     yDivFo.innerHTML = `${fo.nameVarB} = `;
 
-    //TODO: unificar id do backend com id do html, percorrer a lista e fazer o mesmo que foi feito para a FO
+    //TODO: para as restriçoes -> unificar id do backend com id do html, percorrer a lista e fazer o mesmo que foi feito para a FO
 }
 
 const setButtonLabel = (id, valor) => {
