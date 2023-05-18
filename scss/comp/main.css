@@ -38,7 +38,12 @@ header {
 }
 
 #alertDiv {
-  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: none;
+}
+
+#alertDiv.active {
+  display: inline-flex;
 }
 
 #warningText {
@@ -85,6 +90,10 @@ header {
 
 #fo-div {
   display: none;
+}
+
+#form-input {
+  margin-bottom: 0.5em;
 }
 
 /*# sourceMappingURL=main.css.map */

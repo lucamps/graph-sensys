@@ -40,8 +40,13 @@ header {
 }
 
 #alertDiv {
-    margin-top: 0.5em;
-    //z-index: -1;
+    margin-bottom: 0.5em;
+    display: none;
+    // adicionar classe active para exibir
+}
+
+#alertDiv.active {
+    display: inline-flex;
 }
 
 #warningText {
@@ -93,4 +98,8 @@ header {
 
 #fo-div {
     display: none;
+}
+
+#form-input {
+    margin-bottom: 0.5em;
 }
