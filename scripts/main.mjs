@@ -36,6 +36,19 @@ const bindObjectiveFunctionButtons = (selectMaxMin, fo) => {
     });
 };
 
+/**
+ * @param {ObjectiveFunction} fo 
+ */
+const changeVariablesInInterface = (fo) => {
+    let xDivFo = document.getElementById('x-text-fo');
+    let yDivFo = document.getElementById('y-text-fo');
+
+    xDivFo.innerHTML = `${fo.nameVarA} + `;
+    yDivFo.innerHTML = `${fo.nameVarB} = `;
+
+    //TODO: unificar id do backend com id do html, percorrer a lista e fazer o mesmo que foi feito para a FO
+}
+
 const setButtonLabel = (id, valor) => {
     const btn = document.getElementById(id).firstChild;
     btn.data = Number(valor).toFixed(2);
@@ -98,6 +111,7 @@ function submitForm(e) {
 
         const foDiv = document.getElementById('fo-div');
         foDiv.style.display = 'block';
+        changeVariablesInInterface(respH.funcObj);
 
         //TODO: try catch verificando se os dados existem ao mandar desenhar
         //TODO: funcao unica para desenhar tudo
