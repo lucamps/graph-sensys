@@ -49,9 +49,13 @@ header {
     display: inline-flex;
 }
 
-#warningText {
+#alertText {
     padding-left: 0.5em;
     word-break: break-word;
+}
+
+#warningIcon {
+    align-self: baseline;
 }
 
 .between-button {

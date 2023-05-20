@@ -8,6 +8,10 @@ form.addEventListener('submit', submitForm);
 
 const graph = new Graph('graph');
 
+const alertDiv = document.getElementById('alertDiv');
+const alertText = document.getElementById('alertText');
+
+
 /**
  * @param {ObjectiveFunction.Type.max|ObjectiveFunction.Type.min} foType 
 */
@@ -54,6 +58,15 @@ const setButtonLabel = (id, valor) => {
     btn.data = Number(valor).toFixed(2);
 }
 
+const showAlert = (msg) => {
+    alertText.innerHTML = msg;
+    alertDiv.classList.add('active');
+}
+
+const hideAlert = () => {
+    alertDiv.classList.remove('active');
+}
+
 function submitForm(e) {
     e.preventDefault(); // Prevent the page from reloading
 
@@ -75,6 +88,9 @@ function submitForm(e) {
     xhr.onload = function () {
         if (xhr.status == 200) {
             graph.clearData();
+
+            hideAlert();
+
             response = xhr.response;
             console.log("Response recebida:");
             let respJson = JSON.parse(response);
@@ -120,7 +136,12 @@ function submitForm(e) {
         }
         else {
             console.log('Erro encontrado no OnLoad, de status: ' + xhr.status);
-            console.log(xhr.response);
+            if (xhr.status == 400) {
+                showAlert("<b>Erro no input:</b> " + xhr.response);
+            }
+            else {
+                showAlert("Erro: " + xhr.response);
+            }
         }
 
     };
