@@ -68,53 +68,61 @@ function submitForm(e) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onerror = () => {
+        console.log('Erro no OnError: ' + xhr.status);
+    }
+
     xhr.onload = function () {
-        graph.clearData();
-        response = xhr.response;
-        console.log("Response recebida:");
-        let respJson = JSON.parse(response);
+        if (xhr.status == 200) {
+            graph.clearData();
+            response = xhr.response;
+            console.log("Response recebida:");
+            let respJson = JSON.parse(response);
 
-        let respH = new ResponseHandler(respJson);
+            let respH = new ResponseHandler(respJson);
 
-        let fo = respH.funcObj;
+            let fo = respH.funcObj;
 
+            setButtonLabel('fo-x-value', fo.a);
+            setButtonLabel('fo-y-value', fo.b);
+            setButtonLabel('fo-value', fo.value);
 
-        setButtonLabel('fo-x-value', fo.a);
-        setButtonLabel('fo-y-value', fo.b);
-        setButtonLabel('fo-value', fo.value);
+            let foString = respH.funcObj.toString();
 
-        let foString = respH.funcObj.toString();
+            graph.funcaoObjetivo = foString;
 
-        graph.funcaoObjetivo = foString;
+            let restricoes = respH.stList;
+            let restrObjs = [];
+            for (let i = 0; i < restricoes.length; i++) {
+                restrObjs.push({ id: `reta${i}`, latex: restricoes[i].toString() });
+                // TODO: pegar id do parser e, se nao tiver, criar um padrao sem repetir
+            }
+            graph.restricoes = restrObjs;
 
-        let restricoes = respH.stList;
-        let restrObjs = [];
-        for (let i = 0; i < restricoes.length; i++) {
-            restrObjs.push({ id: `reta${i}`, latex: restricoes[i].toString() });
-            // TODO: pegar id do parser e, se nao tiver, criar um padrao sem repetir
+            graph.regiaoViavel = respH.regViavel;
+            graph.valorOtimo = Number(fo.value).toFixed(Graph.PRECISION);
+
+            graph.drawFuncaoObjetivo();
+            graph.drawRestricoes();
+            graph.drawRegiaoViavel();
+
+            const selectMaxMin = document.getElementById('fo-type-select');
+
+            bindObjectiveFunctionButtons(selectMaxMin, fo);
+            changeObjectiveFunctionSelectedType(selectMaxMin, fo.type);
+
+            const foDiv = document.getElementById('fo-div');
+            foDiv.style.display = 'block';
+            changeVariablesInInterface(respH.funcObj);
+
+            //TODO: try catch verificando se os dados existem ao mandar desenhar
+            //TODO: funcao unica para desenhar tudo
         }
-        graph.restricoes = restrObjs;
+        else {
+            console.log('Erro encontrado no OnLoad, de status: ' + xhr.status);
+            console.log(xhr.response);
+        }
 
-        graph.regiaoViavel = respH.regViavel;
-        graph.valorOtimo = Number(fo.value).toFixed(Graph.PRECISION);
-
-        graph.drawFuncaoObjetivo();
-        graph.drawRestricoes();
-        graph.drawRegiaoViavel();
-
-
-
-        const selectMaxMin = document.getElementById('fo-type-select');
-
-        bindObjectiveFunctionButtons(selectMaxMin, fo);
-        changeObjectiveFunctionSelectedType(selectMaxMin, fo.type);
-
-        const foDiv = document.getElementById('fo-div');
-        foDiv.style.display = 'block';
-        changeVariablesInInterface(respH.funcObj);
-
-        //TODO: try catch verificando se os dados existem ao mandar desenhar
-        //TODO: funcao unica para desenhar tudo
     };
     xhr.send(outputText);
 }

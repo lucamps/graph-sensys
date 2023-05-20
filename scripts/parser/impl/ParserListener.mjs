@@ -44,11 +44,9 @@ export default class ParserListener extends LinearProgListener {
 				this.funcObj.type = ObjectiveFunction.Type.min;
 				break;
 			default:
-			// nao esta sendo usado
-			// msg = "Inicializador inválido! Tente iniciar com 'MAX' ou 'MIN'.";
-			// throw ParserExeption(msg: msg, type: ErrorType.semantic);
+				msg = "Inicializador inválido! Tente iniciar com 'MAX' ou 'MIN'.";
+				throw new Error(msg);
 		}
-		if (this.debug === true) console.log(msg);
 	}
 
 
@@ -74,7 +72,7 @@ export default class ParserListener extends LinearProgListener {
 	// Exit a parse tree produced by linear_progParser#res.
 	exitRes(ctx) {
 		if (this.variaveis.size != 2) {
-			if (this.debug === true) console.log("ERRO: quantidade de variaveis inválida, tratar erros depois");
+			throw new Error("ERRO: quantidade de variaveis inválida, tratar erros depois");
 		}
 		const [first, second] = this.variaveis;
 		this.stList[this.stIndex].nameVarA = first;
@@ -241,16 +239,16 @@ export default class ParserListener extends LinearProgListener {
 	// Enter a parse tree produced by linear_progParser#variable.
 	enterVariable(ctx) {
 		// TODO: tratar erros
-		// let msg =
-		// 	`Variável \'${ctx.getText()}\' não pode ser utilizada. Podemos ter no máximo 2 variáveis.`;
+		let msg =
+			`Variável \'${ctx.getText()}\' não pode ser utilizada. Podemos ter no máximo 2 variáveis.`;
 
 		if (!this.variaveis.has(ctx.getText())) {
 			if (this.variaveis.size < 2) {
 				this.variaveis.add(ctx.getText());
 			}
-			// else {
-			// 	throw ParserExeption(msg: msg, type: ErrorType.semantic);
-			// }
+			else {
+				throw Error(msg);
+			}
 		}
 	}
 

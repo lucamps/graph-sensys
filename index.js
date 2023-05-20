@@ -38,9 +38,10 @@ app.post("/", (req, res) => {
         }
 
         res.status(200).send(responseData);
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
-        res.status(500).send('Internal server error');
+        res.status(400).send(err.message);
     }
 });
 
