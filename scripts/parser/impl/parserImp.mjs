@@ -1,7 +1,8 @@
-import antlr4 from 'antlr4';
+import antlr4, { ErrorListener, ParseTreeWalker } from 'antlr4';
 import LinearProgLexer from '../antlr_files/LinearProgLexer.js';
 import LinearProgParser from '../antlr_files/LinearProgParser.js';
 import ParserListener from './parserListener.mjs';
+import CustomErrorListener from '../../exception/customErrorListener.mjs';
 
 export default class ParserImpl {
     constructor(input, debug = false) {
@@ -18,7 +19,15 @@ export default class ParserImpl {
         const parser = new LinearProgParser(tokens);
         parser.buildParseTrees = true;
 
-        this.tree = parser.file_();
+        let errorListener = new CustomErrorListener();
+        parser.addErrorListener(errorListener);
+
+        try {
+            this.tree = parser.file_();
+        }
+        catch (e) {
+            throw e;
+        }
     }
 }
 

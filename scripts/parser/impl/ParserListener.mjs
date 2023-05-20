@@ -71,9 +71,6 @@ export default class ParserListener extends LinearProgListener {
 
 	// Exit a parse tree produced by linear_progParser#res.
 	exitRes(ctx) {
-		if (this.variaveis.size != 2) {
-			throw new Error("ERRO: quantidade de variaveis inválida, tratar erros depois");
-		}
 		const [first, second] = this.variaveis;
 		this.stList[this.stIndex].nameVarA = first;
 		this.stList[this.stIndex].nameVarB = second;
