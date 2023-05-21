@@ -18,14 +18,34 @@ const fo_btns = [
     document.getElementById('fo-value')
 ];
 
+const slider_fo = document.getElementById('fo_custom_range');
+
+function linkSliderToBtn(btn) {
+    return function () {
+        btn.innerHTML = slider_fo.value;
+    }
+}
+
+const bind_fo_slider_to_btn = (btn) => {
+    let value = btn.innerHTML;
+    slider_fo.min = Number(value) - 50;
+    slider_fo.max = Number(value) + 50;
+    slider_fo.value = value;
+
+    slider_fo.addEventListener('input', linkSliderToBtn(btn));
+}
+
 const switch_fo_selected_btn = (btn) => {
     return function () {
         for (let i = 0; i < fo_btns.length; i++) {
             if (btn != fo_btns[i]) {
                 fo_btns[i].classList.remove('active');
+                // slider_fo.removeEventListener('input', linkSliderToBtn);
             }
             else {
                 console.log(`Valor do botao selecionado: ${btn.innerHTML}`);
+
+                bind_fo_slider_to_btn(btn);
             }
         }
     };
@@ -149,7 +169,7 @@ function submitForm(e) {
                 fo_btns[i].addEventListener('click', switch_fo_selected_btn(fo_btns[i]));
             }
 
-
+            //let slider_fo_a = graph.graphCalculator.HelperExpression({latex: graph.slider_fo_x_value_char});
 
             //TODO: try catch verificando se os dados existem ao mandar desenhar
             //TODO: funcao unica para desenhar tudo
