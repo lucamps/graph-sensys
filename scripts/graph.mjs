@@ -1,7 +1,9 @@
-
 export class Graph {
     static get PRECISION() { return 10; };
-    slider_fo_value_char = 'V';
+    get slider_fo_x_value_char() { return 'a'; }
+    get slider_fo_y_value_char() { return 'b'; }
+    get slider_fo_result_value_char() { return 'c'; }
+
 
     constructor(id = 'graph') {
         this.options = { zoomButtons: false, expressions: true };
@@ -9,7 +11,9 @@ export class Graph {
         this.funcaoObjetivo = "";
         this.valorOtimo = null;
         this.regiaoViavel = {};
-        this.variaveis = [];
+
+        this.fo_a = 0;
+        this.fo_b = 0;
 
         if (id) {
             this.graphCalculator = this.getGraphCalculatorById(id);
@@ -62,9 +66,8 @@ export class Graph {
     }
 
     drawFuncaoObjetivo() {
-        while (this.variaveis.includes(this.slider_fo_value_char)) { //TODO: trazer info sobre variaveis usadas para ca
-            this.slider_fo_value_char++;
-        }
+        let a = Number(this.fo_a).toFixed(Graph.PRECISION);
+        let b = Number(this.fo_b).toFixed(Graph.PRECISION);
         let value = Number(this.valorOtimo).toFixed(Graph.PRECISION);
         if (!value) {
             value = 10;
@@ -72,12 +75,14 @@ export class Graph {
 
         this.graphCalculator.setExpression({
             id: 'fo',
-            latex: `${this.funcaoObjetivo} = ${this.slider_fo_value_char}`,
+            latex: `${this.slider_fo_x_value_char}x + (${this.slider_fo_y_value_char}y) = ${this.slider_fo_result_value_char}`,
             lineStyle: Desmos.Styles.DASHED,
             color: Desmos.Colors.BLACK
         });
 
-        this.graphCalculator.setExpression({ id: 'fo-slider', latex: `${this.slider_fo_value_char}=${value}`/*, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 }*/ });
+        this.graphCalculator.setExpression({ id: 'fo-slider-result', latex: `${this.slider_fo_result_value_char}=${value}`, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 } });
+        this.graphCalculator.setExpression({ id: 'fo-slider-x', latex: `${this.slider_fo_x_value_char}=${a}`, sliderBounds: { min: Number(a) - 50, max: Number(a) + 50 } });
+        this.graphCalculator.setExpression({ id: 'fo-slider-y', latex: `${this.slider_fo_y_value_char}=${b}`, sliderBounds: { min: Number(b) - 50, max: Number(b) + 50 } });
     }
 
     clearData() {

@@ -98,6 +98,8 @@ function submitForm(e) {
             let respH = new ResponseHandler(respJson);
 
             let fo = respH.funcObj;
+            graph.fo_a = fo.a;
+            graph.fo_b = fo.b;
 
             setButtonLabel('fo-x-value', fo.a);
             setButtonLabel('fo-y-value', fo.b);
@@ -108,6 +110,7 @@ function submitForm(e) {
             graph.funcaoObjetivo = foString;
 
             let restricoes = respH.stList;
+
             let restrObjs = [];
             for (let i = 0; i < restricoes.length; i++) {
                 restrObjs.push({ id: `reta${i}`, latex: restricoes[i].toString() });
