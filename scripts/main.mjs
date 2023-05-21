@@ -12,6 +12,26 @@ const alertDiv = document.getElementById('alertDiv');
 const alertText = document.getElementById('alertText');
 
 
+const fo_btns = [
+    document.getElementById('fo-x-value'),
+    document.getElementById('fo-y-value'),
+    document.getElementById('fo-value')
+];
+
+function switch_fo_selected_btn(btn) {
+    return function () {
+        for (let i = 0; i < fo_btns.length; i++) {
+            if (btn != fo_btns[i]) {
+                fo_btns[i].classList.remove('active');
+            }
+        }
+    };
+}
+
+for (let i in fo_btns) {
+    fo_btns[i].addEventListener('click', switch_fo_selected_btn(fo_btns[i]));
+}
+
 /**
  * @param {ObjectiveFunction.Type.max|ObjectiveFunction.Type.min} foType 
 */
