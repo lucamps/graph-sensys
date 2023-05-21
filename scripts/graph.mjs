@@ -8,12 +8,8 @@ export class Graph {
     constructor(id = 'graph') {
         this.options = { zoomButtons: false, expressions: true };
         this.restricoes = []; //formato: { id: "identificador", latex: "ax + y = b"}
-        this.funcaoObjetivo = "";
-        this.valorOtimo = null;
+        this.funcaoObjetivo = {};
         this.regiaoViavel = {};
-
-        this.fo_a = 0;
-        this.fo_b = 0;
 
         if (id) {
             this.graphCalculator = this.getGraphCalculatorById(id);
@@ -66,12 +62,8 @@ export class Graph {
     }
 
     drawFuncaoObjetivo() {
-        let a = Number(this.fo_a).toFixed(Graph.PRECISION);
-        let b = Number(this.fo_b).toFixed(Graph.PRECISION);
-        let value = Number(this.valorOtimo).toFixed(Graph.PRECISION);
-        if (!value) {
-            value = 10;
-        }
+        let a = Number(this.funcaoObjetivo.a).toFixed(Graph.PRECISION);
+        let b = Number(this.funcaoObjetivo.b).toFixed(Graph.PRECISION);
 
         this.graphCalculator.setExpression({
             id: 'fo',
@@ -80,9 +72,14 @@ export class Graph {
             color: Desmos.Colors.BLACK
         });
 
-        this.graphCalculator.setExpression({ id: 'fo-slider-result', latex: `${this.slider_fo_result_value_char}=${value}`, sliderBounds: { min: Number(value) - 50, max: Number(value) + 50 } });
+        this.drawOrUpdateFOSliderResult(this.funcaoObjetivo.value);
         this.graphCalculator.setExpression({ id: 'fo-slider-x', latex: `${this.slider_fo_x_value_char}=${a}`, sliderBounds: { min: Number(a) - 50, max: Number(a) + 50 } });
         this.graphCalculator.setExpression({ id: 'fo-slider-y', latex: `${this.slider_fo_y_value_char}=${b}`, sliderBounds: { min: Number(b) - 50, max: Number(b) + 50 } });
+    }
+
+    drawOrUpdateFOSliderResult(value) {
+        const valueToUse = Number(value).toFixed(Graph.PRECISION);
+        this.graphCalculator.setExpression({ id: 'fo-slider-result', latex: `${this.slider_fo_result_value_char}=${valueToUse}`, sliderBounds: { min: Number(valueToUse) - 50, max: Number(valueToUse) + 50 } });
     }
 
     clearData() {

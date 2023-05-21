@@ -31,11 +31,8 @@ const bindObjectiveFunctionButtons = (selectMaxMin, fo) => {
     selectMaxMin.addEventListener('change', () => {
         fo.type = selectMaxMin.value;
         fo.updateValue();
-        graph.valorOtimo = Number(fo.value).toFixed(Graph.PRECISION);
 
-        console.log(graph.valorOtimo);
-
-        graph.graphCalculator.setExpression({ id: 'fo-slider', latex: `${graph.slider_fo_value_char}=${graph.valorOtimo}` });
+        graph.drawOrUpdateFOSliderResult(fo.value);
         setButtonLabel('fo-value', fo.value);
     });
 };
@@ -98,16 +95,12 @@ function submitForm(e) {
             let respH = new ResponseHandler(respJson);
 
             let fo = respH.funcObj;
-            graph.fo_a = fo.a;
-            graph.fo_b = fo.b;
 
             setButtonLabel('fo-x-value', fo.a);
             setButtonLabel('fo-y-value', fo.b);
             setButtonLabel('fo-value', fo.value);
 
-            let foString = respH.funcObj.toString();
-
-            graph.funcaoObjetivo = foString;
+            graph.funcaoObjetivo = fo;
 
             let restricoes = respH.stList;
 
@@ -119,7 +112,6 @@ function submitForm(e) {
             graph.restricoes = restrObjs;
 
             graph.regiaoViavel = respH.regViavel;
-            graph.valorOtimo = Number(fo.value).toFixed(Graph.PRECISION);
 
             graph.drawFuncaoObjetivo();
             graph.drawRestricoes();
