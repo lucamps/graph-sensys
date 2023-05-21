@@ -18,18 +18,17 @@ const fo_btns = [
     document.getElementById('fo-value')
 ];
 
-function switch_fo_selected_btn(btn) {
+const switch_fo_selected_btn = (btn) => {
     return function () {
         for (let i = 0; i < fo_btns.length; i++) {
             if (btn != fo_btns[i]) {
                 fo_btns[i].classList.remove('active');
             }
+            else {
+                console.log(`Valor do botao selecionado: ${btn.innerHTML}`);
+            }
         }
     };
-}
-
-for (let i in fo_btns) {
-    fo_btns[i].addEventListener('click', switch_fo_selected_btn(fo_btns[i]));
 }
 
 /**
@@ -145,6 +144,12 @@ function submitForm(e) {
             const foDiv = document.getElementById('fo-div');
             foDiv.style.display = 'block';
             changeVariablesInInterface(respH.funcObj);
+
+            for (let i in fo_btns) {
+                fo_btns[i].addEventListener('click', switch_fo_selected_btn(fo_btns[i]));
+            }
+
+
 
             //TODO: try catch verificando se os dados existem ao mandar desenhar
             //TODO: funcao unica para desenhar tudo
