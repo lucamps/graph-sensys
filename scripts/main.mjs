@@ -11,7 +11,6 @@ const graph = new Graph('graph');
 const alertDiv = document.getElementById('alertDiv');
 const alertText = document.getElementById('alertText');
 
-
 const fo_btns = [
     document.getElementById('fo-x-value'),
     document.getElementById('fo-y-value'),
@@ -19,37 +18,6 @@ const fo_btns = [
 ];
 
 const slider_fo = document.getElementById('fo_custom_range');
-
-function linkSliderToBtn(btn) {
-    return function () {
-        btn.innerHTML = slider_fo.value;
-    }
-}
-
-const bind_fo_slider_to_btn = (btn) => {
-    let value = btn.innerHTML;
-    slider_fo.min = Number(value) - 50;
-    slider_fo.max = Number(value) + 50;
-    slider_fo.value = value;
-
-    slider_fo.addEventListener('input', linkSliderToBtn(btn));
-}
-
-const switch_fo_selected_btn = (btn) => {
-    return function () {
-        for (let i = 0; i < fo_btns.length; i++) {
-            if (btn != fo_btns[i]) {
-                fo_btns[i].classList.remove('active');
-                // slider_fo.removeEventListener('input', linkSliderToBtn);
-            }
-            else {
-                console.log(`Valor do botao selecionado: ${btn.innerHTML}`);
-
-                bind_fo_slider_to_btn(btn);
-            }
-        }
-    };
-}
 
 /**
  * @param {ObjectiveFunction.Type.max|ObjectiveFunction.Type.min} foType 
