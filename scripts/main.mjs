@@ -156,6 +156,21 @@ function submitForm(e) {
                     // Check if the button is the selected one
                     if (button.classList.contains('active')) {
                         button.innerHTML = sliderValue;
+
+                        // Change the graph values
+                        switch (button.id) {
+                            case 'fo-x-value':
+                                graph.graphCalculator.setExpression({ id: 'fo-slider-x', latex: `${graph.slider_fo_x_value_char}=${sliderValue}` });
+                                break;
+                            case 'fo-y-value':
+                                graph.graphCalculator.setExpression({ id: 'fo-slider-y', latex: `${graph.slider_fo_y_value_char}=${sliderValue}` });
+                                break;
+                            case 'fo-value':
+                                graph.drawOrUpdateFOSliderResult(sliderValue);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 });
             });
