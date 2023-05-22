@@ -165,14 +165,32 @@ function submitForm(e) {
             foDiv.style.display = 'block';
             changeVariablesInInterface(respH.funcObj);
 
-            for (let i in fo_btns) {
-                fo_btns[i].addEventListener('click', switch_fo_selected_btn(fo_btns[i]));
-            }
 
-            //let slider_fo_a = graph.graphCalculator.HelperExpression({latex: graph.slider_fo_x_value_char});
+            fo_btns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    fo_btns.forEach(function (other_btn) {
+                        if (other_btn != btn) {
+                            other_btn.classList.remove('active');
+                        }
+                    });
+                    let value = btn.innerHTML;
+                    slider_fo.min = Number(value) - 50;
+                    slider_fo.max = Number(value) + 50;
+                    slider_fo.value = value;
+                });
+            });
 
-            //TODO: try catch verificando se os dados existem ao mandar desenhar
-            //TODO: funcao unica para desenhar tudo
+            slider_fo.addEventListener('input', function () {
+                const sliderValue = slider_fo.value;
+
+                // Iterate through the buttons
+                fo_btns.forEach(function (button) {
+                    // Check if the button is the selected one
+                    if (button.classList.contains('active')) {
+                        button.innerHTML = sliderValue;
+                    }
+                });
+            });
         }
         else {
             console.log('Erro encontrado no OnLoad, de status: ' + xhr.status);
