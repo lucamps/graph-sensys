@@ -7,7 +7,7 @@ export class Graph {
 
     constructor(id = 'graph') {
         this.options = { zoomButtons: false, expressions: true };
-        this.restricoes = []; //formato: { id: "identificador", latex: "ax + y = b"}
+        this.stList = {}; //formato: { id: "identificador", latex: "ax + y = b"}
         this.funcaoObjetivo = {};
         this.regiaoViavel = {};
 
@@ -50,15 +50,22 @@ export class Graph {
         }
         const pointsString = this.pointsToString(this.regiaoViavel);
         const poligStr = `\\polygon(${pointsString})`;
-        this.graphCalculator.setExpression({ id: 'regiaoViavel', latex: poligStr });
+        this.graphCalculator.setExpression({ id: 'regiaoViavel', latex: poligStr, color: '#911eb4' });
     }
 
     drawRestricoes() {
-        for (let i = 0; i < this.restricoes.length; i++) {
-            console.log(this.restricoes[i]);
-            this.graphCalculator.setExpression(this.restricoes[i]);
+        for (let i = 0; i < this.stList.length; i++) {
+            let restExp = {
+                id: this.stList[i].id,
+                latex: this.stList[i].toString(),
+                color: this.stList[i].color
+            }
+
+            console.log(restExp);
+
+            this.graphCalculator.setExpression(restExp);
         }
-        //TODO: tratar identificadores iguais e ausencia de identificador
+
     }
 
     drawFuncaoObjetivo() {
@@ -69,7 +76,7 @@ export class Graph {
             id: 'fo',
             latex: `${this.slider_fo_x_value_char}x + (${this.slider_fo_y_value_char}y) = ${this.slider_fo_result_value_char}`,
             lineStyle: Desmos.Styles.DASHED,
-            color: Desmos.Colors.BLACK
+            color: this.funcaoObjetivo.color
         });
 
         this.drawOrUpdateFOSliderValue('fo-slider-result', this.funcaoObjetivo.value);
@@ -106,7 +113,7 @@ export class Graph {
 
         if (sliderStr) {
             const valueToUse = Number(value).toFixed(Graph.PRECISION);
-            this.graphCalculator.setExpression({ id: sliderId, latex: `${sliderStr}=${valueToUse}`, sliderBounds: { min: minValue, max: maxValue } });
+            this.graphCalculator.setExpression({ id: sliderId, latex: `${sliderStr}=${valueToUse}`/*, sliderBounds: { min: minValue, max: maxValue }*/ });
         }
     }
 

@@ -129,4 +129,21 @@ export default class Common {
         this.#geraSub(v, c, aux, n, m, result);
     }
 
+    static get Colors() {
+        return {
+            golden: '#B8860B',
+            magenta: '#f032e6',
+            yellow: '#FFD400',
+            olive: '#808000',
+            maroon: '#800000',
+            teal: '#469990',
+            orange: '#f58231',
+            navy: '#000075',
+            cyan: '#42d4f4',
+            brown: '#9A6324',
+            green: '#3cb44b',
+            blue: '#4363d8',
+            red: '#e6194B',
+        }
+    }
 }

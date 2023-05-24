@@ -13,8 +13,8 @@ export default class Constraint extends LinearExpression {
         };
     };
 
-    constructor({ a = 0, b = 0, value = 0, nameA = "x", nameB = "y", id = "", rel = Constraint.Relationship.none }) {
-        super({ a: a, b: b, value: value, nameA: nameA, nameB: nameB });
+    constructor({ a = 0, b = 0, value = 0, nameA = "x", nameB = "y", color = "", id = "", rel = Constraint.Relationship.none }) {
+        super({ a: a, b: b, value: value, nameA: nameA, nameB: nameB, color: color });
         this.id = id;
         this.rel = rel;
     }

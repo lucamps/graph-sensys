@@ -14,6 +14,7 @@ export default class ObjectiveFunction extends LinearExpression {
         this.maxValue = Number.MIN_VALUE;
         this.minValue = Number.MAX_VALUE;
         this.solutionMap = {};
+        this.color = "#000000";
 
     }
 

@@ -1,4 +1,5 @@
 import Common from "./common.mjs";
+import Constraint from "./model/constraints.mjs";
 import ParserListener from "./parser/impl/parserListener.mjs";
 import { matrix, det, inv, multiply, max } from "mathjs";
 
@@ -22,8 +23,10 @@ export default class Solver {
         this.stList = parserListener.stList;
         this.funcObj = parserListener.funcObj;
         this.regiaoViavel = [];
+        this.colorList = Object.values(Common.Colors);
+        this.idList = [];
 
-        this.#getInitialData();
+        this.#getInitialDataAndSetColors();
 
         this.#matrizT = Common.getMatrizTransposta(this.#matriz);
 
@@ -132,11 +135,40 @@ export default class Solver {
 
     } // fim do metodo #calculateRegiaoViavel
 
+    #generateNewId(num = 1) {
+        const i = num;
+        let newId = `restricao${i}`;
+
+        while (this.idList.includes(newId)) {
+            i++;
+            newId = `restricao${i}`;
+        }
+
+        return newId;
+    }
+
+    /**
+     * @param {Constraint} rest 
+     */
+    #setRestValidId(rest, i = 0) {
+        let elemId = rest.id;
+        if (elemId) {
+            if (this.idList.includes(elemId)) {
+                elemId = this.#generateNewId(i);
+                rest.id = elemId;
+            }
+        }
+        else {
+            elemId = this.#generateNewId(i);
+            rest.id = elemId;
+        }
+        this.idList.push(elemId);
+    }
 
     /**
      * Obtem os valores iniciais da matriz e do vetor que representam as restricoes.
      */
-    #getInitialData() {
+    #getInitialDataAndSetColors() {
         const mLen = this.stList.length + 4; // +4 por causa das 2 restricoes de nao negatividade e 2 restricoes fakes de 'nao infinitude'
 
         // Criando matriz
@@ -148,6 +180,14 @@ export default class Solver {
         // Preenchendo dados
         let folgaCol = 2;
         for (let i in this.stList) {
+            this.#setRestValidId(this.stList[i], i);
+
+            // Selecionando a cor
+            if (this.colorList.length == 0) {
+                this.colorList = Object.values(Common.Colors);
+            }
+            this.stList[i].color = this.colorList.pop();
+
             this.#matriz[i][0] = this.stList[i].a;
             this.#matriz[i][1] = this.stList[i].b;
             this.#matriz[i][folgaCol] = this.stList[i].getFolga();

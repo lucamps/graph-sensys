@@ -109,14 +109,7 @@ function submitForm(e) {
 
             graph.funcaoObjetivo = fo;
 
-            let restricoes = respH.stList;
-
-            let restrObjs = [];
-            for (let i = 0; i < restricoes.length; i++) {
-                restrObjs.push({ id: `reta${i}`, latex: restricoes[i].toString() });
-                // TODO: pegar id do parser e, se nao tiver, criar um padrao sem repetir
-            }
-            graph.restricoes = restrObjs;
+            graph.stList = respH.stList;
 
             graph.regiaoViavel = respH.regViavel;
 
