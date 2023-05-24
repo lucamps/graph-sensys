@@ -72,14 +72,42 @@ export class Graph {
             color: Desmos.Colors.BLACK
         });
 
-        this.drawOrUpdateFOSliderResult(this.funcaoObjetivo.value);
-        this.graphCalculator.setExpression({ id: 'fo-slider-x', latex: `${this.slider_fo_x_value_char}=${a}`, sliderBounds: { min: Number(a) - 50, max: Number(a) + 50 } });
-        this.graphCalculator.setExpression({ id: 'fo-slider-y', latex: `${this.slider_fo_y_value_char}=${b}`, sliderBounds: { min: Number(b) - 50, max: Number(b) + 50 } });
+        this.drawOrUpdateFOSliderValue('fo-slider-result', this.funcaoObjetivo.value);
+        this.drawOrUpdateFOSliderValue('fo-slider-x', a);
+        this.drawOrUpdateFOSliderValue('fo-slider-y', b);
     }
 
-    drawOrUpdateFOSliderResult(value) {
-        const valueToUse = Number(value).toFixed(Graph.PRECISION);
-        this.graphCalculator.setExpression({ id: 'fo-slider-result', latex: `${this.slider_fo_result_value_char}=${valueToUse}`, sliderBounds: { min: Number(valueToUse) - 50, max: Number(valueToUse) + 50 } });
+    drawOrUpdateFOSliderValue(sliderId, value) {
+        let sliderStr = '';
+        let maxValue = 577; // ~tang(179.9°) 
+        let minValue = 0;
+        switch (sliderId) {
+            case 'fo-slider-x':
+                sliderStr = `${this.slider_fo_x_value_char}`;
+                maxValue *= Number(this.funcaoObjetivo.b);
+                minValue = -maxValue;
+                break;
+            case 'fo-slider-y':
+                sliderStr = `${this.slider_fo_y_value_char}`;
+                maxValue *= Number(this.funcaoObjetivo.a);
+                minValue = -maxValue;
+                break;
+            case 'fo-slider-result':
+                sliderStr = `${this.slider_fo_result_value_char}`;
+                minValue = Number(value) - 50;
+                maxValue = Number(value) + 50;
+                break;
+            default:
+                break;
+        }
+
+        console.log(`max: ${maxValue}
+        min:${minValue}`);
+
+        if (sliderStr) {
+            const valueToUse = Number(value).toFixed(Graph.PRECISION);
+            this.graphCalculator.setExpression({ id: sliderId, latex: `${sliderStr}=${valueToUse}`, sliderBounds: { min: minValue, max: maxValue } });
+        }
     }
 
     clearData() {

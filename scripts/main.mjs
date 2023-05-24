@@ -39,7 +39,7 @@ const bindObjectiveFunctionButtons = (selectMaxMin, fo) => {
         fo.type = selectMaxMin.value;
         fo.updateValue();
 
-        graph.drawOrUpdateFOSliderResult(fo.value);
+        graph.drawOrUpdateFOSliderValue('fo-slider-result', fo.value);
         setButtonLabel('fo-value', fo.value);
     });
 };
@@ -160,13 +160,13 @@ function submitForm(e) {
                         // Change the graph values
                         switch (button.id) {
                             case 'fo-x-value':
-                                graph.graphCalculator.setExpression({ id: 'fo-slider-x', latex: `${graph.slider_fo_x_value_char}=${sliderValue}` });
+                                graph.drawOrUpdateFOSliderValue('fo-slider-x', sliderValue);
                                 break;
                             case 'fo-y-value':
-                                graph.graphCalculator.setExpression({ id: 'fo-slider-y', latex: `${graph.slider_fo_y_value_char}=${sliderValue}` });
+                                graph.drawOrUpdateFOSliderValue('fo-slider-y', sliderValue);
                                 break;
                             case 'fo-value':
-                                graph.drawOrUpdateFOSliderResult(sliderValue);
+                                graph.drawOrUpdateFOSliderValue('fo-slider-result', sliderValue);
                                 break;
                             default:
                                 break;
