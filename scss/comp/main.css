@@ -16,7 +16,7 @@ header {
 #sidebar {
   margin-top: 3.5em;
   width: 25%;
-  min-width: 25em;
+  min-width: 30em;
 }
 
 #sidebar > .offcanvas-body {
@@ -94,6 +94,7 @@ header {
 
 #fo-div {
   display: none;
+  padding-right: 17px;
 }
 
 #form-input {
