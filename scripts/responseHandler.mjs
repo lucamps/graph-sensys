@@ -9,6 +9,9 @@ export class ResponseHandler {
     constructor(respJson) {
         this.funcObj = new ObjectiveFunction({});
         this.funcObj.copy(respJson.funcObj);
+        this.maxH = respJson.maxH;
+        this.maxW = respJson.maxW;
+
         console.log(this.funcObj);
 
         this.stList = [];

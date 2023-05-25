@@ -116,6 +116,7 @@ function submitForm(e) {
             graph.drawFuncaoObjetivo();
             graph.drawRestricoes();
             graph.drawRegiaoViavel();
+            graph.updateBounds(respH.maxW * (-0.36), respH.maxH * (-0.25), respH.maxW, respH.maxH);
 
             const selectMaxMin = document.getElementById('fo-type-select');
 

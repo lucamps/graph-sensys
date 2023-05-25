@@ -34,7 +34,9 @@ app.post("/", (req, res) => {
         let responseData = {
             funcObj: solver.funcObj,
             stList: solver.stList,
-            regViavel: solver.regiaoViavel
+            regViavel: solver.regiaoViavel,
+            maxH: Solver.MAX_H,
+            maxW: Solver.MAX_W,
         }
 
         res.status(200).send(responseData);
