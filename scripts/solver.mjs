@@ -195,8 +195,11 @@ export default class Solver {
             this.#values[i][0] = this.stList[i].value;
             folgaCol++;
 
-            Solver.MAX_X = max(Solver.MAX_X, this.stList[i].a);
-            Solver.MAX_Y = max(Solver.MAX_Y, this.stList[i].b);
+            let raizX = this.stList[i].getRaizX();
+            let raizY = this.stList[i].getRaizY();
+
+            Solver.MAX_X = max(Solver.MAX_X, Number(raizX));
+            Solver.MAX_Y = max(Solver.MAX_Y, Number(raizY));
         }
         Solver.MAX_W = max(Solver.MAX_W, Solver.MAX_X + 1000);
         Solver.MAX_H = max(Solver.MAX_H, Solver.MAX_Y + 1000);

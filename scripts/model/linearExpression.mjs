@@ -15,4 +15,18 @@ export default class LinearExpression {
         let rightSide = this instanceof ObjectiveFunction ? "" : `=${this.value}`;
         return `${this.a}x${sinal}${this.b}y${rightSide}`;
     }
+
+    getRaizX() {
+        if (this.a != 0) {
+            return this.value / this.a;
+        }
+        return 0;
+    }
+    getRaizY() {
+        if (this.b != 0) {
+            return this.value / this.b;
+        }
+        return 0;
+    }
+
 }
