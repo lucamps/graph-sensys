@@ -1,3 +1,4 @@
+import Constants from "./constants.mjs";
 import { Graph } from "./graph.mjs";
 import ObjectiveFunction from "./model/objectiveFunction.mjs";
 import { ResponseHandler } from "./responseHandler.mjs";
@@ -12,9 +13,9 @@ const alertDiv = document.getElementById('alertDiv');
 const alertText = document.getElementById('alertText');
 
 const fo_btns = [
-    document.getElementById('fo-x-value'),
-    document.getElementById('fo-y-value'),
-    document.getElementById('fo-value')
+    document.getElementById(Constants.FO_ID.X_VALUE),
+    document.getElementById(Constants.FO_ID.Y_VALUE),
+    document.getElementById(Constants.FO_ID.RESULT)
 ];
 
 const slider_fo = document.getElementById('fo_custom_range');
@@ -39,8 +40,9 @@ const bindObjectiveFunctionButtons = (selectMaxMin, fo) => {
         fo.type = selectMaxMin.value;
         fo.updateValue();
 
-        graph.drawOrUpdateFOSliderValue('fo-slider-result', fo.value);
-        setButtonLabel('fo-value', fo.value);
+        graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, fo.value, fo.minValue - 50, fo.maxValue + 50);
+
+        setButtonLabel(Constants.FO_ID.RESULT, fo.value);
     });
 };
 
@@ -136,8 +138,8 @@ function submitForm(e) {
                         }
                     });
                     let value = btn.innerHTML;
-                    slider_fo.min = Number(value) - 50;
-                    slider_fo.max = Number(value) + 50;
+                    slider_fo.min = Number(fo.minValue - 50).toString();
+                    slider_fo.max = Number(fo.maxValue + 50).toString();
                     slider_fo.value = value;
                 });
             });
@@ -154,13 +156,13 @@ function submitForm(e) {
                         // Change the graph values
                         switch (button.id) {
                             case 'fo-x-value':
-                                graph.drawOrUpdateFOSliderValue('fo-slider-x', sliderValue);
+                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_X, sliderValue);
                                 break;
                             case 'fo-y-value':
-                                graph.drawOrUpdateFOSliderValue('fo-slider-y', sliderValue);
+                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_Y, sliderValue);
                                 break;
                             case 'fo-value':
-                                graph.drawOrUpdateFOSliderValue('fo-slider-result', sliderValue);
+                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, sliderValue, fo.minValue - 50, fo.maxValue + 50);
                                 break;
                             default:
                                 break;
