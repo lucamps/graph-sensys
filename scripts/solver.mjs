@@ -6,8 +6,8 @@ import { matrix, det, inv, multiply, max } from "mathjs";
 export default class Solver {
     static MAX_X = 0;
     static MAX_Y = 0;
-    static MAX_H = 1000;
-    static MAX_W = 1000;
+    static MAX_H = 0;
+    static MAX_W = 0;
 
     #matriz = [];
     #values = [];
@@ -19,6 +19,9 @@ export default class Solver {
      * @param {Boolean} debug 
      */
     constructor(parserListener, debug = false) {
+        Solver.MAX_X = 0;
+        Solver.MAX_Y = 0;
+
         this.debug = debug;
         this.stList = parserListener.stList;
         this.funcObj = parserListener.funcObj;
