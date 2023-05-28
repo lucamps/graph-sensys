@@ -118,7 +118,7 @@ function submitForm(e) {
             graph.drawFuncaoObjetivo();
             graph.drawRestricoes();
             graph.drawRegiaoViavel();
-            graph.updateBounds(respH.maxW * (-0.36), respH.maxH * (-0.25), respH.maxW, respH.maxH);
+            graph.updateBounds(respH.maxX * (-0.5), respH.maxY * (-0.25), respH.maxX * (1.3), respH.maxY * (1.3));
 
             const selectMaxMin = document.getElementById('fo-type-select');
 
@@ -128,7 +128,6 @@ function submitForm(e) {
             const foDiv = document.getElementById('fo-div');
             foDiv.style.display = 'block';
             changeVariablesInInterface(respH.funcObj);
-
 
             fo_btns.forEach(function (btn) {
                 btn.addEventListener('click', function () {

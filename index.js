@@ -35,8 +35,8 @@ app.post("/", (req, res) => {
             funcObj: solver.funcObj,
             stList: solver.stList,
             regViavel: solver.regiaoViavel,
-            maxH: Solver.MAX_H,
-            maxW: Solver.MAX_W,
+            maxX: Solver.MAX_X,
+            maxY: Solver.MAX_Y
         }
 
         res.status(200).send(responseData);
