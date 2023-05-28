@@ -81,7 +81,7 @@ export class Graph {
             color: this.funcaoObjetivo.color
         });
 
-        this.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, this.funcaoObjetivo.value);
+        this.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, this.funcaoObjetivo.value, this.funcaoObjetivo.minValue * (-1.5), this.funcaoObjetivo.maxValue * (1.5));
         this.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_X, a);
         this.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_Y, b);
     }

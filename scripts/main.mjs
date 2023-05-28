@@ -31,7 +31,6 @@ const changeObjectiveFunctionSelectedType = (selectMaxMin, foType) => {
 };
 
 /**
- * 
  * @param {Text} selectMaxMin 
  * @param {ObjectiveFunction} fo 
  */
@@ -110,9 +109,7 @@ function submitForm(e) {
             setButtonLabel('fo-value', fo.value);
 
             graph.funcaoObjetivo = fo;
-
             graph.stList = respH.stList;
-
             graph.regiaoViavel = respH.regViavel;
 
             graph.drawFuncaoObjetivo();
@@ -122,8 +119,8 @@ function submitForm(e) {
 
             const selectMaxMin = document.getElementById('fo-type-select');
 
-            bindObjectiveFunctionButtons(selectMaxMin, fo);
             changeObjectiveFunctionSelectedType(selectMaxMin, fo.type);
+            bindObjectiveFunctionButtons(selectMaxMin, fo);
 
             const foDiv = document.getElementById('fo-div');
             foDiv.style.display = 'block';
@@ -161,7 +158,7 @@ function submitForm(e) {
                                 graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_Y, sliderValue);
                                 break;
                             case 'fo-value':
-                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, sliderValue, fo.minValue - 50, fo.maxValue + 50);
+                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, sliderValue, fo.minValue * (-1.5), fo.maxValue * (1.5));
                                 break;
                             default:
                                 break;
