@@ -43,14 +43,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
                         id="close-fo"></button>
                     <form class="form-expression">
-                        <div class="form-check" id="form-fo">
-                            <input class="form-check-input" type="checkbox" value="" id="fo-checkbox" checked>
-                            <label class="form-check-label" for="fo-checkbox">
-                                <select class="form-select" aria-label="Objective Function Type" id="fo-type-select">
-                                    <option value="max" selected>Max</option>
-                                    <option value="min">Min</option>
-                                </select>
-                            </label>
+                        <div class="form" id="form-fo">
+                            <select class="form-select" aria-label="Objective Function Type" id="fo-type-select">
+                                <option value="max" selected>Max</option>
+                                <option value="min">Min</option>
+                            </select>
                             <button type="button" class="btn btn-light" id="fo-x-value"
                                 data-bs-toggle="button">3</button>
                             <p class="between-buttons" id="x-text-fo">X + </p>
@@ -63,6 +60,9 @@
                         <label for="fo_custom_range" class="form-label"></label>
                         <input type="range" class="form-range" min="0" max="5" step="0.5" id="fo_custom_range">
                     </form>
+                </div>
+                <div class="container" id="container-restricoes">
+                    <!-- restricoes serao dinamicamente colocadas aqui -->
                 </div>
             </div>
         </div>

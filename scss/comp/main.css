@@ -16,7 +16,7 @@ header {
 #sidebar {
   margin-top: 3.5em;
   width: 25%;
-  min-width: 30em;
+  min-width: fit-content;
 }
 
 #sidebar > .offcanvas-body {
@@ -70,7 +70,7 @@ header {
   align-items: baseline;
 }
 
-.form-expression input,
+.form-expression select,
 .form-expression label,
 .form-expression .between-buttons {
   margin-right: 0.18em;
@@ -80,6 +80,7 @@ header {
 .between-buttons,
 .identificador {
   font-weight: bold;
+  min-width: max-content;
 }
 
 .identificador {
