@@ -65,7 +65,7 @@ header {
   --bs-alert-border-color: #686868;
 }
 
-#form-fo {
+.form-expression > div {
   display: flex;
   align-items: baseline;
 }
@@ -77,7 +77,7 @@ header {
   margin-left: 0.18em;
 }
 
-.between-buttons,
+.form p,
 .identificador {
   font-weight: bold;
   min-width: max-content;
@@ -96,10 +96,15 @@ header {
 #fo-div {
   display: none;
   padding-right: 17px;
+  border: 0.2em dashed black;
 }
 
 #form-input {
   margin-bottom: 0.5em;
+}
+
+#container-restricoes {
+  padding: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

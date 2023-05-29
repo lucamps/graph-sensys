@@ -1,5 +1,6 @@
 import Constants from "./constants.mjs";
 import { Graph } from "./graph.mjs";
+import HtmlContentHandler from "./htmlContentHandler.mjs";
 import ObjectiveFunction from "./model/objectiveFunction.mjs";
 import { ResponseHandler } from "./responseHandler.mjs";
 
@@ -116,6 +117,13 @@ function submitForm(e) {
             graph.drawRestricoes();
             graph.drawRegiaoViavel();
             graph.updateBounds(respH.maxX * (-0.5), respH.maxY * (-0.25), respH.maxX * (1.3), respH.maxY * (1.3));
+
+
+            // Adicionando divs de restricoes
+            let containerRestricoes = document.getElementById('container-restricoes');
+            for (let i = 0; i < respH.stList.length; i++) {
+                containerRestricoes.innerHTML += HtmlContentHandler.getDivRes(respH.stList[i]);
+            }
 
             const selectMaxMin = document.getElementById('fo-type-select');
 
