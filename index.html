@@ -40,31 +40,33 @@
                 </div>
 
                 <ul class="list-group list-group-flush">
-                    <div class="container" id="container-fo">
-                        <li class="list-group-item" id="fo-div">
+                    <li class="list-group-item" id="fo-div">
+                        <div class="container title_and_check">
+                            <input class="form-check-input" type="radio" name="check-fo" id="check-fo" value=""
+                                aria-label="...">
                             <p class="identificador">Função Objetivo</p>
-                            <form class="form-expression">
-                                <div class="form" id="form-fo">
-                                    <select class="form-select" aria-label="Objective Function Type"
-                                        id="fo-type-select">
-                                        <option value="max" selected>Max</option>
-                                        <option value="min">Min</option>
-                                    </select>
-                                    <button type="button" class="btn btn-light" id="fo-x-value"
-                                        data-bs-toggle="button">3</button>
-                                    <p class="between-buttons" id="x-text-fo">X + </p>
-                                    <button type="button" class="btn btn-light" id="fo-y-value"
-                                        data-bs-toggle="button">4</button>
-                                    <p class="between-buttons" id="y-text-fo">Y = </p>
-                                    <button type="button" class="btn btn-light" id="fo-value"
-                                        data-bs-toggle="button">10</button>
-                                </div>
-                                <label for="fo_custom_range" class="form-label"></label>
-                                <input type="range" class="form-range slider" min="0" max="5" step="0.5"
-                                    id="fo_custom_range">
-                            </form>
-                        </li>
-                    </div>
+                        </div>
+                        <form class="form-expression">
+                            <div class="form" id="form-fo">
+                                <select class="form-select" aria-label="Objective Function Type" id="fo-type-select">
+                                    <option value="max" selected>Max</option>
+                                    <option value="min">Min</option>
+                                </select>
+                                <button type="button" class="btn btn-light" id="fo-x-value"
+                                    data-bs-toggle="button">3</button>
+                                <p class="between-buttons" id="x-text-fo">X + </p>
+                                <button type="button" class="btn btn-light" id="fo-y-value"
+                                    data-bs-toggle="button">4</button>
+                                <p class="between-buttons" id="y-text-fo">Y = </p>
+                                <button type="button" class="btn btn-light" id="fo-value"
+                                    data-bs-toggle="button">10</button>
+                            </div>
+                            <label for="fo_custom_range" class="form-label"></label>
+                            <input type="range" class="form-range slider" min="0" max="5" step="0.5"
+                                id="fo_custom_range">
+                        </form>
+                    </li>
+
                     <div class="container" id="container-restricoes">
                         <!-- restricoes serao dinamicamente colocadas aqui -->
                     </div>

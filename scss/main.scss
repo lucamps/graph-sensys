@@ -94,6 +94,7 @@ header {
 .identificador {
     font-size: 1.2em;
     margin-left: 0.18em;
+    display: inline-block;
 }
 
 .btn.btn-light.active {
@@ -105,14 +106,16 @@ header {
     display: none;
     padding-right: 17px;
     border: 0.2em dashed black;
+    padding: 0.5em;
+    background: #d1d1d1;
+    border-radius: 10px;
 }
 
 #form-input {
     margin-bottom: 0.5em;
 }
 
-#container-restricoes,
-#container-fo {
+#container-restricoes {
     padding: 0.5em;
     background: #d1d1d1;
     border-radius: 10px;
