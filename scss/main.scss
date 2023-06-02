@@ -111,6 +111,40 @@ header {
     margin-bottom: 0.5em;
 }
 
-#container-restricoes {
-    padding: 0;
+#container-restricoes,
+#container-fo {
+    padding: 0.5em;
+    background: #d1d1d1;
+    border-radius: 10px;
+
+}
+
+.form-range::-ms-thumb,
+.form-range::-moz-range-thumb,
+.form-range::-webkit-slider-thumb {
+    background: darkblue;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-range::-webkit-slider-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+}
+
+.form-range::-webkit-slider-thumb:active,
+.form-range::-moz-range-thumb:active,
+.form-range::-ms-thumb:active {
+    background-color: #666666;
+}
+
+.form-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.5rem;
+    color: transparent;
+    cursor: pointer;
+    background-color: #666666;
+    border-color: transparent;
+    border-radius: 1rem;
+
 }
