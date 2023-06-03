@@ -1,8 +1,8 @@
 export default class HtmlContentHandler {
     static getDivRes(rest) {
-        const style = `style="border:0.2em solid ${rest.color}"`;
+        //const style = `style="border:0.2em solid ${rest.color}"`;
 
-        const divContent = ` <li class="list-group-item" id="div-${rest.id}" ${style}>
+        const divContent = ` <li class="list-group-item list_expr" id="div-${rest.id}">
             <p class="identificador">${rest.id}</p>
             <form class="form-expression">
                 <div class="form form-res" id="form-${rest.id}">

@@ -120,9 +120,9 @@ function submitForm(e) {
 
 
             // Adicionando divs de restricoes
-            let containerRestricoes = document.getElementById('container-restricoes');
+            let lista_ul = document.getElementById('list-ul');
             for (let i = 0; i < respH.stList.length; i++) {
-                containerRestricoes.innerHTML += HtmlContentHandler.getDivRes(respH.stList[i]);
+                lista_ul.innerHTML += HtmlContentHandler.getDivRes(respH.stList[i]);
             }
 
             const selectMaxMin = document.getElementById('fo-type-select');

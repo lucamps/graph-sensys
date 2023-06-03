@@ -1,4 +1,5 @@
 $header-height: 3.5em;
+$btn-color: #150068;
 
 html,
 body {
@@ -22,7 +23,10 @@ header {
 }
 
 #sidebar>.offcanvas-body {
-    background-color: rgb(55 63 70);
+    background-color: rgb(223 223 223);
+    -webkit-box-shadow: 9px 0px 5px 0px rgba(184, 184, 184, 1);
+    -moz-box-shadow: 9px 0px 5px 0px rgba(184, 184, 184, 1);
+    box-shadow: 9px 0px 5px 0px rgba(184, 184, 184, 1);
 }
 
 #graph {
@@ -32,11 +36,13 @@ header {
 
 #input_label {
     height: 8.2em;
+    border: 1px solid black;
 }
 
 #btn-submit {
-    background-color: darkblue;
+    background-color: $btn-color;
     margin-left: 5px;
+    border: 1px solid black;
 }
 
 #alertDiv {
@@ -104,22 +110,19 @@ header {
 
 #fo-div {
     display: none;
-    padding-right: 17px;
-    border: 0.2em dashed black;
-    padding: 0.5em;
-    background: #d1d1d1;
-    border-radius: 10px;
 }
 
 #form-input {
     margin-bottom: 0.5em;
 }
 
-#container-restricoes {
-    padding: 0.5em;
-    background: #d1d1d1;
+#list-ul {
     border-radius: 10px;
+}
 
+.list_expr {
+    padding: 0.5em;
+    background: #f0f0f0;
 }
 
 .form-range::-ms-thumb,
