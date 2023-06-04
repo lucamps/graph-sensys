@@ -45,13 +45,14 @@
                             <input class="form-check-input" type="radio" name="check-fo" id="check-fo" value=""
                                 aria-label="...">
                             <p class="identificador">Função Objetivo</p>
+                            <select class="form-select" aria-label="Objective Function Type" id="fo-type-select">
+                                <option value="max" selected>Max</option>
+                                <option value="min">Min</option>
+                            </select>
                         </div>
                         <form class="form-expression">
                             <div class="form" id="form-fo">
-                                <select class="form-select" aria-label="Objective Function Type" id="fo-type-select">
-                                    <option value="max" selected>Max</option>
-                                    <option value="min">Min</option>
-                                </select>
+
                                 <button type="button" class="btn btn-light" id="fo-x-value"
                                     data-bs-toggle="button">3</button>
                                 <p class="between-buttons" id="x-text-fo">X + </p>

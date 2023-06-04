@@ -1,5 +1,6 @@
 $header-height: 3.5em;
 $btn-color: #150068;
+$form-range-thumb-bg: $btn-color;
 
 html,
 body {
@@ -64,9 +65,9 @@ header {
     align-self: baseline;
 }
 
-.between-button {
+.between-buttons {
     display: inline;
-
+    font-size: larger;
 }
 
 .alert-custom {
@@ -125,31 +126,53 @@ header {
     background: #f0f0f0;
 }
 
-.form-range::-ms-thumb,
-.form-range::-moz-range-thumb,
-.form-range::-webkit-slider-thumb {
-    background: darkblue;
+.list_expr>p {
+    margin-left: 1em;
 }
 
+
+.title_and_check {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+#fo-type-select {
+    width: fit-content;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.form-check-input {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.3em;
+}
+
+.form-expression {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+
+
 @media (prefers-reduced-motion: reduce) {
-    .form-range::-webkit-slider-thumb {
+    input[type=range]::-webkit-slider-thumb {
         -webkit-transition: none;
         transition: none;
     }
 }
 
-.form-range::-webkit-slider-thumb:active,
-.form-range::-moz-range-thumb:active,
-.form-range::-ms-thumb:active {
-    background-color: #666666;
+input[type=range]::-webkit-slider-thumb {
+    background: #2200ac;
 }
 
-.form-range::-webkit-slider-runnable-track {
+input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
     height: 0.5rem;
     color: transparent;
     cursor: pointer;
-    background-color: #666666;
+    background-color: #AAAAAA;
     border-color: transparent;
     border-radius: 1rem;
 
