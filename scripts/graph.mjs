@@ -52,7 +52,7 @@ export class Graph {
         }
         const pointsString = this.pointsToString(this.regiaoViavel);
         const poligStr = `\\polygon(${pointsString})`;
-        this.graphCalculator.setExpression({ id: 'regiaoViavel', latex: poligStr, color: '#911eb4' });
+        this.graphCalculator.setExpression({ id: 'regiaoViavel', latex: poligStr, color: '#777777' });
     }
 
     drawRestricoes() {

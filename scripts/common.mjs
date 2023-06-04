@@ -138,6 +138,7 @@ export default class Common {
             teal: '#469990',
             maroon: '#800000',
             navy: '#000075',
+            purple: '#911eb4',
             orange: '#f58231',
             cyan: '#42d4f4',
             yellow: '#FFD400',
