@@ -140,11 +140,11 @@ export default class Solver {
 
     #generateNewId(num = 1) {
         const i = num;
-        let newId = `restricao${i}`;
+        let newId = `R${i}`;
 
         while (this.idList.includes(newId)) {
             i++;
-            newId = `restricao${i}`;
+            newId = `R${i}`;
         }
 
         return newId;
