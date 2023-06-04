@@ -189,7 +189,7 @@ input[type=range]::-webkit-slider-runnable-track {
   --bs-dark-rgb: 47, 53, 58;
 }
 
-.form-check-input {
+.form-check-input[type=checkbox] {
   border-radius: 50%;
 }
 
