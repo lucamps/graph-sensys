@@ -10,9 +10,9 @@ export default class LinearExpression {
         this.color = color;
     }
 
-    toString() {
+    toString(showValue = true) {
         let sinal = this.b >= 0 ? '+' : '';
-        let rightSide = this instanceof ObjectiveFunction ? "" : `=${this.value}`;
+        let rightSide = (this instanceof ObjectiveFunction || !showValue) ? "" : `=${this.value}`;
         return `${this.a}x${sinal}${this.b}y${rightSide}`;
     }
 

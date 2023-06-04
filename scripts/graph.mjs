@@ -59,13 +59,18 @@ export class Graph {
         for (let i = 0; i < this.stList.length; i++) {
             let restExp = {
                 id: this.stList[i].id,
-                latex: this.stList[i].toString(),
+                latex: `${this.stList[i].toString(false)} = ${this.stList[i].sliderChar}`,
                 color: this.stList[i].color
             }
 
             console.log(restExp);
 
             this.graphCalculator.setExpression(restExp);
+
+            let value = this.stList[i].value;
+            let maxValue = this.funcaoObjetivo.maxValue;
+            const valueToUse = Number(Number(value).toFixed(Graph.PRECISION));
+            this.graphCalculator.setExpression({ id: this.stList[i].sliderChar, latex: `${this.stList[i].sliderChar}=${valueToUse}`, sliderBounds: { min: 0 - (0.2 * maxValue), max: maxValue * 1.2 } });
         }
 
     }

@@ -28,6 +28,7 @@ export default class Solver {
         this.regiaoViavel = [];
         this.colorList = Object.values(Common.Colors);
         this.idList = [];
+        this.sliderIdList = ['a', 'b', 'c', 'x', 'y'];
 
         this.#getInitialDataAndSetColors();
 
@@ -147,7 +148,30 @@ export default class Solver {
             newId = `R${i}`;
         }
 
+        this.idList.push(newId);
         return newId;
+    }
+
+    #generateNewSliderId() {
+        let id_code = 'A'.charCodeAt(0) - 1;
+        let letra = String.fromCharCode(id_code);
+        do {
+            id_code++;
+            letra = String.fromCharCode(id_code)
+            if (letra == 'x' || letra == 'y') {
+                continue;
+            }
+            if (id_code > 'Z'.charCodeAt(0) && id_code < 'd'.charCodeAt(0)) {
+                letra = 'd';
+                id_code = letra.charCodeAt(0);
+            }
+            if (letra > 'z') {
+                throw Error('número máximo de restrições atingido.');
+            }
+        } while (this.sliderIdList.includes(letra));
+
+        this.sliderIdList.push(letra);
+        return letra;
     }
 
     /**
@@ -155,6 +179,7 @@ export default class Solver {
      */
     #setRestValidId(rest, i = 0) {
         let elemId = rest.id;
+
         if (elemId) {
             if (this.idList.includes(elemId)) {
                 elemId = this.#generateNewId(i);
@@ -165,7 +190,8 @@ export default class Solver {
             elemId = this.#generateNewId(i);
             rest.id = elemId;
         }
-        this.idList.push(elemId);
+
+        rest.sliderChar = this.#generateNewSliderId();
     }
 
     /**
@@ -204,6 +230,9 @@ export default class Solver {
             Solver.MAX_X = max(Solver.MAX_X, Number(raizX));
             Solver.MAX_Y = max(Solver.MAX_Y, Number(raizY));
         }
+        console.log('________________ slider ids =');
+        console.log(this.sliderIdList);
+
         Solver.MAX_W = max(Solver.MAX_W, Solver.MAX_X * 50);
         Solver.MAX_H = max(Solver.MAX_H, Solver.MAX_Y * 50);
 
