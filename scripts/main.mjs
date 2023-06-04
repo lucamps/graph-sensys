@@ -66,6 +66,17 @@ const hideAlert = () => {
     alertDiv.classList.remove('active');
 }
 
+const clearOldContent = () => {
+    graph.clearData();
+    // removendo restricoes anteriores (caso existam)
+    let lista_ul_old = document.querySelectorAll('.dynamic-content');
+    for (let i in lista_ul_old) {
+        if (lista_ul_old[i].parentNode) {
+            lista_ul_old[i].parentNode.removeChild(lista_ul_old[i]);
+        }
+    }
+}
+
 function submitForm(e) {
     e.preventDefault(); // Prevent the page from reloading
 
@@ -86,7 +97,7 @@ function submitForm(e) {
 
     xhr.onload = function () {
         if (xhr.status == 200) {
-            graph.clearData();
+            clearOldContent();
 
             hideAlert();
 
@@ -110,7 +121,6 @@ function submitForm(e) {
             graph.drawRestricoes();
             graph.drawRegiaoViavel();
             graph.updateBounds(respH.maxX * (-0.5), respH.maxY * (-0.25), respH.maxX * (1.3), respH.maxY * (1.3));
-
 
             // Adicionando divs de restricoes
             let lista_ul = document.getElementById('list-ul');

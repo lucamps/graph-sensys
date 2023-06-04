@@ -2,7 +2,7 @@ export default class HtmlContentHandler {
     static getDivRes(rest) {
         const style = `style="background-color: ${rest.color}"`;
 
-        const divContent = ` <li class="list-group-item list_expr" id="div-${rest.id}">
+        const divContent = ` <li class="list-group-item list_expr dynamic-content" id="div-${rest.id}">
             <div class="container title_and_check">
                 <input class="form-check-input" type="checkbox" name="check-${rest.id}" id="check-${rest.id}" ${style} checked>
                 <p class="identificador">${rest.id}</p>
