@@ -60,7 +60,7 @@ header {
   align-self: baseline;
 }
 
-.between-buttons {
+form p {
   display: inline;
   font-size: larger;
 }
@@ -76,6 +76,15 @@ header {
   align-items: baseline;
 }
 
+.form-expression {
+  margin-left: 1em;
+  margin-right: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
 .form-expression select,
 .form-expression label,
 .form-expression .between-buttons {
@@ -85,7 +94,6 @@ header {
 
 .form p,
 .identificador {
-  font-weight: bold;
   min-width: max-content;
 }
 
@@ -94,6 +102,7 @@ header {
   margin-left: 0.18em;
   display: inline-block;
   align-self: center;
+  font-weight: 500;
 }
 
 .btn.btn-light.active {
