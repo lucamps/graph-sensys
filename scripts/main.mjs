@@ -13,13 +13,6 @@ const graph = new Graph('graph');
 const alertDiv = document.getElementById('alertDiv');
 const alertText = document.getElementById('alertText');
 
-const fo_btns = [
-    document.getElementById(Constants.FO_ID.X_VALUE),
-    document.getElementById(Constants.FO_ID.Y_VALUE),
-    document.getElementById(Constants.FO_ID.RESULT)
-];
-
-const slider_fo = document.getElementById('fo_custom_range');
 
 /**
  * @param {ObjectiveFunction.Type.max|ObjectiveFunction.Type.min} foType 
@@ -134,9 +127,20 @@ function submitForm(e) {
             foDiv.style.display = 'block';
             changeVariablesInInterface(respH.funcObj);
 
+
+            const fo_btns = [
+                document.getElementById(Constants.FO_ID.X_VALUE),
+                document.getElementById(Constants.FO_ID.Y_VALUE),
+                document.getElementById(Constants.FO_ID.RESULT)
+            ];
+            console.log("botoes:");
+            console.log(fo_btns);
+
+            const slider_fo = document.getElementById('fo_custom_range');
             fo_btns.forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     fo_btns.forEach(function (other_btn) {
+
                         if (other_btn != btn) {
                             other_btn.classList.remove('active');
                         }
@@ -147,6 +151,7 @@ function submitForm(e) {
                     slider_fo.value = value;
                 });
             });
+
 
             slider_fo.addEventListener('input', function () {
                 const sliderValue = slider_fo.value;
