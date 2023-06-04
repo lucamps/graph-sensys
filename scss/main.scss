@@ -112,6 +112,12 @@ form p {
     font-weight: 500;
 }
 
+.btn.btn-light {
+    -webkit-box-shadow: inset 0px 0px 14px 1px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 0px 0px 14px 1px rgba(255, 255, 255, 1);
+    box-shadow: inset 0px 0px 14px 1px rgba(255, 255, 255, 1);
+}
+
 .btn.btn-light.active {
     border: 1.5px solid;
     background-color: #fcfdff;
@@ -132,7 +138,7 @@ form p {
 
 .list_expr {
     padding: 0.5em;
-    background: #f0f0f0;
+    background: #f5f5f5;
 }
 
 .list_expr>p {
@@ -195,7 +201,7 @@ input[type=range]::-webkit-slider-runnable-track {
     --bs-dark-rgb: 47, 53, 58;
 }
 
-#check-fo {
+.form-check-input {
     border-radius: 50%;
 }
 
