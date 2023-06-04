@@ -68,9 +68,16 @@ export class Graph {
             this.graphCalculator.setExpression(restExp);
 
             let value = this.stList[i].value;
-            let maxValue = this.funcaoObjetivo.maxValue;
             const valueToUse = Number(Number(value).toFixed(Graph.PRECISION));
-            this.graphCalculator.setExpression({ id: this.stList[i].sliderChar, latex: `${this.stList[i].sliderChar}=${valueToUse}`, sliderBounds: { min: 0 - (0.2 * maxValue), max: maxValue * 1.2 } });
+
+            let maxValue = (this.funcaoObjetivo.maxValue / this.funcaoObjetivo.a) * this.stList[i].a +
+                (this.funcaoObjetivo.maxValue / this.funcaoObjetivo.b) * this.stList[i].b;
+
+            this.graphCalculator.setExpression({
+                id: this.stList[i].sliderChar,
+                latex: `${this.stList[i].sliderChar}=${valueToUse}`,
+                sliderBounds: { min: 0 - (0.2 * maxValue), max: maxValue * 1.1 }
+            });
         }
 
     }
