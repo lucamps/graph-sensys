@@ -1,9 +1,12 @@
 export default class HtmlContentHandler {
     static getDivRes(rest) {
-        //const style = `style="border:0.2em solid ${rest.color}"`;
+        const style = `style="background-color: ${rest.color}"`;
 
         const divContent = ` <li class="list-group-item list_expr" id="div-${rest.id}">
-            <p class="identificador">${rest.id}</p>
+            <div class="container title_and_check">
+                <input class="form-check-input" type="checkbox" name="check-${rest.id}" id="check-${rest.id}" ${style} checked>
+                <p class="identificador">${rest.id}</p>
+            </div>
             <form class="form-expression">
                 <div class="form form-res" id="form-${rest.id}">
                     <p id="x-value-${rest.id}">${rest.a}</p>
