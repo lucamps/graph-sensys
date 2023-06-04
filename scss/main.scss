@@ -102,6 +102,7 @@ header {
     font-size: 1.2em;
     margin-left: 0.18em;
     display: inline-block;
+    align-self: center;
 }
 
 .btn.btn-light.active {
@@ -185,4 +186,12 @@ input[type=range]::-webkit-slider-runnable-track {
 
 :root {
     --bs-dark-rgb: 47, 53, 58;
+}
+
+#check-fo {
+    border-radius: 50%;
+}
+
+#check-fo:checked {
+    background-color: #000000;
 }
