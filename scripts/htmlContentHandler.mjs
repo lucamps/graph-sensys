@@ -16,7 +16,7 @@ export default class HtmlContentHandler {
                     <p id="result-value-${rest.id}">${rest.value}</p>
                 </div>
                 <label for="range-${rest.id}" class="form-label"></label>
-                <input type="range" class="form-range" min="0" max="5" step="0.5" id="range-${rest.id}">
+                <input type="range" class="form-range" min="0" max="5" id="range-${rest.id}">
             </form>
         </li>`;
 

@@ -9,7 +9,7 @@ export class Graph {
 
     constructor(id = 'graph') {
         this.options = { zoomButtons: false, expressions: true };
-        this.stList = {}; //formato: { id: "identificador", latex: "ax + y = b"}
+        this.stList = [];
         this.funcaoObjetivo = {};
         this.regiaoViavel = {};
 
@@ -55,6 +55,39 @@ export class Graph {
         this.graphCalculator.setExpression({ id: 'regiaoViavel', latex: poligStr, color: '#777777' });
     }
 
+    setResValue(res) {
+        let value = res.value;
+        const valueToUse = Number(Number(value).toFixed(Graph.PRECISION));
+
+        res.calculateMinAndMaxToShow(this.funcaoObjetivo);
+
+
+        this.graphCalculator.setExpression({
+            id: res.sliderChar,
+            latex: `${res.sliderChar}=${valueToUse}`,
+            sliderBounds: { min: res.minToShow, max: res.maxToShow }
+        });
+    }
+
+    getResById(resId) {
+        //TODO: mudar a estrutura para um mapa vai tornar mais eficiente
+        for (let i in this.stList) {
+            if (this.stList[i].id == resId) {
+                return this.stList[i];
+            }
+        }
+        return null;
+    }
+
+    updateResValue(resId, valueToUse) {
+        let res = this.getResById(resId);
+        this.graphCalculator.setExpression({
+            id: res.sliderChar,
+            latex: `${res.sliderChar}=${valueToUse}`
+        });
+    }
+
+
     drawRestricoes() {
         for (let i = 0; i < this.stList.length; i++) {
             let restExp = {
@@ -67,20 +100,11 @@ export class Graph {
 
             this.graphCalculator.setExpression(restExp);
 
-            let value = this.stList[i].value;
-            const valueToUse = Number(Number(value).toFixed(Graph.PRECISION));
-
-            let maxValue = (this.funcaoObjetivo.maxValue / this.funcaoObjetivo.a) * this.stList[i].a +
-                (this.funcaoObjetivo.maxValue / this.funcaoObjetivo.b) * this.stList[i].b;
-
-            this.graphCalculator.setExpression({
-                id: this.stList[i].sliderChar,
-                latex: `${this.stList[i].sliderChar}=${valueToUse}`,
-                sliderBounds: { min: 0 - (0.2 * maxValue), max: maxValue * 1.1 }
-            });
+            this.setResValue(this.stList[i]);
         }
 
     }
+
 
     drawFuncaoObjetivo() {
         let a = Number(this.funcaoObjetivo.a).toFixed(Graph.PRECISION);

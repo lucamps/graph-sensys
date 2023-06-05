@@ -125,7 +125,8 @@ function submitForm(e) {
             // Adicionando divs de restricoes
             let lista_ul = document.getElementById('list-ul');
             for (let i = 0; i < respH.stList.length; i++) {
-                lista_ul.innerHTML += HtmlContentHandler.getDivRes(respH.stList[i]);
+                let res = respH.stList[i];
+                lista_ul.innerHTML += HtmlContentHandler.getDivRes(res);
             }
 
             const selectMaxMin = document.getElementById('fo-type-select');
@@ -189,6 +190,24 @@ function submitForm(e) {
                     }
                 });
             });
+
+            respH.stList.forEach((res) => {
+                let sliderElem = document.getElementById(`range-${res.id}`);
+                let valueElem = document.getElementById(`result-value-${res.id}`);
+
+                if (!res.minToShow || !res.maxToShow) {
+                    res.calculateMinAndMaxToShow();
+                }
+                sliderElem.min = res.minToShow;
+                sliderElem.max = res.maxToShow;
+                sliderElem.value = res.value;
+
+                sliderElem.addEventListener('input', function () {
+                    valueElem.innerHTML = sliderElem.value;
+                    graph.updateResValue(res.id, sliderElem.value);
+                });
+            });
+
         }
         else {
             console.log('Erro encontrado no OnLoad, de status: ' + xhr.status);

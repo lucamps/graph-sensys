@@ -1,4 +1,5 @@
 import LinearExpression from "./linearExpression.mjs";
+import ObjectiveFunction from "./objectiveFunction.mjs";
 
 export default class Constraint extends LinearExpression {
     static get Relationship() {
@@ -18,6 +19,19 @@ export default class Constraint extends LinearExpression {
         this.id = id;
         this.rel = rel;
         this.sliderChar = sliderChar;
+        this.minToShow = null;
+        this.maxToShow = null;
+    }
+
+    /**
+     * 
+     * @param {ObjectiveFunction} fo 
+     */
+    calculateMinAndMaxToShow(fo) {
+        let maxValue = (fo.maxValue / fo.a) * this.a + (fo.maxValue / fo.b) * this.b;
+
+        this.minToShow = 0 - 0.2 * maxValue;
+        this.maxToShow = maxValue * 1.1;
     }
 
     getFolga() {
