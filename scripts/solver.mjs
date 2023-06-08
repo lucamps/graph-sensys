@@ -208,8 +208,8 @@ export default class Solver {
 
         // Preenchendo dados
         let folgaCol = 2;
-        for (let i in this.stList) {
-            this.#setRestValidId(this.stList[i], i);
+        for (let i = 0; i < this.stList.length; i++) {
+            this.#setRestValidId(this.stList[i], i + 1);
 
             // Selecionando a cor
             if (this.colorList.length == 0) {
