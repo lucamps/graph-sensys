@@ -28,6 +28,9 @@ header {
     -webkit-box-shadow: 7px 2px 5px 0px rgb(184, 184, 184);
     -moz-box-shadow: 7px 2px 5px 0px rgb(184, 184, 184);
     box-shadow: 7px 2px 5px 0px rgb(184, 184, 184);
+    overflow: auto;
+    resize: horizontal;
+    min-width: fit-content;
 }
 
 #graph {
