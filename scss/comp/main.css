@@ -17,16 +17,17 @@ header {
   margin-top: 3.5em;
   width: 25%;
   min-width: fit-content;
-}
-
-#sidebar > .offcanvas-body {
+  overflow: auto;
+  resize: horizontal;
+  min-width: fit-content;
   background-color: rgb(231, 231, 231);
   -webkit-box-shadow: 7px 2px 5px 0px rgb(184, 184, 184);
   -moz-box-shadow: 7px 2px 5px 0px rgb(184, 184, 184);
   box-shadow: 7px 2px 5px 0px rgb(184, 184, 184);
-  overflow: auto;
-  resize: horizontal;
-  min-width: fit-content;
+}
+
+#sidebar > .offcanvas-body {
+  background-color: rgb(231, 231, 231);
 }
 
 #graph {
