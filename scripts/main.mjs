@@ -191,7 +191,7 @@ function submitForm(e) {
                 });
             });
 
-            respH.stList.forEach((res) => {
+            respH.stList.forEach((res, idx) => {
                 let sliderElem = document.getElementById(`range-${res.id}`);
                 let valueElem = document.getElementById(`result-value-${res.id}`);
 
@@ -205,6 +205,16 @@ function submitForm(e) {
                 sliderElem.addEventListener('input', function () {
                     valueElem.innerHTML = sliderElem.value;
                     graph.updateResValue(res.id, sliderElem.value);
+                });
+
+                sliderElem.addEventListener('mouseup', function () {
+                    respH.stList[idx].value = sliderElem.value;
+                    reloadData = `stList=${Object(respH.stList)}&funcObj=${Object(respH.funcObj)}`;
+                    // TODO: criar um metodo que cria o input a partir dos dados
+
+                    reloading = true;
+                    submitForm(e);
+                    return;
                 });
             });
 
