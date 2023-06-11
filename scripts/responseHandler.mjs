@@ -22,4 +22,14 @@ export class ResponseHandler {
         this.regViavel = respJson.regViavel;
 
     }
+
+    getInputText() {
+        let x = this.funcObj.nameVarA;
+        let y = this.funcObj.nameVarB;
+        let txt = `${this.funcObj.type} ${this.funcObj.toString(false, x, y, false)}\nst\n`;
+        this.stList.forEach((e) => {
+            txt += `${e.id}) ${e.toString(true, x, y, true)}\n`;
+        });
+        return txt;
+    }
 }

@@ -77,15 +77,9 @@ const clearOldContent = () => {
     }
 }
 
-function submitForm(e) {
-    e.preventDefault(); // Prevent the page from reloading
-
-    // Get the form data
-    const formData = new FormData(form);
-    const content = formData.values().next().value;
-
+function handleResponse(inputText) {
     // Formatting data for Express
-    const outputText = `text=${encodeURIComponent(content)}`;
+    const requestTxt = `text=${encodeURIComponent(inputText)}`;
 
     // Send the form data using AJAX
     const xhr = new XMLHttpRequest();
@@ -209,11 +203,7 @@ function submitForm(e) {
 
                 sliderElem.addEventListener('mouseup', function () {
                     respH.stList[idx].value = sliderElem.value;
-                    reloadData = `stList=${Object(respH.stList)}&funcObj=${Object(respH.funcObj)}`;
-                    // TODO: criar um metodo que cria o input a partir dos dados
-
-                    reloading = true;
-                    submitForm(e);
+                    handleResponse(respH.getInputText());
                     return;
                 });
             });
@@ -230,7 +220,17 @@ function submitForm(e) {
         }
 
     };
-    xhr.send(outputText);
+    xhr.send(requestTxt);
+}
+
+function submitForm(e) {
+    e.preventDefault(); // Prevent the page from reloading
+
+    // Get the form data
+    const formData = new FormData(form);
+    const content = formData.values().next().value;
+
+    handleResponse(content);
 }
 
 

@@ -10,10 +10,11 @@ export default class LinearExpression {
         this.color = color;
     }
 
-    toString(showValue = true) {
+    toString(showValue = true, x = 'x', y = 'y', showRel = false) {
         let sinal = this.b >= 0 ? '+' : '';
-        let rightSide = (this instanceof ObjectiveFunction || !showValue) ? "" : `=${this.value}`;
-        return `${this.a}x${sinal}${this.b}y${rightSide}`;
+        let rel = (showRel) ? this.rel : '=';
+        let rightSide = (this instanceof ObjectiveFunction || !showValue) ? "" : `${rel}${this.value}`;
+        return `${this.a}${x}${sinal}${this.b}${y}${rightSide}`;
     }
 
     getRaizX() {
