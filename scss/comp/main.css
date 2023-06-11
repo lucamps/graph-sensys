@@ -15,8 +15,7 @@ header {
 
 #sidebar {
   margin-top: 3.5em;
-  width: 25%;
-  min-width: fit-content;
+  min-width: 20%;
   overflow: auto;
   resize: horizontal;
   background-color: rgb(231, 231, 231);
@@ -130,6 +129,7 @@ form p {
 
 #list-ul {
   border-radius: 10px;
+  min-width: fit-content;
 }
 
 .list_expr {
