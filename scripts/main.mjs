@@ -77,7 +77,11 @@ const clearOldContent = () => {
     }
 }
 
-function handleResponse(inputText) {
+function resizeGraph(maxX, maxY) {
+    graph.updateBounds(maxX * (-0.5), maxY * (-0.25), maxX * (1.3), maxY * (1.3));
+}
+
+function handleResponse(inputText, oldMapBounds = null) {
     // Formatting data for Express
     const requestTxt = `text=${encodeURIComponent(inputText)}`;
 
@@ -114,7 +118,12 @@ function handleResponse(inputText) {
             graph.drawFuncaoObjetivo();
             graph.drawRestricoes();
             graph.drawRegiaoViavel();
-            graph.updateBounds(respH.maxX * (-0.5), respH.maxY * (-0.25), respH.maxX * (1.3), respH.maxY * (1.3));
+            if (oldMapBounds != null) {
+                graph.graphCalculator.setMathBounds(oldMapBounds);
+            }
+            else {
+                resizeGraph(respH.maxX, respH.maxY);
+            }
 
             // Adicionando divs de restricoes
             let lista_ul = document.getElementById('list-ul');
@@ -203,7 +212,7 @@ function handleResponse(inputText) {
 
                 sliderElem.addEventListener('mouseup', function () {
                     respH.stList[idx].value = sliderElem.value;
-                    handleResponse(respH.getInputText());
+                    handleResponse(respH.getInputText(), graph.graphCalculator.graphpaperBounds.mathCoordinates);
                     return;
                 });
             });
