@@ -8,7 +8,7 @@ export class Graph {
 
 
     constructor(id = 'graph') {
-        this.options = { zoomButtons: false, expressions: true };
+        this.options = { zoomButtons: false, expressions: false };
         this.stList = [];
         this.funcaoObjetivo = {};
         this.regiaoViavel = {};
