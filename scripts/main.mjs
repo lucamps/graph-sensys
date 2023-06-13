@@ -197,6 +197,11 @@ function handleResponse(inputText, oldMapBounds = null) {
             respH.stList.forEach((res, idx) => {
                 let sliderElem = document.getElementById(`range-${res.id}`);
                 let valueElem = document.getElementById(`result-value-${res.id}`);
+                let checkBox = document.getElementById(`check-${res.id}`);
+
+                checkBox.addEventListener("change", () => {
+                    checkBox.style.backgroundColor = checkBox.checked ? res.color : "#FFFFFF";
+                })
 
                 if (!res.minToShow || !res.maxToShow) {
                     res.calculateMinAndMaxToShow();
