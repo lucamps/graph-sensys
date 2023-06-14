@@ -113,11 +113,18 @@ function handleResponse(inputText, oldMapBounds = null) {
 
             graph.funcaoObjetivo = fo;
             graph.stList = respH.stList;
-            graph.regiaoViavel = respH.regViavel;
+
+            if ((respH.regViavel != null) && respH.regViavel.length != 0) {
+                graph.regiaoViavel = respH.regViavel;
+                graph.drawRegiaoViavel();
+            }
+            else {
+                showAlert("Aviso: não foi possível calcular a região viável para esses parâmetros.");
+            }
 
             graph.drawFuncaoObjetivo();
+
             graph.drawRestricoes();
-            graph.drawRegiaoViavel();
             if (oldMapBounds != null) {
                 graph.graphCalculator.setMathBounds(oldMapBounds);
             }

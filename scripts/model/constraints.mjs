@@ -28,10 +28,20 @@ export default class Constraint extends LinearExpression {
      * @param {ObjectiveFunction} fo 
      */
     calculateMinAndMaxToShow(fo) {
-        let maxValue = (fo.maxValue / fo.a) * this.a + (fo.maxValue / fo.b) * this.b;
+        let valorValido = fo.maxValue > Number.MIN_VALUE && fo.minValue < Number.MAX_VALUE;
 
-        this.minToShow = 0 - 0.2 * maxValue;
-        this.maxToShow = maxValue * 1.1;
+        let maxValue = 0;
+        if (valorValido) {
+            maxValue = (fo.maxValue / fo.a) * this.a + (fo.maxValue / fo.b) * this.b;
+            this.minToShow = 0 - 0.2 * maxValue;
+            this.maxToShow = maxValue * 1.1;
+        }
+        else {
+            maxValue = this.value * 10;
+            this.minToShow = 0 - maxValue;
+            this.maxToShow = maxValue;
+        }
+
     }
 
     getFolga() {

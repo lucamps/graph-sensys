@@ -44,10 +44,10 @@ export default class Solver {
         }
 
         this.#calculateRegiaoViavel();
-
-        Common.sortByAngle(this.regiaoViavel);
-
-        this.funcObj.calculateSolutions(this.regiaoViavel);
+        if (this.regiaoViavel.length > 0) {
+            Common.sortByAngle(this.regiaoViavel);
+            this.funcObj.calculateSolutions(this.regiaoViavel);
+        }
 
         if (debug) {
             console.log("---------");
