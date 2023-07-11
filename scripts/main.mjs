@@ -136,6 +136,8 @@ function handleResponse(inputText, oldMapBounds = null) {
             let lista_ul = document.getElementById('list-ul');
             for (let i = 0; i < respH.stList.length; i++) {
                 let res = respH.stList[i];
+                res.nameVarA = fo.nameVarA;
+                res.nameVarB = fo.nameVarB;
                 lista_ul.innerHTML += HtmlContentHandler.getDivRes(res);
             }
 
