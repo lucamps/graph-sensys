@@ -83,16 +83,26 @@ relop: EQ | GT | LT | LTEQ | GTEQ;
 
 INIT: MAX | MIN;
 
-ST: ('S' | 's') ( ('T' | 't') | ('A' | 'a'));
+ST: S (T | A);
 
-END: ('E' | 'e') ('N' | 'n') ('D' | 'd')
-	| ('F' | 'f') ('I' | 'i') ('M' | 'm');
+END: E N D | F I M;
 
 VARIABLE: VALID_ID_START VALID_ID_CHAR*;
 
-fragment MAX: ('M' | 'm') ('A' | 'a') ('X' | 'x');
+fragment MAX: M A X (I M I Z E)?;
+fragment MIN: M I N (I M I Z E)?;
 
-fragment MIN: ('M' | 'm') ('I' | 'i') ('N' | 'n');
+fragment A: 'A' | 'a';
+fragment D: 'D' | 'd';
+fragment E: 'E' | 'e';
+fragment F: 'F' | 'f';
+fragment I: 'I' | 'i';
+fragment M: 'M' | 'm';
+fragment N: 'N' | 'n';
+fragment S: 'S' | 's';
+fragment T: 'T' | 't';
+fragment X: 'X' | 'x';
+fragment Z: 'Z' | 'z';
 
 fragment VALID_ID_START: ('a' .. 'z') | ('A' .. 'Z') | '_';
 
@@ -103,8 +113,6 @@ SCIENTIFIC_NUMBER: NUMBER (E SIGN? UNSIGNED_INTEGER)?;
 fragment NUMBER: ('0' .. '9')+ ('.' ('0' .. '9')+)?;
 
 fragment UNSIGNED_INTEGER: ('0' .. '9')+;
-
-fragment E: 'E' | 'e';
 
 fragment SIGN: ('+' | '-');
 

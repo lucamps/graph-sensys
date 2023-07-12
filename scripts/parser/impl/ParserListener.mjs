@@ -38,9 +38,11 @@ export default class ParserListener extends LinearProgListener {
 		let tipo = ctx.getText().toLowerCase();
 		switch (tipo) {
 			case "max":
+			case "maximize":
 				this.funcObj.type = ObjectiveFunction.Type.max;
 				break;
 			case "min":
+			case "minimize":
 				this.funcObj.type = ObjectiveFunction.Type.min;
 				break;
 			default:
