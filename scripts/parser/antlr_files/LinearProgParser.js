@@ -1,8 +1,8 @@
-// Generated from scripts/parser/grammar/LinearProg.g4 by ANTLR 4.12.0
+// Generated from scripts/parser/grammar/LinearProg.g4 by ANTLR 4.13.0
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import LinearProgListener from './LinearProgListener.js';
-const serializedATN = [4,1,22,125,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
+const serializedATN = [4,1,23,125,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,
 2,13,7,13,1,0,1,0,4,0,31,8,0,11,0,12,0,32,1,0,1,0,4,0,37,8,0,11,0,12,0,38,
 1,0,1,0,4,0,43,8,0,11,0,12,0,44,1,0,5,0,48,8,0,10,0,12,0,51,9,0,1,0,3,0,
@@ -11,7 +11,7 @@ const serializedATN = [4,1,22,125,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 1,8,1,8,3,8,90,8,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,5,8,102,8,8,10,
 8,12,8,105,9,8,1,9,3,9,108,8,9,1,9,1,9,3,9,112,8,9,1,9,3,9,115,8,9,1,10,
 1,10,1,11,1,11,1,12,1,12,1,13,1,13,1,13,0,1,16,14,0,2,4,6,8,10,12,14,16,
-18,20,22,24,26,0,4,2,0,19,19,21,21,1,0,10,11,1,0,8,9,1,0,12,16,124,0,28,
+18,20,22,24,26,0,4,2,0,19,19,22,22,1,0,10,11,1,0,8,9,1,0,12,16,124,0,28,
 1,0,0,0,2,57,1,0,0,0,4,59,1,0,0,0,6,69,1,0,0,0,8,73,1,0,0,0,10,75,1,0,0,
 0,12,79,1,0,0,0,14,81,1,0,0,0,16,89,1,0,0,0,18,107,1,0,0,0,20,116,1,0,0,
 0,22,118,1,0,0,0,24,120,1,0,0,0,26,122,1,0,0,0,28,30,3,4,2,0,29,31,3,14,
@@ -24,7 +24,7 @@ const serializedATN = [4,1,22,125,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 0,0,1,56,1,1,0,0,0,57,58,5,1,0,0,58,3,1,0,0,0,59,63,3,2,1,0,60,62,3,14,7,
 0,61,60,1,0,0,0,62,65,1,0,0,0,63,61,1,0,0,0,63,64,1,0,0,0,64,66,1,0,0,0,
 65,63,1,0,0,0,66,67,3,16,8,0,67,5,1,0,0,0,68,70,3,8,4,0,69,68,1,0,0,0,69,
-70,1,0,0,0,70,71,1,0,0,0,71,72,3,10,5,0,72,7,1,0,0,0,73,74,5,20,0,0,74,9,
+70,1,0,0,0,70,71,1,0,0,0,71,72,3,10,5,0,72,7,1,0,0,0,73,74,5,21,0,0,74,9,
 1,0,0,0,75,76,3,16,8,0,76,77,3,26,13,0,77,78,3,16,8,0,78,11,1,0,0,0,79,80,
 5,2,0,0,80,13,1,0,0,0,81,82,7,0,0,0,82,15,1,0,0,0,83,84,6,8,-1,0,84,85,5,
 6,0,0,85,86,3,16,8,0,86,87,5,7,0,0,87,90,1,0,0,0,88,90,3,18,9,0,89,83,1,
@@ -51,11 +51,12 @@ export default class LinearProgParser extends antlr4.Parser {
     static grammarFileName = "LinearProg.g4";
     static literalNames = [ null, null, null, null, null, null, "'('", "')'", 
                             "'+'", "'-'", "'*'", "'/'", null, null, "'>'", 
-                            "'<'", "'='", "'.'", "'^'", "';'", null, "'\\n'" ];
+                            "'<'", "'='", "'.'", "'^'", "';'", "':'", null, 
+                            "'\\n'" ];
     static symbolicNames = [ null, "INIT", "ST", "END", "VARIABLE", "SCIENTIFIC_NUMBER", 
                              "LPAREN", "RPAREN", "PLUS", "MINUS", "TIMES", 
                              "DIV", "GTEQ", "LTEQ", "GT", "LT", "EQ", "POINT", 
-                             "POW", "SMCOL", "ID", "ENDL", "WS" ];
+                             "POW", "SMCOL", "COL", "ID", "ENDL", "WS" ];
     static ruleNames = [ "file_", "init", "funcObj", "res", "id", "equation", 
                          "st", "sep", "expression", "atom", "addOrSub", 
                          "scientific", "variable", "relop" ];
@@ -110,7 +111,7 @@ export default class LinearProgParser extends antlr4.Parser {
 	            this.state = 32; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while(_la===19 || _la===21);
+	        } while(_la===19 || _la===22);
 	        this.state = 34;
 	        this.st();
 	        this.state = 42; 
@@ -128,7 +129,7 @@ export default class LinearProgParser extends antlr4.Parser {
 	        		    this.state = 38; 
 	        		    this._errHandler.sync(this);
 	        		    _la = this._input.LA(1);
-	        		} while(_la===19 || _la===21);
+	        		} while(_la===19 || _la===22);
 	        		this.state = 40;
 	        		this.res();
 	        		break;
@@ -142,7 +143,7 @@ export default class LinearProgParser extends antlr4.Parser {
 	        this.state = 49;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===19 || _la===21) {
+	        while(_la===19 || _la===22) {
 	            this.state = 46;
 	            this.sep();
 	            this.state = 51;
@@ -209,7 +210,7 @@ export default class LinearProgParser extends antlr4.Parser {
 	        this.state = 63;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while(_la===19 || _la===21) {
+	        while(_la===19 || _la===22) {
 	            this.state = 60;
 	            this.sep();
 	            this.state = 65;
@@ -243,7 +244,7 @@ export default class LinearProgParser extends antlr4.Parser {
 	        this.state = 69;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===20) {
+	        if(_la===21) {
 	            this.state = 68;
 	            this.id();
 	        }
@@ -347,7 +348,7 @@ export default class LinearProgParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 81;
 	        _la = this._input.LA(1);
-	        if(!(_la===19 || _la===21)) {
+	        if(!(_la===19 || _la===22)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -668,9 +669,10 @@ LinearProgParser.EQ = 16;
 LinearProgParser.POINT = 17;
 LinearProgParser.POW = 18;
 LinearProgParser.SMCOL = 19;
-LinearProgParser.ID = 20;
-LinearProgParser.ENDL = 21;
-LinearProgParser.WS = 22;
+LinearProgParser.COL = 20;
+LinearProgParser.ID = 21;
+LinearProgParser.ENDL = 22;
+LinearProgParser.WS = 23;
 
 LinearProgParser.RULE_file_ = 0;
 LinearProgParser.RULE_init = 1;

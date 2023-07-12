@@ -132,6 +132,8 @@ POINT: '.';
 POW: '^';
 SMCOL: ';';
 
-ID: VARIABLE RPAREN;
+COL: ':';
+
+ID: VARIABLE (RPAREN | COL);
 ENDL: '\n';
 WS: [ \r\t]+ -> skip;
