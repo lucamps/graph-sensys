@@ -180,13 +180,7 @@ export default class Solver {
     #setRestValidId(rest, i = 0) {
         let elemId = rest.id;
 
-        if (elemId) {
-            if (this.idList.includes(elemId)) {
-                elemId = this.#generateNewId(i);
-                rest.id = elemId;
-            }
-        }
-        else {
+        if (!elemId || this.idList.includes(elemId)) {
             elemId = this.#generateNewId(i);
             rest.id = elemId;
         }
