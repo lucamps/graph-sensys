@@ -10,4 +10,7 @@ export default class Constants {
         };
     }
 
+    static get CONSTRAINT_ID_BASE() {
+        return "Constraint_";
+    }
 }

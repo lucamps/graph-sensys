@@ -1,4 +1,5 @@
 import Common from "./common.mjs";
+import Constants from "./constants.mjs";
 import Constraint from "./model/constraints.mjs";
 import ParserListener from "./parser/impl/parserListener.mjs";
 import { matrix, det, inv, multiply, max } from "mathjs";
@@ -27,7 +28,7 @@ export default class Solver {
         this.funcObj = parserListener.funcObj;
         this.regiaoViavel = [];
         this.colorList = Object.values(Common.Colors);
-        this.idList = [];
+        this.labelList = [];
         this.sliderIdList = ['a', 'b', 'c', 'x', 'y'];
 
         this.#getInitialDataAndSetColors();
@@ -139,16 +140,16 @@ export default class Solver {
 
     } // fim do metodo #calculateRegiaoViavel
 
-    #generateNewId(num = 1) {
+    #generateNewLabel(num = 1) {
         const i = num;
         let newId = `R${i}`;
 
-        while (this.idList.includes(newId)) {
+        while (this.labelList.includes(newId)) {
             i++;
             newId = `R${i}`;
         }
 
-        this.idList.push(newId);
+        this.labelList.push(newId);
         return newId;
     }
 
@@ -177,15 +178,13 @@ export default class Solver {
     /**
      * @param {Constraint} rest 
      */
-    #setRestValidId(rest, i = 0) {
-        let elemId = rest.id;
+    #setConstraintValidLabel(rest, i = 0) {
+        let elemLabel = rest.label;
 
-        if (!elemId || this.idList.includes(elemId)) {
-            elemId = this.#generateNewId(i);
-            rest.id = elemId;
+        if (!elemLabel || this.labelList.includes(elemLabel)) {
+            elemLabel = this.#generateNewLabel(i + 1);
+            rest.label = elemLabel;
         }
-
-        rest.sliderChar = this.#generateNewSliderId();
     }
 
     /**
@@ -203,7 +202,9 @@ export default class Solver {
         // Preenchendo dados
         let folgaCol = 2;
         for (let i = 0; i < this.stList.length; i++) {
-            this.#setRestValidId(this.stList[i], i + 1);
+            this.#setConstraintValidLabel(this.stList[i], i);
+            this.stList[i].sliderChar = this.#generateNewSliderId();
+            this.stList[i].id = Constants.CONSTRAINT_ID_BASE + i;
 
             // Selecionando a cor
             if (this.colorList.length == 0) {
@@ -224,8 +225,11 @@ export default class Solver {
             Solver.MAX_X = max(Solver.MAX_X, Number(raizX));
             Solver.MAX_Y = max(Solver.MAX_Y, Number(raizY));
         }
-        console.log('________________ slider ids =');
-        console.log(this.sliderIdList);
+
+        if (this.debug) {
+            console.log('________________ slider ids =');
+            console.log(this.sliderIdList);
+        }
 
         Solver.MAX_W = max(Solver.MAX_W, Solver.MAX_X * 50);
         Solver.MAX_H = max(Solver.MAX_H, Solver.MAX_Y * 50);

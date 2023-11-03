@@ -14,13 +14,14 @@ export default class Constraint extends LinearExpression {
         };
     };
 
-    constructor({ a = 0, b = 0, value = 0, nameA = "x", nameB = "y", color = "", id = "", rel = Constraint.Relationship.none, sliderChar = 'd' }) {
+    constructor({ a = 0, b = 0, value = 0, nameA = "x", nameB = "y", color = "", id = "", rel = Constraint.Relationship.none, sliderChar = 'd', label = "" }) {
         super({ a: a, b: b, value: value, nameA: nameA, nameB: nameB, color: color });
         this.id = id;
         this.rel = rel;
         this.sliderChar = sliderChar;
         this.minToShow = null;
         this.maxToShow = null;
+        this.label = label;
     }
 
     /**

@@ -82,7 +82,7 @@ export default class ParserListener extends LinearProgListener {
 
 	// Enter a parse tree produced by linear_progParser#id.
 	enterId(ctx) {
-		this.stList[this.stIndex].id = ctx.getText().split(')')[0];
+		this.stList[this.stIndex].label = ctx.getText().split(')')[0];
 	}
 
 	// Exit a parse tree produced by linear_progParser#id.

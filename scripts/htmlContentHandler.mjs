@@ -5,7 +5,7 @@ export default class HtmlContentHandler {
         const divContent = ` <li class="list-group-item list_expr dynamic-content" id="div-${rest.id}">
             <div class="container title_and_check">
                 <input class="form-check-input" type="checkbox" name="check-${rest.id}" id="check-${rest.id}" ${style} checked>
-                <p class="identificador">${rest.id}</p>
+                <p class="identificador">${rest.label}</p>
             </div>
             <form class="form-expression">
                 <div class="form form-res" id="form-${rest.id}">
