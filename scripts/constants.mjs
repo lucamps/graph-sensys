@@ -6,7 +6,9 @@ export default class Constants {
             RESULT: 'fo-value',
             SLIDER_X: 'fo-slider-x',
             SLIDER_Y: 'fo-slider-y',
-            SLIDER_RESULT: 'fo-slider-result'
+            SLIDER_RESULT: 'fo-slider-result',
+            CHECKBOX: 'check-fo',
+            GRAPH_ELEM: 'fo'
         };
     }
 

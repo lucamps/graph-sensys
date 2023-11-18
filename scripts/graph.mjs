@@ -6,18 +6,37 @@ export class Graph {
     get slider_fo_y_value_char() { return 'b'; }
     get slider_fo_result_value_char() { return 'c'; }
 
-
     constructor(id = 'graph') {
-        this.options = { zoomButtons: false, expressions: false };
+        this.options = { zoomButtons: false, expressions: true };
         this.stList = [];
         this.funcaoObjetivo = {};
         this.regiaoViavel = {};
+        this.hiddenElements = new Map();
 
         if (id) {
             this.graphCalculator = this.getGraphCalculatorById(id);
         }
     }
 
+    // Exibe ou esconde um elemento no grafico a partir do id
+    hideOrShowElement(id, hide) {
+        let expressionsList = this.graphCalculator.getExpressions();
+        for (let i = 0; i < expressionsList.length; i++) {
+            if (expressionsList[i].id == id) {
+                expressionsList[i].hidden = hide;
+                this.graphCalculator.setExpression(expressionsList[i]);
+
+                if (hide) {
+                    this.hiddenElements.set(id, expressionsList[i]);
+                }
+                else {
+                    this.hiddenElements.delete(id);
+                }
+
+                break;
+            }
+        }
+    }
 
     // Recebe uma matriz n x 2 e retorna uma string a ser usada pelo Desmos
     pointsToString(points) {
@@ -102,7 +121,6 @@ export class Graph {
 
             this.setResValue(this.stList[i]);
         }
-
     }
 
 

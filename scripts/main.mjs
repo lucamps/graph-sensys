@@ -37,6 +37,11 @@ const bindObjectiveFunctionButtons = (selectMaxMin, fo) => {
 
         setButtonLabel(Constants.FO_ID.RESULT, fo.value);
     });
+
+    let checkbox = document.getElementById(Constants.FO_ID.CHECKBOX);
+    checkbox.addEventListener('change', function () {
+        graph.hideOrShowElement(Constants.FO_ID.GRAPH_ELEM, !this.checked);
+    });
 };
 
 /**
