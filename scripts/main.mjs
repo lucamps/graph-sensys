@@ -215,6 +215,7 @@ function handleResponse(inputText, oldMapBounds = null) {
 
                 checkBox.addEventListener("change", () => {
                     checkBox.style.backgroundColor = checkBox.checked ? res.color : "#FFFFFF";
+                    graph.hideOrShowElement(res.id, !checkBox.checked);
                 })
 
                 if (!res.minToShow || !res.maxToShow) {
