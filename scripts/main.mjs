@@ -13,7 +13,6 @@ const graph = new Graph('graph');
 const alertDiv = document.getElementById('alertDiv');
 const alertText = document.getElementById('alertText');
 
-
 /**
  * @param {ObjectiveFunction.Type.max|ObjectiveFunction.Type.min} foType 
 */
@@ -86,6 +85,142 @@ function resizeGraph(maxX, maxY) {
     graph.updateBounds(maxX * (-0.5), maxY * (-0.25), maxX * (1.3), maxY * (1.3));
 }
 
+/**
+ * @param {ResponseHandler} respH 
+ * @param {*} oldMapBounds 
+ */
+function drawGraphContent(respH, oldMapBounds) {
+    let fo = respH.funcObj;
+    graph.funcaoObjetivo = fo;
+    graph.stList = respH.stList;
+
+    if ((respH.regViavel != null) && respH.regViavel.length != 0) {
+        graph.regiaoViavel = respH.regViavel;
+        graph.drawRegiaoViavel();
+    }
+    else {
+        showAlert("Aviso: não foi possível calcular a região viável para esses parâmetros.");
+    }
+
+    graph.drawFuncaoObjetivo();
+
+    graph.drawRestricoes();
+    if (oldMapBounds != null) {
+        graph.graphCalculator.setMathBounds(oldMapBounds);
+    }
+    else {
+        resizeGraph(respH.maxX, respH.maxY);
+    }
+}
+
+/**
+ * @param {ResponseHandler} respH 
+ */
+function handleHtmlContent(respH) {
+    let fo = respH.funcObj;
+    setButtonLabel('fo-x-value', fo.a);
+    setButtonLabel('fo-y-value', fo.b);
+    setButtonLabel('fo-value', fo.value);
+
+    // Adicionando divs de restricoes
+    let lista_ul = document.getElementById('list-ul');
+    for (let i = 0; i < respH.stList.length; i++) {
+        let res = respH.stList[i];
+        res.nameVarA = fo.nameVarA;
+        res.nameVarB = fo.nameVarB;
+        lista_ul.innerHTML += HtmlContentHandler.getDivRes(res);
+    }
+
+    const selectMaxMin = document.getElementById('fo-type-select');
+
+    changeObjectiveFunctionSelectedType(selectMaxMin, fo.type);
+    bindObjectiveFunctionButtons(selectMaxMin, fo);
+
+    const foDiv = document.getElementById('fo-div');
+    foDiv.style.display = 'block';
+    changeVariablesInInterface(respH.funcObj);
+
+    const fo_btns = [
+        document.getElementById(Constants.FO_ID.X_VALUE),
+        document.getElementById(Constants.FO_ID.Y_VALUE),
+        document.getElementById(Constants.FO_ID.RESULT)
+    ];
+
+    const slider_fo = document.getElementById('fo_custom_range');
+    fo_btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            fo_btns.forEach(function (other_btn) {
+
+                if (other_btn != btn) {
+                    other_btn.classList.remove('active');
+                }
+            });
+            let value = btn.innerHTML;
+            slider_fo.min = Number(fo.minValue - 50).toString();
+            slider_fo.max = Number(fo.maxValue + 50).toString();
+            slider_fo.value = value;
+        });
+    });
+
+    slider_fo.addEventListener('input', function () {
+        const sliderValue = slider_fo.value;
+
+        // Iterate through the buttons
+        fo_btns.forEach(function (button) {
+            // Check if the button is the selected one
+            if (button.classList.contains('active')) {
+                button.innerHTML = sliderValue;
+
+                // Change the graph values
+                switch (button.id) {
+                    case 'fo-x-value':
+                        graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_X, sliderValue);
+                        break;
+                    case 'fo-y-value':
+                        graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_Y, sliderValue);
+                        break;
+                    case 'fo-value':
+                        graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, sliderValue, fo.minValue * (-1.5), fo.maxValue * (1.5));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    });
+
+    respH.stList.forEach((res, idx) => {
+        let sliderElem = document.getElementById(`range-${res.id}`);
+        let valueElem = document.getElementById(`result-value-${res.id}`);
+        let checkBox = document.getElementById(`check-${res.id}`);
+
+        checkBox.addEventListener("change", () => {
+            checkBox.style.backgroundColor = checkBox.checked ? res.color : "#FFFFFF";
+            graph.hideOrShowElement(res.id, !checkBox.checked);
+        })
+
+        if (!res.minToShow || !res.maxToShow) {
+            res.calculateMinAndMaxToShow();
+        }
+        sliderElem.min = res.minToShow;
+        sliderElem.max = res.maxToShow;
+        sliderElem.value = res.value;
+
+        sliderElem.addEventListener('input', function () {
+            valueElem.innerHTML = sliderElem.value;
+            graph.updateResValue(res.id, sliderElem.value);
+        });
+
+        sliderElem.addEventListener('mouseup', function () {
+            respH.stList[idx].value = sliderElem.value;
+            handleResponse(respH.getInputText(), graph.graphCalculator.graphpaperBounds.mathCoordinates);
+            return;
+        });
+    });
+
+}
+
+
 function handleResponse(inputText, oldMapBounds = null) {
     // Formatting data for Express
     const requestTxt = `text=${encodeURIComponent(inputText)}`;
@@ -95,148 +230,20 @@ function handleResponse(inputText, oldMapBounds = null) {
     xhr.open('POST', '/');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onerror = () => {
-        console.log('Erro no OnError: ' + xhr.status);
+        console.log('Erro: ' + xhr.status);
     }
 
     xhr.onload = function () {
         if (xhr.status == 200) {
             clearOldContent();
-
             hideAlert();
 
             response = xhr.response;
             console.log("Response recebida:");
             let respJson = JSON.parse(response);
-
             let respH = new ResponseHandler(respJson);
-
-            let fo = respH.funcObj;
-
-            setButtonLabel('fo-x-value', fo.a);
-            setButtonLabel('fo-y-value', fo.b);
-            setButtonLabel('fo-value', fo.value);
-
-            graph.funcaoObjetivo = fo;
-            graph.stList = respH.stList;
-
-            if ((respH.regViavel != null) && respH.regViavel.length != 0) {
-                graph.regiaoViavel = respH.regViavel;
-                graph.drawRegiaoViavel();
-            }
-            else {
-                showAlert("Aviso: não foi possível calcular a região viável para esses parâmetros.");
-            }
-
-            graph.drawFuncaoObjetivo();
-
-            graph.drawRestricoes();
-            if (oldMapBounds != null) {
-                graph.graphCalculator.setMathBounds(oldMapBounds);
-            }
-            else {
-                resizeGraph(respH.maxX, respH.maxY);
-            }
-
-            // Adicionando divs de restricoes
-            let lista_ul = document.getElementById('list-ul');
-            for (let i = 0; i < respH.stList.length; i++) {
-                let res = respH.stList[i];
-                res.nameVarA = fo.nameVarA;
-                res.nameVarB = fo.nameVarB;
-                lista_ul.innerHTML += HtmlContentHandler.getDivRes(res);
-            }
-
-            const selectMaxMin = document.getElementById('fo-type-select');
-
-            changeObjectiveFunctionSelectedType(selectMaxMin, fo.type);
-            bindObjectiveFunctionButtons(selectMaxMin, fo);
-
-            const foDiv = document.getElementById('fo-div');
-            foDiv.style.display = 'block';
-            changeVariablesInInterface(respH.funcObj);
-
-
-            const fo_btns = [
-                document.getElementById(Constants.FO_ID.X_VALUE),
-                document.getElementById(Constants.FO_ID.Y_VALUE),
-                document.getElementById(Constants.FO_ID.RESULT)
-            ];
-            console.log("botoes:");
-            console.log(fo_btns);
-
-            const slider_fo = document.getElementById('fo_custom_range');
-            fo_btns.forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    fo_btns.forEach(function (other_btn) {
-
-                        if (other_btn != btn) {
-                            other_btn.classList.remove('active');
-                        }
-                    });
-                    let value = btn.innerHTML;
-                    slider_fo.min = Number(fo.minValue - 50).toString();
-                    slider_fo.max = Number(fo.maxValue + 50).toString();
-                    slider_fo.value = value;
-                });
-            });
-
-
-            slider_fo.addEventListener('input', function () {
-                const sliderValue = slider_fo.value;
-
-                // Iterate through the buttons
-                fo_btns.forEach(function (button) {
-                    // Check if the button is the selected one
-                    if (button.classList.contains('active')) {
-                        button.innerHTML = sliderValue;
-
-                        // Change the graph values
-                        switch (button.id) {
-                            case 'fo-x-value':
-                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_X, sliderValue);
-                                break;
-                            case 'fo-y-value':
-                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_Y, sliderValue);
-                                break;
-                            case 'fo-value':
-                                graph.drawOrUpdateFOSliderValue(Constants.FO_ID.SLIDER_RESULT, sliderValue, fo.minValue * (-1.5), fo.maxValue * (1.5));
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                });
-            });
-
-            respH.stList.forEach((res, idx) => {
-                let sliderElem = document.getElementById(`range-${res.id}`);
-                let valueElem = document.getElementById(`result-value-${res.id}`);
-                let checkBox = document.getElementById(`check-${res.id}`);
-
-                checkBox.addEventListener("change", () => {
-                    checkBox.style.backgroundColor = checkBox.checked ? res.color : "#FFFFFF";
-                    graph.hideOrShowElement(res.id, !checkBox.checked);
-                })
-
-                if (!res.minToShow || !res.maxToShow) {
-                    res.calculateMinAndMaxToShow();
-                }
-                sliderElem.min = res.minToShow;
-                sliderElem.max = res.maxToShow;
-                sliderElem.value = res.value;
-
-                sliderElem.addEventListener('input', function () {
-                    valueElem.innerHTML = sliderElem.value;
-                    graph.updateResValue(res.id, sliderElem.value);
-                });
-
-                sliderElem.addEventListener('mouseup', function () {
-                    respH.stList[idx].value = sliderElem.value;
-                    handleResponse(respH.getInputText(), graph.graphCalculator.graphpaperBounds.mathCoordinates);
-                    return;
-                });
-            });
-
+            drawGraphContent(respH, oldMapBounds);
+            handleHtmlContent(respH);
         }
         else {
             console.log('Erro encontrado no OnLoad, de status: ' + xhr.status);
@@ -261,9 +268,3 @@ function submitForm(e) {
 
     handleResponse(content);
 }
-
-
-
-
-
-

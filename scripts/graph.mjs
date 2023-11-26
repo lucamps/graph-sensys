@@ -7,7 +7,7 @@ export class Graph {
     get slider_fo_result_value_char() { return 'c'; }
 
     constructor(id = 'graph') {
-        this.options = { zoomButtons: false, expressions: true };
+        this.options = { zoomButtons: false, expressions: false };
         this.stList = [];
         this.funcaoObjetivo = {};
         this.regiaoViavel = {};
@@ -156,9 +156,6 @@ export class Graph {
             default:
                 break;
         }
-
-        console.log(`max: ${maxValue}
-        min:${minValue}`);
 
         if (sliderStr) {
             const valueToUse = Number(value).toFixed(Graph.PRECISION);

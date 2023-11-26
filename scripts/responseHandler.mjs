@@ -11,16 +11,13 @@ export class ResponseHandler {
         this.funcObj.copy(respJson.funcObj);
         this.maxX = respJson.maxX;
         this.maxY = respJson.maxY;
-
-        console.log(this.funcObj);
-
         this.stList = [];
+
         for (let i = 0; i < respJson.stList.length; i++) {
             this.stList.push(new Constraint(respJson.stList[i]));
         }
 
         this.regViavel = respJson.regViavel;
-
     }
 
     getInputText() {

@@ -47,7 +47,6 @@ export default class ObjectiveFunction extends LinearExpression {
             this.solutionMap[points[i]] = temp;
         }
         this.updateValue();
-        console.log(this.solutionMap);
     }
 
     updateValue() {
