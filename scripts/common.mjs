@@ -22,6 +22,16 @@ export default class Common {
     }
 
     /**
+     * Remove pontos repetidos em um array
+     * @param {number[][]} points
+     */
+    static removeRepeatedPoints(points) {
+        const pointsSet = new Set(points.map(ponto => ponto.join('-')));
+        const pontosUnicos = Array.from(pointsSet, ponto => ponto.split('-').map(Number));
+        return pontosUnicos;
+    }
+
+    /**
      * Converte o valor de radianos para graus
      * @param {number} rad 
      * @returns 

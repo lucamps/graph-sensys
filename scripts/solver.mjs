@@ -45,17 +45,17 @@ export default class Solver {
         }
 
         this.#calculateRegiaoViavel();
+
         if (this.regiaoViavel.length > 0) {
+            this.regiaoViavel = Common.removeRepeatedPoints(this.regiaoViavel);
             Common.sortByAngle(this.regiaoViavel);
             this.funcObj.calculateSolutions(this.regiaoViavel);
         }
-
-        if (debug) {
-            console.log("---------");
-            console.log(this.regiaoViavel);
-        }
     }
-
+    if(debug) {
+        console.log("--------- REG VIAVEL (depois)");
+        console.log(this.regiaoViavel);
+    }
 
     /**
      * Preenche o array de pontos `this.#regiaoViavel`.
